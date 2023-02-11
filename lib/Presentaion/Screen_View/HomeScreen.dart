@@ -43,7 +43,9 @@ class _HomeState extends State<Home> {
                 style: txtStyle(ColorManager.DarkBasiColor, 30.0, true)),
             Spacer(),
             IconButton(
-                onPressed: () {},
+                onPressed: ()async {
+                  await SignOut(context);
+                },
                 icon: Icon(
                   Icons.notifications_none,
                   color: ColorManager.DarkBasiColor,
@@ -208,9 +210,10 @@ class _HomeState extends State<Home> {
                     password: false,
                     ontap: () {}),
               ),//0.1
+              SizedBox(height: BodyHeight*0.025,), //0.025
               //emergancy + call
               EmergancyWidget(),
-              SizedBox(height: BodyHeight*0.05,), //0.05
+              SizedBox(height: BodyHeight*0.025,), //0.025
               // text category
               Container(
                   height: BodyHeight*0.1,

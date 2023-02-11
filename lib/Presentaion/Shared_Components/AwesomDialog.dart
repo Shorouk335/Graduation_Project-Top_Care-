@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
+import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 
  // to show dialog on the center of screen
@@ -23,7 +24,7 @@ Future<dynamic> ShowDialog(context, {String? img, String? txt, String? type}) {
               Image.asset(img!, width: 250),
               Text(
                 "$txt",
-                style: txtStyle(ColorManager.CyneColordark, 20.0, false),
+                style: txtStyle(ColorManager.BlueBasiColor, 20.0, false),
               ),
               SizedBox(
                 height: 50,
@@ -47,33 +48,45 @@ Future<dynamic> DialogToLogin(context, {String? img}) {
         //Img
         Image.asset(img!, width: 250),
         //Create account
-        Container(
-          width: 250,
-          height: 40,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: ColorManager.BlueBasiColor),
-          child: Center(
-              child: Text(
-            "Create An Account",
-            style: txtStyle(Colors.white, 20.0, true),
-          )),
+        InkWell(
+          onTap: (){
+            Navigator.pushReplacementNamed(
+                context, RouteGenerator.Common_SignUpRoute);
+          },
+          child: Container(
+            width: 250,
+            height: 40,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: ColorManager.BlueBasiColor),
+            child: Center(
+                child: Text(
+              "Create An Account",
+              style: txtStyle(Colors.white, 20.0, true),
+            )),
+          ),
         ),
         SizedBox(
           height: 10,
         ),
         //log in
-        Container(
-          width: 250,
-          height: 40,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: ColorManager.BlueBasiColor),
-          child: Center(
-              child: Text(
-            "Log In",
-            style: txtStyle(Colors.white, 20.0, true),
-          )),
+        InkWell(
+          onTap: (){
+            Navigator.pushReplacementNamed(
+                context, RouteGenerator.LoginRoute);
+          },
+          child: Container(
+            width: 250,
+            height: 40,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: ColorManager.BlueBasiColor),
+            child: Center(
+                child: Text(
+              "Log In",
+              style: txtStyle(Colors.white, 20.0, true),
+            )),
+          ),
         ),
         SizedBox(
           height: 50,

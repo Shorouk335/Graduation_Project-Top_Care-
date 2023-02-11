@@ -5,8 +5,8 @@ import 'package:top_care_gp/Firebase/Auth.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 
-//bool? IsLogin;
 
+bool? IsLogin ;
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,15 +16,15 @@ void main() async {
     DeviceOrientation.portraitDown
   ]);
   // لربط الفير بيز بالابلكيشن
- // await Firebase.initializeApp();
+   await Firebase.initializeApp();
 
   //لمعرفة المستخدم سجل دخول ولا لا
-  // var user = await getUserData();
-  // if (user == null) {
-  //   IsLogin = false;
-  // } else {
-  //   IsLogin = true;
-  // }
+  var user = await getUserData();
+  if (user == null) {
+    IsLogin = false;
+  } else {
+    IsLogin = true;
+  }
 
   runApp(TopCare());
 }
@@ -42,10 +42,9 @@ class TopCare extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute:
-      // (IsLogin == true)
-      //     ? RouteGenerator.HomeRoute
-     //     :
-      RouteGenerator.HomeRoute,
+      (IsLogin == true)
+          ? RouteGenerator.HomeRoute
+          : RouteGenerator.SplachRoute,
       onGenerateRoute: RouteGenerator.getRoute,
       theme: LightApp,
     );

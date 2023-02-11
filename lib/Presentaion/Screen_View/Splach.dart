@@ -24,6 +24,29 @@ class _SplachState extends State<Splach> {
     });
   }
 
+  // Animation Img
+  Widget LottieAnimation() {
+    return Lottie.asset(AssetManager.LottieAnim,
+        width: MediaQuery.of(context).size.width / 1.5,
+        height: MediaQuery.of(context).size.height / 3,
+        fit: BoxFit.cover);
+  }
+
+  // Welcom Text Animation
+  Widget AnimatedText() {
+    return AnimatedTextKit(
+      totalRepeatCount: 1,
+      animatedTexts: [
+        TyperAnimatedText(StringManager.SplachTxt1,
+            textStyle: txtStyle(ColorManager.BlueBasiColor, 45.0, true)),
+        TyperAnimatedText(StringManager.SplachTxt2,
+            textStyle: txtStyle(ColorManager.BlueBasiColor, 45.0, true)),
+        TyperAnimatedText(StringManager.SplachTxt3,
+            textStyle: txtStyle(ColorManager.BlueBasiColor, 45.0, true)),
+      ],
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -31,26 +54,8 @@ class _SplachState extends State<Splach> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // Animation Img
-
-              Lottie.asset(AssetManager.LottieAnim,
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  height: MediaQuery.of(context).size.height / 3,
-                  fit: BoxFit.cover),
-
-              // Welcom Text Animation
-
-              AnimatedTextKit(
-                totalRepeatCount: 1,
-                animatedTexts: [
-                  TyperAnimatedText(StringManager.SplachTxt1,
-                      textStyle: txtStyle(ColorManager.CyneColordark, 45.0, true)),
-                  TyperAnimatedText(StringManager.SplachTxt2,
-                      textStyle: txtStyle(ColorManager.CyneColordark, 45.0, true)),
-                  TyperAnimatedText(StringManager.SplachTxt3,
-                      textStyle: txtStyle(ColorManager.CyneColordark, 45.0, true)),
-                ],
-              ),
+              LottieAnimation(),
+              AnimatedText(),
             ],
           ),
         ),

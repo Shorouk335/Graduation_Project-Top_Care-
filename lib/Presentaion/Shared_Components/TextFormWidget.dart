@@ -40,8 +40,8 @@ Widget TextFormWidget(
                 onTap: ontap,
                 child: Icon(
                   icon,
-                  size: 20,
-                  color: ColorManager.CyneColordark,
+                  size: 30,
+                  color: ColorManager.DGrayBasiColor,
                 ),
               )
             : Icon(

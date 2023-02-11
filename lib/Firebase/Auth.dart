@@ -14,8 +14,9 @@ Future getUserData() async {
 }
 
 //تسجيل الخروج
-Future SignOut() async {
-  return await FirebaseAuth.instance.signOut();
+Future SignOut(BuildContext context) async {
+  Navigator.pushReplacementNamed(context, RouteGenerator.SplachRoute);
+ return await FirebaseAuth.instance.signOut();
 }
 /*
 *   IconButton(
@@ -50,11 +51,12 @@ Future SignUpWithFire(BuildContext context,
     userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!);
     Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
-    //
+
     // if (userCredential!.user!.emailVerified == false) {
     //   User? user = FirebaseAuth.instance.currentUser;
     //   await user!.sendEmailVerification();
     // }
+
     // في حاله حدوث هذا الخطا
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
@@ -69,6 +71,7 @@ Future SignUpWithFire(BuildContext context,
     print(e);
   }
 }
+
 // التسجيل باكونت جوجل
 
 // Future SignInWithGoogle(BuildContext context) async {

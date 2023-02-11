@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "612954412408",
+    "project_id": "top-care-gp",
+    "storage_bucket": "top-care-gp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612954412408:android:bf528301363474cf60e48d",
+        "android_client_info": {
+          "package_name": "com.example.top_care_gp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612954412408-fvdj6mklpaf0frmc3h5spacr36l9c009.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.top_care_gp",
+            "certificate_hash": "6f58493cab7129298902a0d677711c8171f629be"
+          }
+        },
+        {
+          "client_id": "612954412408-64gsvj0pvrb6d7bg5hnkp63ag4f0e80f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRrzit-DTFFoQpT9ue5eRIljMac6D6F6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612954412408-64gsvj0pvrb6d7bg5hnkp63ag4f0e80f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

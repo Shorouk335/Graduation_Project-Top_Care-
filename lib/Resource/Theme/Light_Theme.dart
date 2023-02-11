@@ -4,8 +4,8 @@ import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
  ThemeData LightApp= ThemeData(
   scaffoldBackgroundColor: Colors.white,
   textTheme: TextTheme(
-   bodyText1: txtStyle(Colors.black, 30.0, true),
-   bodyText2: txtStyle(ColorManager.GrayColorLight, 15.0, false),
+   bodyText1: txtStyle(ColorManager.DarkBasiColor, 30.0, true),
+   bodyText2: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
   ),
 
 );

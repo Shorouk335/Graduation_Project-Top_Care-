@@ -45,6 +45,7 @@ dependencies:
   google_sign_in: ^5.4.2
   font_awesome_flutter: ^10.2.1
   shared_preferences: ^2.0.15
+  day_picker: ^2.1.1
 
 dev_dependencies:
   flutter_test:

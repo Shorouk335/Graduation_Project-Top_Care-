@@ -16,7 +16,7 @@ class OnBoarding extends StatelessWidget {
   // control of pageview widgets to know the number of page that I'm in
   var controller = PageController();
 
- //List of Data of 3 pages from class pageViewModel
+  //List of Data of 3 pages from class pageViewModel
   List<PageViewModel> PageViewData = [
     PageViewModel(
       img: AssetManager.onBord1,
@@ -31,12 +31,105 @@ class OnBoarding extends StatelessWidget {
       Hsize: 3,
     ),
     PageViewModel(
-      img:AssetManager.onBord3,
+      img: AssetManager.onBord3,
       title: StringManager.onBordTitle3,
       disc: StringManager.onBordDis3,
       Hsize: 2.5,
     ),
   ];
+
+  // Img + title + disc
+  Widget Content() {
+    return Expanded(
+      child: PageView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: PageViewData.length,
+        itemBuilder: (context, index) {
+          return PageViewItem(context: context, model: PageViewData[index]);
+        },
+        controller: controller,
+        physics: BouncingScrollPhysics(),
+        onPageChanged: (index) {
+          indexPageView = index;
+        },
+      ),
+    );
+  }
+
+  // 3 Dots move with pageView Widget by controller in pageView widgets
+  Widget Dots() {
+    return SmoothPageIndicator(
+      count: PageViewData.length,
+      controller: controller,
+      effect: ExpandingDotsEffect(
+        activeDotColor: ColorManager.BlueBasiColor,
+        dotColor: ColorManager.LGrayBasiColor,
+        dotHeight: 10,
+        dotWidth: 10,
+        expansionFactor: 3,
+        spacing: 5,
+      ),
+    );
+  }
+
+  //Skip & Next Botton
+  Widget Bottons(BuildContext context) {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Stack(
+        alignment: Alignment.center,
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: Colors.grey.shade200,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
+            },
+            child: CircleAvatar(
+              radius: 34,
+              backgroundColor: ColorManager.DGrayBasiColor,
+              child: Text(
+                "Skip",
+                style: txtStyle(Colors.white, 15.0, false),
+              ),
+            ),
+          ),
+        ],
+      ),
+      Stack(
+        alignment: Alignment.center,
+        children: [
+          CircleAvatar(
+            radius: 40,
+            backgroundColor: ColorManager.LBlueBasiColor,
+          ),
+          InkWell(
+            onTap: () {
+              if (indexPageView == PageViewData.length - 1) {
+                Navigator.pushReplacementNamed(
+                    context, RouteGenerator.HomeRoute);
+              }
+              controller.nextPage(
+                  duration: Duration(
+                    milliseconds: 750,
+                  ),
+                  curve: Curves.fastLinearToSlowEaseIn);
+            },
+            child: CircleAvatar(
+              radius: 34,
+              backgroundColor: ColorManager.BlueBasiColor,
+              child: Icon(
+                Icons.arrow_forward_ios_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,98 +137,10 @@ class OnBoarding extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-              children: [
-                // Img + title + disc
-                Expanded(
-                  child: PageView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: PageViewData.length,
-                  itemBuilder: (context, index) {
-                  return PageViewItem(
-                      context: context, model: PageViewData[index]);
-                },
-                controller: controller,
-                physics: BouncingScrollPhysics(),
-                onPageChanged: (index) {
-                  indexPageView = index;
-                },
-              ),
-            ),
-
-                // 3 Dots move with pageView Widget by controller in pageView widgets
-
-                SmoothPageIndicator(
-              count: PageViewData.length,
-              controller: controller,
-              effect: ExpandingDotsEffect(
-                activeDotColor: ColorManager.CyneColorLight,
-                dotColor:ColorManager.GrayColorLight,
-                dotHeight: 10,
-                dotWidth: 10,
-                expansionFactor: 3,
-                spacing: 5,
-              ),
-            ),
-
-            //Skip & Next Botton
-
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.grey.shade200,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushReplacementNamed(context, RouteGenerator.LoginRoute);
-                    },
-                    child: CircleAvatar(
-                      radius: 34,
-                      backgroundColor: ColorManager.GrayColorLight,
-                      child: Text(
-                        "Skip",
-                        style: txtStyle(Colors.white, 15.0, false),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundColor: ColorManager.CyneColorLight,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      if (indexPageView == PageViewData.length - 1) {
-                        Navigator.pushReplacementNamed(context, RouteGenerator.LoginRoute);
-                      }
-                      controller.nextPage(
-                          duration: Duration(
-                            milliseconds: 750,
-                          ),
-                          curve: Curves.fastLinearToSlowEaseIn);
-                    },
-                    child: CircleAvatar(
-                      radius: 34,
-                      backgroundColor: ColorManager.blueColorLight,
-                      child: Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ]),
+          child: Column(children: [
+            Content(),
+            Dots(),
+            Bottons(context),
           ]),
         ),
       ),
