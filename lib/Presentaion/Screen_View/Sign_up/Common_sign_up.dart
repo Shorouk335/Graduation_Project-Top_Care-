@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 import '../../../Resource/color_manager/color_manager.dart';
@@ -26,7 +27,7 @@ class _Common_sign_upState extends State<Common_sign_up> {
     return Column(
       children: [
         Image.asset(
-          'assets/images/log.jpg',
+          AssetManager.sign,
           height: 150,
           width: 150,
         ),

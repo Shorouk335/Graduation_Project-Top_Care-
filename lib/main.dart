@@ -44,7 +44,7 @@ class TopCare extends StatelessWidget {
       initialRoute:
       (IsLogin == true)
           ? RouteGenerator.HomeRoute
-          : RouteGenerator.SplachRoute,
+          : RouteGenerator.Emergencyscreen,
       onGenerateRoute: RouteGenerator.getRoute,
       theme: LightApp,
     );

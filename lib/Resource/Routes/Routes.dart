@@ -5,8 +5,8 @@ import 'package:top_care_gp/Presentaion/Screen_View/OnBoarding.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Dr_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Patient_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Splach.dart';
-
 import '../../Presentaion/Screen_View/Sign_up/Common_sign_up.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Emergancy.dart';
 
 class RouteGenerator {
   static const String SplachRoute = "/Splach";
@@ -16,6 +16,7 @@ class RouteGenerator {
   static const String Common_SignUpRoute = "CommonSignUp";
   static const String Dr_SignUpRoute = "DrSignUp";
   static const String Patient_SignUpRoute = "PatientSignUp";
+  static const String Emergencyscreen = "Emergency";
 
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -34,6 +35,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Dr_sign_up());
         case RouteGenerator.Patient_SignUpRoute:
         return MaterialPageRoute(builder: (_) => Patient_sign_up());
+       case RouteGenerator.Emergencyscreen:
+        return MaterialPageRoute(builder: (_) =>  Emergency());
 
       default:
         return UnDefinedRoute();
