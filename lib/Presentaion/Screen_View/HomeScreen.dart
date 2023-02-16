@@ -94,19 +94,24 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     width: 60,
                   ),
-                  Container(
-                    height: 50,
-                    width: 150,
-                    decoration: BoxDecoration(
-                      color: ColorManager.LBlueBasiColor,
-                      borderRadius: BorderRadius.circular(30),
+                  InkWell(
+                    onTap: (){
+                      Navigator.pushReplacementNamed(context, RouteGenerator.Emergencyscreen);
+                    },
+                    child: Container(
+                      height: 50,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        color: ColorManager.LBlueBasiColor,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Center(
+                          child: Text(
+                            "Emergency",
+                            style: txtStyle(
+                                ColorManager.DarkBasiColor, 18.0, true),
+                          )),
                     ),
-                    child: Center(
-                        child: Text(
-                          "Emergency",
-                          style: txtStyle(
-                              ColorManager.DarkBasiColor, 18.0, true),
-                        )),
                   ),
                 ],
               )

@@ -11,6 +11,7 @@ class AssetManager {
   static const String information ="assets/images/infor.png";
   static const String pharmacy = "assets/images/pharmacy.png";
   static const String sign = "assets/images/signup.png";
+  static const String Hospital = "assets/images/hos.jpg";
 
 
 
