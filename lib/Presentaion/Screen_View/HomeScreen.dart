@@ -52,7 +52,9 @@ class _HomeState extends State<Home> {
                   size: 30,
                 )),
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, RouteGenerator.Settingscreen);
+                },
                 icon: Icon(
                   Icons.tune,
                   color: ColorManager.DarkBasiColor,
@@ -195,6 +197,7 @@ class _HomeState extends State<Home> {
         ),
       );
     }//0.4
+
     return Scaffold(
       body: SafeArea(
         child: Padding(

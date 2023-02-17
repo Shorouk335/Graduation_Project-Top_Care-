@@ -13,56 +13,59 @@ Widget TextFormWidget(
     TextEditingController? controller,
     void Function()? ontap
     }) {
-  return TextFormField(
-    controller: controller,
-    // لاخفاء واظهار النص
-    obscureText: password!,
-    cursorColor: ColorManager.DGrayBasiColor,
-    // عشان اتاكد ان المستخدم دخل البيانات قبل الانتقال للصفحه التاليه
-    validator: (value) {
-      if (value!.isEmpty)
-        return "$txt can't be empty";
-      else
-        return null;
-    },
-    decoration: InputDecoration(
-      filled: true,
-      fillColor: ColorManager.LGrayBasiColor,
-     //استايل الكلام الخفي
-      hintText: "$txt",
-      hintStyle: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
-      // الايكون الي في الاخر
-      prefixIcon: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: (password)
-        // ايكون العين عشان لو ضغط يظهر الكلام
-            ? InkWell(
-                onTap: ontap,
-                child: Icon(
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: TextFormField(
+      controller: controller,
+      // لاخفاء واظهار النص
+      obscureText: password!,
+      cursorColor: ColorManager.DGrayBasiColor,
+      // عشان اتاكد ان المستخدم دخل البيانات قبل الانتقال للصفحه التاليه
+      validator: (value) {
+        if (value!.isEmpty)
+          return "$txt can't be empty";
+        else
+          return null;
+      },
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: ColorManager.LGrayBasiColor,
+       //استايل الكلام الخفي
+        hintText: "$txt",
+        hintStyle: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
+        // الايكون الي في الاخر
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: (password)
+          // ايكون العين عشان لو ضغط يظهر الكلام
+              ? InkWell(
+                  onTap: ontap,
+                  child: Icon(
+                    icon,
+                    size: 30,
+                    color: ColorManager.DGrayBasiColor,
+                  ),
+                )
+              : Icon(
                   icon,
-                  size: 30,
+                  size:30,
                   color: ColorManager.DGrayBasiColor,
                 ),
-              )
-            : Icon(
-                icon,
-                size:30,
-                color: ColorManager.DGrayBasiColor,
-              ),
-      ),
+        ),
 //حاله الفورم لو ضغط عليها
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: ColorManager.LGrayBasiColor,
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ColorManager.LGrayBasiColor,
+          ),
+          borderRadius: BorderRadius.circular(30),
         ),
-        borderRadius: BorderRadius.circular(30),
-      ),
 // حاله الفورم لو مضغطش
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(
-          color: ColorManager.LGrayBasiColor,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: ColorManager.LGrayBasiColor,
+          ),
+          borderRadius: BorderRadius.circular(30),
         ),
-        borderRadius: BorderRadius.circular(30),
       ),
     ),
   );

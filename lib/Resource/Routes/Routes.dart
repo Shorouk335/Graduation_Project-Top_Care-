@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/HomeScreen.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Log_in.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/OnBoarding.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Dr_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Patient_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Splach.dart';
@@ -17,6 +18,7 @@ class RouteGenerator {
   static const String Dr_SignUpRoute = "DrSignUp";
   static const String Patient_SignUpRoute = "PatientSignUp";
   static const String Emergencyscreen = "Emergency";
+  static const String Settingscreen = "Setting";
 
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -37,6 +39,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Patient_sign_up());
        case RouteGenerator.Emergencyscreen:
         return MaterialPageRoute(builder: (_) =>  Emergency());
+        case RouteGenerator.Settingscreen:
+        return MaterialPageRoute(builder: (_) =>  SettingPage());
 
       default:
         return UnDefinedRoute();

@@ -114,7 +114,7 @@ class _EmergencyState extends State<Emergency> {
             ),
           ),
           Positioned(
-              top: 60,
+              top: 50,
               left: 20,
               child: IconButton(
                 onPressed: () {
@@ -464,10 +464,15 @@ class _EmergencyState extends State<Emergency> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: ColorManager.LGrayBasiColor),
-                child: TextFormField(
-                  onChanged: (value) {
-                    name = value;
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    cursorColor: ColorManager.DGrayBasiColor,
+
+                    onChanged: (value) {
+                      name = value;
+                    },
+                  ),
                 ),
               ),
               SizedBox(
@@ -487,10 +492,14 @@ class _EmergencyState extends State<Emergency> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: ColorManager.LGrayBasiColor),
-                child: TextFormField(
-                  onChanged: (value) {
-                    phone = value;
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    cursorColor: ColorManager.DGrayBasiColor,
+                    onChanged: (value) {
+                      phone = value;
+                    },
+                  ),
                 ),
               ),
               SizedBox(
@@ -509,10 +518,14 @@ class _EmergencyState extends State<Emergency> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: ColorManager.LGrayBasiColor),
-                child: TextFormField(
-                  onChanged: (value) {
-                    loc = value;
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    cursorColor: ColorManager.DGrayBasiColor,
+                    onChanged: (value) {
+                      loc = value;
+                    },
+                  ),
                 ),
               ),
               SizedBox(
@@ -570,10 +583,14 @@ class _EmergencyState extends State<Emergency> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: ColorManager.LGrayBasiColor),
-                child: TextFormField(
-                  onChanged: (value) {
-                    name = value;
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    cursorColor: ColorManager.DGrayBasiColor,
+                    onChanged: (value) {
+                      name = value;
+                    },
+                  ),
                 ),
               ),
               SizedBox(
@@ -592,10 +609,14 @@ class _EmergencyState extends State<Emergency> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: ColorManager.LGrayBasiColor),
-                child: TextFormField(
-                  onChanged: (value) {
-                    phone = value;
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    cursorColor: ColorManager.DGrayBasiColor,
+                    onChanged: (value) {
+                      phone = value;
+                    },
+                  ),
                 ),
               ),
               Spacer(),
