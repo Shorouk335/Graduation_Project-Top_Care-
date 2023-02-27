@@ -200,36 +200,39 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Container(
-              child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //Welcom & icon notification & icon setting
-              FirstWidget(),
-              // search
-              Container(
-                height: BodyHeight*0.1,
-                child: TextFormWidget(
-                    controller: TextEditingController(),
-                    icon: Icons.search_sharp,
-                    txt: "Search",
-                    password: false,
-                    ontap: () {}),
-              ),//0.1
-              SizedBox(height: BodyHeight*0.025,), //0.025
-              //emergancy + call
-              EmergancyWidget(),
-              SizedBox(height: BodyHeight*0.025,), //0.025
-              // text category
-              Container(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+                child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //Welcom & icon notification & icon setting
+                FirstWidget(),
+                // search
+                Container(
                   height: BodyHeight*0.1,
-                  child: Text("Category", style: txtStyle(ColorManager.DarkBasiColor, 35.0, true),)), //0.1
-              // Find Dr & x ray & pharmacy & know about
-              CategoryWidget(),
-            ],
-          )),
+                    child: TextFormWidget(
+                        controller: TextEditingController(),
+                        icon: Icons.search_sharp,
+                        txt: "Search",
+                        password: false,
+                        ontap: () {}),
+                 
+                ),//0.1
+                SizedBox(height: BodyHeight*0.025,), //0.025
+                //emergancy + call
+                EmergancyWidget(),
+                SizedBox(height: BodyHeight*0.025,), //0.025
+                // text category
+                Container(
+                    height: BodyHeight*0.1,
+                    child: Text("Category", style: txtStyle(ColorManager.DarkBasiColor, 35.0, true),)), //0.1
+                // Find Dr & x ray & pharmacy & know about
+                CategoryWidget(),
+              ],
+            )),
+          ),
         ),
       ),
       // CurvedBottomNav in the bottom

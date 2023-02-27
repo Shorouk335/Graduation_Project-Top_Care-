@@ -12,6 +12,11 @@ UserCredential? userCredential;
 Future getUserData() async {
   return await FirebaseAuth.instance.currentUser;
 }
+//get user id ===========> not work yet
+ getUserId() async {
+  return await FirebaseAuth.instance.currentUser?.uid.toString();
+}
+
 
 //تسجيل الخروج
 Future SignOut(BuildContext context) async {
@@ -32,6 +37,7 @@ Future LogInWithFire(BuildContext context,
   try {
     userCredential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email!, password: password!);
+
     Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
   } on FirebaseAuthException catch (e) {
     if (e.code == "user-not-found") {
@@ -50,7 +56,6 @@ Future SignUpWithFire(BuildContext context,
   try {
     userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!);
-    Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
 
     // if (userCredential!.user!.emailVerified == false) {
     //   User? user = FirebaseAuth.instance.currentUser;

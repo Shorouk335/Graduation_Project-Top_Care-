@@ -1,10 +1,15 @@
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_care_gp/Business_Logic/Cubit/Common_sign_up_Cubit.dart';
+import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
+import 'package:top_care_gp/Firebase/store.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Common_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/SubmitButton.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/TextFormWidget.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
+import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 
 class Dr_sign_up extends StatefulWidget {
@@ -15,7 +20,6 @@ class Dr_sign_up extends StatefulWidget {
 }
 
 class _Dr_sign_upState extends State<Dr_sign_up> {
-
   var aboutController = TextEditingController();
   var SpecializationController = TextEditingController();
   var locationController = TextEditingController();
@@ -27,8 +31,22 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
 
 //text to reminder Hello Doctor , Please complete your info
   Widget firstText() {
-    return Text('Hello Doctor , Please complete your info',
-        style: txtStyle(ColorManager.BlueBasiColor, 16.0, true));
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text('Hello Doctor , Please complete your info',
+            style: txtStyle(ColorManager.BlueBasiColor, 16.0, true)),
+        IconButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(
+                  context, RouteGenerator.Common_SignUpRoute);
+            },
+            icon: Icon(
+              Icons.arrow_forward_outlined,
+              color: ColorManager.BlueBasiColor,
+            ))
+      ],
+    );
   }
 
 //form have 4 textfeiled
@@ -231,64 +249,97 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
         AppBar().preferredSize.height -
         100.0 -
         MediaQuery.of(context).padding.top;
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                  child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // SizedBox(
-                  //   height: BodyHeight * 0.1,
-                  // ),
-                  firstText(),
-                  SizedBox(
-                    height: BodyHeight * 0.05,
-                  ),
-                  form(),
-                  SizedBox(
-                    height: BodyHeight * 0.04,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                    child: Text(
-                      "working days",
-                      style: txtStyle(ColorManager.DarkBasiColor, 16.0, true),
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  SizedBox(
-                    height: BodyHeight * 0.002,
-                  ),
-                  daypick(),
-                  SizedBox(
-                    height: BodyHeight * 0.002,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 8),
-                    child: Text(
-                      "Time",
-                      style: txtStyle(ColorManager.DarkBasiColor, 17.0, true),
-                      textAlign: TextAlign.start,
-                    ),
-                  ),
-                  ttime(context),
-                  SizedBox(
-                    height: BodyHeight * 0.08,
-                  ),
-                  submitButton("Submit", () async {
-                    if (formKey.currentState!.validate()) {
-                      await SignUpWithFire(context,
-                          email: "shorouk56@gmail.com", password: "12345678");
-                    }
-                    return null;
-                  }),
-                ]),
-        )),
-            )));
+    return BlocProvider(
+      create: (BuildContext context) => Common_Sign_up_Cubit(),
+      child: BlocConsumer<Common_Sign_up_Cubit, Common_Sign_up_states>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return Scaffold(
+                backgroundColor: Colors.white,
+                body: SafeArea(
+                    child: Center(
+                  child: SingleChildScrollView(
+                      child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          firstText(),
+                          SizedBox(
+                            height: BodyHeight * 0.05,
+                          ),
+                          form(),
+                          SizedBox(
+                            height: BodyHeight * 0.04,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                            child: Text(
+                              "working days",
+                              style: txtStyle(
+                                  ColorManager.DarkBasiColor, 16.0, true),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          SizedBox(
+                            height: BodyHeight * 0.002,
+                          ),
+                          daypick(),
+                          SizedBox(
+                            height: BodyHeight * 0.002,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 8),
+                            child: Text(
+                              "Time",
+                              style: txtStyle(
+                                  ColorManager.DarkBasiColor, 17.0, true),
+                              textAlign: TextAlign.start,
+                            ),
+                          ),
+                          ttime(context),
+                          SizedBox(
+                            height: BodyHeight * 0.08,
+                          ),
+                          submitButton(
+                            "Submit",
+                            () async {
+                              if (formKey.currentState!.validate()) {
+                                await SignUpWithFire(context,
+                                        email: Common_Sign_up_Cubit
+                                            .CommonModel!.email,
+                                        password: Common_Sign_up_Cubit
+                                            .CommonModel!.email)
+                                    .then((value) {
+                                  AddDoctorToFireStore(
+                                      username: Common_Sign_up_Cubit
+                                          .CommonModel!.username,
+                                      email: Common_Sign_up_Cubit
+                                          .CommonModel!.email,
+                                      password: Common_Sign_up_Cubit
+                                          .CommonModel!.password,
+                                      phone: Common_Sign_up_Cubit
+                                          .CommonModel!.phone,
+                                      gender: Common_Sign_up_Cubit
+                                          .CommonModel!.gender,
+                                      about: aboutController.text,
+                                      spec: SpecializationController.text,
+                                      loc: locationController.text,
+                                      price: priceController.text,
+                                      working_day: {"mo": true},
+                                      time: {"start": "5:00", "end": "7:00"});
+                                  Navigator.pushReplacementNamed(
+                                      context, RouteGenerator.HomeRoute);
+                                });
+                              }
+                              return null;
+                            },
+                          )
+                        ]),
+                  )),
+                )));
+          }),
+    );
   }
 }

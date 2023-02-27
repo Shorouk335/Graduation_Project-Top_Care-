@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Firebase/store.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/AwesomDialog.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
@@ -35,9 +36,7 @@ Widget CurvedBottomNav(context) {
                         width: 30,
                       ),
                       IconButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, RouteGenerator.HomeRoute);
+                          onPressed: () async{
                           },
                           icon: Icon(
                             Icons.home,
