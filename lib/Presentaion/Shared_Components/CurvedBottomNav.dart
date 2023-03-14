@@ -46,7 +46,7 @@ Widget CurvedBottomNav(context) {
                       Spacer(),
                       IconButton(
                           onPressed: () {
-                            DialogToLogin(
+                            ShowDialogToLogInApp(
                                 context,
                                 img: AssetManager.AwesomError);
                           },
@@ -69,7 +69,7 @@ Widget CurvedBottomNav(context) {
             radius: 40.0,
             child: InkWell(
                 onTap: () {
-                  DialogToLogin(context, img: AssetManager.AwesomError);
+                  ShowDialogToLogInApp(context, img: AssetManager.AwesomError);
                 },
                 child: Icon(
                   Icons.filter_center_focus,

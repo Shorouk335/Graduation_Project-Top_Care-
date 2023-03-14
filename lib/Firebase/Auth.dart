@@ -41,10 +41,10 @@ Future LogInWithFire(BuildContext context,
     Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
   } on FirebaseAuthException catch (e) {
     if (e.code == "user-not-found") {
-      ShowDialog(context,
+      ShowDialogSign(context,
           txt: "User not found", img: AssetManager.AwesomError, type: "error");
     } else if (e.code == "wrong-password") {
-      ShowDialog(context,
+      ShowDialogSign(context,
           txt: "Wrong Password", img: AssetManager.AwesomError, type: "error");
     }
   } catch (e) {}
@@ -65,10 +65,10 @@ Future SignUpWithFire(BuildContext context,
     // في حاله حدوث هذا الخطا
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
-      ShowDialog(context,
+      ShowDialogSign(context,
           txt: "Weak Password", img: AssetManager.AwesomError, type: "warning");
     } else if (e.code == 'email-already-in-use') {
-      ShowDialog(context,
+      ShowDialogSign(context,
           txt: "Email already in use", img: AssetManager.AwesomError, type: "warning");
     }
     // لو خطا اخر

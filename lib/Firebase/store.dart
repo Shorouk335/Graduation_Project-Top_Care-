@@ -35,6 +35,7 @@ void AddDoctorToFireStore({
     "time": time,
   }).then((value){
     Doctor.doc(value.id).set({
+      //to get this id and save in shared preferance when user sign up
       "id" : value.id ,
     } , SetOptions(merge: true)
     );

@@ -8,6 +8,7 @@ import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:top_care_gp/presentaion/Shared_Components/TextFormWidget.dart';
 
 class Emergency extends StatefulWidget {
   @override
@@ -15,11 +16,17 @@ class Emergency extends StatefulWidget {
 }
 
 class _EmergencyState extends State<Emergency> {
-  String Type = "H";
+  bool Hospital = true;
 
-  void ChangeType(String T) {
+  Color NonActiveColor = ColorManager.LGrayBasiColor.withOpacity(0.5);
+  Color ActiveColor = ColorManager.DarkBasiColor;
+  Color ActiveText =Colors.white;
+  Color NonActiveText = ColorManager.DarkBasiColor;
+
+
+  void ChangeType(bool T) {
     setState(() {
-      Type = T;
+      Hospital = T;
     });
   }
 
@@ -72,17 +79,17 @@ class _EmergencyState extends State<Emergency> {
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35),
-                      color: ColorManager.LGrayBasiColor.withOpacity(0.5),
+                      color: Hospital ? ActiveColor : NonActiveColor ,
                     ),
                     child: Center(
                       child: TextButton(
                         onPressed: () {
-                          ChangeType("H");
+                          ChangeType(true);
                         },
                         child: Text(
                           "hospital",
                           style:
-                              txtStyle(ColorManager.DarkBasiColor, 25.0, false),
+                              txtStyle(Hospital ? ActiveText :NonActiveText, 25.0, false),
                         ),
                       ),
                     ),
@@ -95,16 +102,16 @@ class _EmergencyState extends State<Emergency> {
                     height: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35),
-                      color: ColorManager.DarkBasiColor,
+                      color: Hospital?NonActiveColor : ActiveColor,
                     ),
                     child: Center(
                       child: TextButton(
                         onPressed: () {
-                          ChangeType("C");
+                          ChangeType(false);
                         },
                         child: Text(
                           "contacts",
-                          style: txtStyle(Colors.white, 25.0, false),
+                          style: txtStyle(Hospital ? NonActiveText :ActiveText, 25.0, false),
                         ),
                       ),
                     ),
@@ -126,7 +133,7 @@ class _EmergencyState extends State<Emergency> {
               )),
         ]),
       ),
-      body: (Type == "H")
+      body: Hospital
           ? ListView.builder(
               itemCount: Hospitals.length,
               scrollDirection: Axis.vertical,
@@ -399,11 +406,10 @@ class _EmergencyState extends State<Emergency> {
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          if (Type == "H") {
-            return await DialogEmergencyHospital(context);
-          } else {
-            return await DialogEmergencyContact(context);
-          }
+         Hospital ?
+             await DialogEmergencyHospital(context) :
+               await DialogEmergencyContact(context);
+
         },
         backgroundColor: ColorManager.DarkBasiColor,
         child: Icon(
@@ -466,12 +472,30 @@ class _EmergencyState extends State<Emergency> {
                     color: ColorManager.LGrayBasiColor),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
+                  child:TextFormField(
                     cursorColor: ColorManager.DGrayBasiColor,
-
                     onChanged: (value) {
                       name = value;
                     },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorManager.LGrayBasiColor,
+                      //حاله الفورم لو ضغط عليها
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+// حاله الفورم لو مضغطش
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+
+                    ),
                   ),
                 ),
               ),
@@ -499,6 +523,25 @@ class _EmergencyState extends State<Emergency> {
                     onChanged: (value) {
                       phone = value;
                     },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorManager.LGrayBasiColor,
+                      //حاله الفورم لو ضغط عليها
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+// حاله الفورم لو مضغطش
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+
+                    ),
                   ),
                 ),
               ),
@@ -525,6 +568,25 @@ class _EmergencyState extends State<Emergency> {
                     onChanged: (value) {
                       loc = value;
                     },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorManager.LGrayBasiColor,
+                      //حاله الفورم لو ضغط عليها
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+// حاله الفورم لو مضغطش
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+
+                    ),
                   ),
                 ),
               ),
@@ -562,11 +624,11 @@ class _EmergencyState extends State<Emergency> {
       dialogType: DialogType.noHeader,
       dialogBorderRadius: BorderRadius.circular(20.0),
       // the content of dialog
-      body: Container(
-        height: 300,
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+      body: Padding(
+        padding: const EdgeInsets.all(25.0),
+        child: Container(
+          height: 300,
+          width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -590,6 +652,25 @@ class _EmergencyState extends State<Emergency> {
                     onChanged: (value) {
                       name = value;
                     },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorManager.LGrayBasiColor,
+                      //حاله الفورم لو ضغط عليها
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+// حاله الفورم لو مضغطش
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+
+                    ),
                   ),
                 ),
               ),
@@ -611,11 +692,30 @@ class _EmergencyState extends State<Emergency> {
                     color: ColorManager.LGrayBasiColor),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
+                  child:TextFormField(
                     cursorColor: ColorManager.DGrayBasiColor,
                     onChanged: (value) {
                       phone = value;
                     },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorManager.LGrayBasiColor,
+                      //حاله الفورم لو ضغط عليها
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+// حاله الفورم لو مضغطش
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: ColorManager.LGrayBasiColor,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+
+                    ),
                   ),
                 ),
               ),
@@ -647,4 +747,37 @@ class _EmergencyState extends State<Emergency> {
   }
 }
 
+// fun of edit and delete
 void doNothing(BuildContext context) {}
+Widget TextFormEmergancy(
+    {
+      String? txt,
+    }) {
+  return TextFormField(
+    cursorColor: ColorManager.DGrayBasiColor,
+    onChanged: (value) {
+      txt = value;
+    },
+    decoration: InputDecoration(
+      filled: true,
+      fillColor: ColorManager.LGrayBasiColor,
+      //حاله الفورم لو ضغط عليها
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.LGrayBasiColor,
+        ),
+        borderRadius: BorderRadius.circular(30),
+      ),
+// حاله الفورم لو مضغطش
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.LGrayBasiColor,
+        ),
+        borderRadius: BorderRadius.circular(30),
+      ),
+
+    ),
+  );
+}
+
+

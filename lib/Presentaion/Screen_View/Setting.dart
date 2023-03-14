@@ -138,12 +138,12 @@ class _SettingPageState extends State<SettingPage> {
           continerpage(
               "About TopCare",
               iconpage(() {
-                showDialoginf(context);
+                ShowDialogInfoSetting(context);
               }, Icons.info_outline_rounded)),
           continerpage(
               "Contact Us",
               iconpage(() {
-                showDialogconect(context);
+                ShowDialogConectSetting(context);
               }, Icons.connect_without_contact_rounded)),
         ]),
 

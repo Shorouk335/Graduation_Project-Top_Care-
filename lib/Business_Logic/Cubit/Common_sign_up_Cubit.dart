@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
-import 'package:top_care_gp/Data/Models/Common_Sign_up_Model.dart';
+import 'package:top_care_gp/Business_Logic/CubitModel/Common_Sign_up_Model.dart';
  //عشان احفظ الداتا من صفحة ال common sign  و عند التسجيل كدكتور او مريض اخد الداتا الcommon  من ال cubit مع باقي الداتا من الصفح ل auth وال fire store
 class Common_Sign_up_Cubit extends Cubit<Common_Sign_up_states> {
 

@@ -8,7 +8,7 @@ import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
  // to show dialog on the center of screen
 
 //with img & txt using in the log in and sign up
-Future<dynamic> ShowDialog(context, {String? img, String? txt, String? type}) {
+Future<dynamic> ShowDialogSign(context, {String? img, String? txt, String? type}) {
   return AwesomeDialog(
     context: context,
     // to defint the type of top icon in dialog
@@ -37,8 +37,8 @@ Future<dynamic> ShowDialog(context, {String? img, String? txt, String? type}) {
 
 
 
-// with img & create account botton & login bottton using if user does't login
-Future<dynamic> DialogToLogin(context, {String? img}) {
+// with img & create account botton & login bottton using if user does't login in home
+Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
   return AwesomeDialog(
     context: context,
     dialogType: DialogType.noHeader,
@@ -96,9 +96,42 @@ Future<dynamic> DialogToLogin(context, {String? img}) {
     ),
   ).show();
 }
-// show in Setting
 
-Widget continerpage(text) {
+
+// show in Setting
+AwesomeDialog ShowDialogInfoSetting(context) {
+  return AwesomeDialog(
+    context: context,
+    animType: AnimType.scale,
+    customHeader: const Icon(
+      Icons.info_outline_rounded,
+      size: 50,
+      color: ColorManager.DarkBasiColor,
+    ),
+    body: ShowDialogSetting(
+      "Medical app For major Pneumonia Detection  using Chest X-Ray ",
+    ),
+    btnOkText: "Okay",
+    btnOkColor: ColorManager.DarkBasiColor,
+    btnOkOnPress: () {},
+  )..show();
+}
+AwesomeDialog ShowDialogConectSetting(context) {
+  return AwesomeDialog(
+    context: context,
+    animType: AnimType.scale,
+    customHeader: const Icon(
+      Icons.connect_without_contact_rounded,
+      color: ColorManager.DarkBasiColor,
+      size: 50,
+    ),
+    body: ShowDialogSetting("phone :\n0104500267\nGmail :\nTopcare@gmail.com "),
+    btnOkText: "Okay",
+    btnOkColor: ColorManager.DarkBasiColor,
+    btnOkOnPress: () {},
+  )..show();
+}
+Widget ShowDialogSetting(text) {
   return Container(
       height: 100,
       width: 200,
@@ -121,39 +154,4 @@ Widget continerpage(text) {
         ),
       ));
 }
-
-AwesomeDialog showDialoginf(context) {
-  return AwesomeDialog(
-    context: context,
-    animType: AnimType.scale,
-    customHeader: const Icon(
-      Icons.info_outline_rounded,
-      size: 50,
-      color: ColorManager.DarkBasiColor,
-    ),
-    body: continerpage(
-      "Medical app For major Pneumonia Detection  using Chest X-Ray ",
-    ),
-    btnOkText: "Okay",
-    btnOkColor: ColorManager.DarkBasiColor,
-    btnOkOnPress: () {},
-  )..show();
-}
-
-AwesomeDialog showDialogconect(context) {
-  return AwesomeDialog(
-    context: context,
-    animType: AnimType.scale,
-    customHeader: const Icon(
-      Icons.connect_without_contact_rounded,
-      color: ColorManager.DarkBasiColor,
-      size: 50,
-    ),
-    body: continerpage("phone :\n0104500267\nGmail :\nTopcare@gmail.com "),
-    btnOkText: "Okay",
-    btnOkColor: ColorManager.DarkBasiColor,
-    btnOkOnPress: () {},
-  )..show();
-}
-
 
