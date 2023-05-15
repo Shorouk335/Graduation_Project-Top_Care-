@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:top_care_gp/Firebase/Auth.dart';
-
 //Collection of Doctor
 CollectionReference Doctor = FirebaseFirestore.instance.collection("Doctor");
 

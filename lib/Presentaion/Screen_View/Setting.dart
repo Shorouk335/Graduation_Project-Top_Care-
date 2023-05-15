@@ -1,10 +1,15 @@
+
 import 'package:flutter_switch/flutter_switch.dart';
+
 import 'package:flutter/material.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/AwesomDialog.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/TopCarve.dart';
+import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
-import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Awesom_Dialog.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Top_Carve.dart';
+import 'package:top_care_gp/Resource/Theme/bloc/theme_bloc.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -14,62 +19,15 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-  bool statuslang = false;
-  Widget togglebuttonlang(String activetext, String inactivetext) {
-    return FlutterSwitch(
-      activeText: activetext,
-      inactiveText: inactivetext,
-      activeTextColor: ColorManager.BlueBasiColor,
-      inactiveTextColor: ColorManager.DarkBasiColor,
-      activeColor: ColorManager.DarkBasiColor,
-      inactiveColor: ColorManager.BlueBasiColor,
-      width: 100.0,
-      height: 40.0,
-      valueFontSize: 15.0,
-      toggleSize: 30.0,
-      value: statuslang,
-      borderRadius: 30.0,
-      padding: 8.0,
-      showOnOff: true,
-      onToggle: (val) {
-        setState(() {
-          statuslang = val;
-        });
-      },
-    );
-  }
 
-  bool statustheme = false;
-  Widget togglebuttheme(String activetext, String inactivetext) {
-    return FlutterSwitch(
-      activeText: activetext,
-      inactiveText: inactivetext,
-      activeTextColor: ColorManager.BlueBasiColor,
-      inactiveTextColor: ColorManager.DarkBasiColor,
-      activeColor: ColorManager.DarkBasiColor,
-      inactiveColor: ColorManager.BlueBasiColor,
-      width: 100.0,
-      height: 40.0,
-      valueFontSize: 15.0,
-      toggleSize: 30.0,
-      value: statustheme,
-      borderRadius: 30.0,
-      padding: 8.0,
-      showOnOff: true,
-      onToggle: (val) {
-        setState(() {
-          statustheme = val;
-        });
-      },
-    );
-  }
+  var itemAppTheme = AppTheme.values[0];
 
   Widget iconpage(VoidCallback onTap, IconData icon) {
     return IconButton(
       onPressed: onTap,
       icon: Icon(
         icon,
-        color: ColorManager.DarkBasiColor,
+        color: ColorManager.DarkBasiColor(context),
         size: 30,
       ),
     );
@@ -79,13 +37,7 @@ class _SettingPageState extends State<SettingPage> {
     return Container(
         height: 80,
         width: double.infinity,
-        decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: ColorManager.DGrayBasiColor,
-                width: 2.0,
-              ),
-            )),
+        decoration: const BoxDecoration(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -93,7 +45,11 @@ class _SettingPageState extends State<SettingPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "$text",
-                style: txtStyle(ColorManager.DarkBasiColor, 20.0, true),
+                style: TextStyle(
+                  color: ColorManager.DarkBasiColor(context),
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Padding(
@@ -104,49 +60,95 @@ class _SettingPageState extends State<SettingPage> {
         ));
   }
 
+  Widget ButtonThame() {
+    return ListView.builder(
+      padding: const EdgeInsets.all(8),
+      itemCount: AppTheme.values.length,
+      itemBuilder: (context, index) {
+        final itemAppTheme = AppTheme.values[index];
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SizedBox(
+            width: 80,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                context
+                    .read<ThemeBloc>()
+                    .add(ThemeChangedEvent(theme: itemAppTheme));
+              },
+              style: ButtonStyle(
+                backgroundColor:
+                MaterialStateProperty.all(
+                  ColorManager.DarkBasiColor(context)
+                 ),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+              ),
+              child: Text(
+                itemAppTheme.name,
+                style:
+                txtStyle(ColorManager.WitheToDarkColor(context), 20.0, true),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    double? HEIGHT = MediaQuery.of(context).size.height;
-    double? WIDTH = MediaQuery.of(context).size.width;
-    double? BodyHeight = HEIGHT -
-        AppBar().preferredSize.height -
-        100.0 -
-        MediaQuery.of(context).padding.top;
-
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(180.0),
-        child: Stack(children: <Widget>[
-          TopCarve(context: context, Havetitle: true, title: "Setting"),
-          Positioned(
-              top: 50,
-              left: 20,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                      context, RouteGenerator.HomeRoute);
-                },
-                icon: Icon(Icons.arrow_back_ios_sharp),
-                color: ColorManager.DarkBasiColor,
-              )),
-        ]),
-      ),
-        body: Column(
-            children: [
-          continerpage("Theme", togglebuttheme("Dark", "Light")),
-          continerpage("language", togglebuttonlang("En", "Ar")),
-          continerpage(
-              "About TopCare",
-              iconpage(() {
-                ShowDialogInfoSetting(context);
-              }, Icons.info_outline_rounded)),
-          continerpage(
-              "Contact Us",
-              iconpage(() {
-                ShowDialogConectSetting(context);
-              }, Icons.connect_without_contact_rounded)),
-        ]),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack( 
+          children :[
 
+             TopCarve(context: context, Havetitle: true, title: "Settings"),
+            Positioned(
+                top: 50,
+                left: 20,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, RouteGenerator.HomeRoute);
+                  },
+                  icon: Icon(Icons.arrow_back_ios_sharp),
+                  color: ColorManager.WitheToDarkColor(context),
+                )),
+      ] ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Theme",
+                style: txtStyle(ColorManager.DarkBasiColor(context), 20.0, true)
+              ),
+            ),
+            Expanded(flex: 1, child: ButtonThame()),
+            Expanded(
+              flex: 3,
+              child: Column(
+                children: [
+                  continerpage(
+                      "About TopCare",
+                      iconpage(() {
+                        ShowDialogInfoSetting(context);
+                      }, Icons.info_outline_rounded)),
+                  continerpage(
+                      "Contact Us",
+                      iconpage(() {
+                        ShowDialogConectSetting(context);
+                      }, Icons.connect_without_contact_rounded)),
+                ],
+              ),
+            ),
+          ]),
     );
   }
 }

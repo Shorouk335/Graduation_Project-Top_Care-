@@ -1,15 +1,15 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/TextFormWidget.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 
  // to show dialog on the center of screen
 
 //with img & txt using in the log in and sign up
 Future<dynamic> ShowDialogSign(context, {String? img, String? txt, String? type}) {
-  return AwesomeDialog(
+  return AwesomeDialog( 
+    dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
     context: context,
     // to defint the type of top icon in dialog
     dialogType: (type! == "error")
@@ -40,11 +40,13 @@ Future<dynamic> ShowDialogSign(context, {String? img, String? txt, String? type}
 // with img & create account botton & login bottton using if user does't login in home
 Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
   return AwesomeDialog(
+    dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
     context: context,
     dialogType: DialogType.noHeader,
     dialogBorderRadius: BorderRadius.circular(20.0),
     // the content of dialog
     body: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         //Img
         Image.asset(img!, width: 250),
@@ -101,37 +103,39 @@ Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
 // show in Setting
 AwesomeDialog ShowDialogInfoSetting(context) {
   return AwesomeDialog(
+    dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
     context: context,
     animType: AnimType.scale,
     customHeader: const Icon(
       Icons.info_outline_rounded,
       size: 50,
-      color: ColorManager.DarkBasiColor,
+      color: ColorManager.BlueBasiColor,
     ),
     body: ShowDialogSetting(
-      "Medical app For major Pneumonia Detection  using Chest X-Ray ",
+      "Medical app For major Pneumonia Detection  using Chest X-Ray " ,context,
     ),
     btnOkText: "Okay",
-    btnOkColor: ColorManager.DarkBasiColor,
+    btnOkColor:ColorManager.BlueBasiColor,
     btnOkOnPress: () {},
   )..show();
 }
 AwesomeDialog ShowDialogConectSetting(context) {
   return AwesomeDialog(
+    dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
     context: context,
     animType: AnimType.scale,
     customHeader: const Icon(
       Icons.connect_without_contact_rounded,
-      color: ColorManager.DarkBasiColor,
+      color: ColorManager.BlueBasiColor,
       size: 50,
     ),
-    body: ShowDialogSetting("phone :\n0104500267\nGmail :\nTopcare@gmail.com "),
+    body: ShowDialogSetting("phone :\n0104500267\nGmail :\nTopcare@gmail.com ", context),
     btnOkText: "Okay",
-    btnOkColor: ColorManager.DarkBasiColor,
+    btnOkColor: ColorManager.BlueBasiColor,
     btnOkOnPress: () {},
   )..show();
 }
-Widget ShowDialogSetting(text) {
+Widget ShowDialogSetting(String? text , BuildContext context) {
   return Container(
       height: 100,
       width: 200,
@@ -139,7 +143,7 @@ Widget ShowDialogSetting(text) {
           border: Border(
             bottom: BorderSide(
               color: ColorManager.DGrayBasiColor,
-              width: 2.0,
+              width: 1.0,
             ),
           )),
       child: Center(
@@ -148,7 +152,7 @@ Widget ShowDialogSetting(text) {
           children: [
             Text(
               "$text",
-              style: txtStyle(ColorManager.DarkBasiColor, 20.0, true),
+              style: txtStyle(ColorManager.DarkBasiColor(context), 15.0, true),
             ),
           ],
         ),

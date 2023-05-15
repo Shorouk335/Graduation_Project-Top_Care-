@@ -1,5 +1,7 @@
+import 'dart:io';
+
 class HospitalModel {
-  String? img = "" ;
+  File? img  ;
   String? name ;
   String? Loc ;
   String? phone ;

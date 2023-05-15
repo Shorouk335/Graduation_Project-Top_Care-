@@ -13,11 +13,11 @@ class StringManager {
   static const String onBordTitle3 ="Easily Know about your disease";
   static const String onBordDis3 ="learn about chest diseases such as pneumonia and everything new about the disease";
 
-
-  static const String CategoryTxt1="Find\nyour\nDoctor";
-  static const String CategoryTxt2= "X_Ray\nResults ";
-  static const String CategoryTxt3="Know\nabout\npneumonia";
-  static const String CategoryTxt4="Online\nMedicines";
+  static const String CategoryTxt1="Scan\nX_Ray";
+  static const String CategoryTxt2="Find\nyour\nDoctor";
+  static const String CategoryTxt3= "X_Ray\nResults ";
+  static const String CategoryTxt4="Know\nabout\npneumonia";
+  static const String CategoryTxt5="Online\nMedicines";
 
 
 

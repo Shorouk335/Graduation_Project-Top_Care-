@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Common_sign_up_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
+import 'package:top_care_gp/Firebase/Auth.dart';
+import 'package:top_care_gp/Firebase/store.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 import '../../../Resource/color_manager/color_manager.dart';
-import '../../Shared_Components/TextFormWidget.dart';
+import '../../../Resource/theme_Light.dart';
+import '../../Shared_Components/Text_Form_Widget.dart';
 
 class Common_sign_up extends StatefulWidget {
   @override
@@ -26,20 +28,19 @@ class _Common_sign_upState extends State<Common_sign_up> {
 
   var formkey = GlobalKey<FormState>();
 
-
   //img & log in words
   Widget FirstContent() {
     return Column(
       children: [
         Image.asset(
           AssetManager.sign,
-          height: 150,
-          width: 150,
+          height: 200,
+          width: 200,
+          fit: BoxFit.cover,
         ),
         Text(
           'Sign Up',
-          style:
-              txtStyle(ColorManager.BlueBasiColor, 30.0, true),
+          style: txtStyle(ColorManager.BlueBasiColor, 30.0, true),
         ),
         SizedBox(
           height: 10,
@@ -167,10 +168,10 @@ class _Common_sign_upState extends State<Common_sign_up> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>Common_Sign_up_Cubit(),
-      child: BlocConsumer<Common_Sign_up_Cubit ,Common_Sign_up_states>(
-        listener:(context ,state){} ,
-        builder: (context ,state){
+      create: (BuildContext context) => Common_Sign_up_Cubit(),
+      child: BlocConsumer<Common_Sign_up_Cubit, Common_Sign_up_states>(
+        listener: (context, state) {},
+        builder: (context, state) {
           Common_Sign_up_Cubit cubit = Common_Sign_up_Cubit.get(context);
           return Scaffold(
             body: SafeArea(
@@ -187,79 +188,90 @@ class _Common_sign_upState extends State<Common_sign_up> {
                           EnterForm(),
                           Gender(),
                           Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: 150,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(35),
-                              color: ColorManager.BlueBasiColor,
-                            ),
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  if (formkey.currentState!.validate()) {
-                                    print("start");
-                                    cubit.GenerateCommonSignUpModel(
-                                        username: nameController.text ,
-                                        password: passController.text ,
-                                        phone:   phoneController.text ,
-                                        email:  emailController.text ,
-                                        Type:  "Doctor",
-                                        gender: (malevalue == true && femalevalue == false) ? "male" :"female"
-                                    );
-                                    print("create done");
-                                    Navigator.pushReplacementNamed(
-                                        context, RouteGenerator.Dr_SignUpRoute);
-                                  }
-                                  else
-                                    return null ;
-                                },
-                                child: Text(
-                                  "DOCTOR",
-                                  style: txtStyle(Colors.white, 20.0, true),
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                width: 150,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(35),
+                                  color: ColorManager.BlueBasiColor,
+                                ),
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      if (formkey.currentState!.validate()) {
+                                        print("start");
+                                        cubit.GenerateCommonSignUpModel(
+                                            username: nameController.text,
+                                            password: passController.text,
+                                            phone: phoneController.text,
+                                            email: emailController.text,
+                                            Type: "Doctor",
+                                            gender: (malevalue == true &&
+                                                    femalevalue == false)
+                                                ? "male"
+                                                : "female");
+                                        print("create done");
+                                        Navigator.pushReplacementNamed(context,
+                                            RouteGenerator.Dr_SignUpRoute);
+                                      } else
+                                        return null;
+                                    },
+                                    child: Text(
+                                      "DOCTOR",
+                                      style: txtStyle(Colors.white, 20.0, true),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          Text(
-                            "OR",
-                            style: txtStyle(ColorManager.DGrayBasiColor, 20.0, true),
-                          ),
-                          Container(
-                            width: 150,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(35),
-                              color: ColorManager.BlueBasiColor,
-                            ),
-                            child: Center(
-                              child: TextButton(
-                                onPressed: () {
-                                  if (formkey.currentState!.validate()){
-                                    cubit.GenerateCommonSignUpModel(
-                                        username: nameController.text ,
-                                        password: passController.text ,
-                                        phone:   phoneController.text ,
-                                        email:  emailController.text ,
-                                        Type:  "Patient",
-                                        gender: (malevalue == true && femalevalue == false) ? "male" :"female"
-                                    );
-                                    Navigator.pushReplacementNamed(
-                                        context, RouteGenerator.Patient_SignUpRoute);
-                                  }
-                                  return null;
-                                },
-                                child: Text(
-                                  "PATIENT",
-                                  style: txtStyle(Colors.white, 20.0, true),
+                              Text(
+                                "OR",
+                                style: txtStyle(
+                                    ColorManager.DGrayBasiColor, 20.0, true),
+                              ),
+                              Container(
+                                width: 150,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(35),
+                                  color: ColorManager.BlueBasiColor,
+                                ),
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: ()async {
+                                      if (formkey.currentState!.validate()) {
+                                      await SignUpWithFire(context,
+                                                email: emailController.text,
+                                                password: passController.text)
+                                            .then(
+                                          (value) {
+                                            AddPatienToFireStore(
+                                              username: nameController.text,
+                                              email: emailController.text,
+                                              password: passController.text,
+                                              phone: phoneController.text,
+                                              gender: (malevalue == true &&
+                                                      femalevalue == false)
+                                                  ? "male"
+                                                  : "female",
+                                            );
+                                            Navigator.pushReplacementNamed(
+                                                context,
+                                                RouteGenerator.HomeRoute);
+                                          },
+                                        );
+                                      }
+                                    },
+                                    child: Text(
+                                      "PATIENT",
+                                      style: txtStyle(Colors.white, 20.0, true),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
                           SizedBox(
                             height: 10,
                           ),
@@ -273,7 +285,8 @@ class _Common_sign_upState extends State<Common_sign_up> {
                                 child: Text(
                                   'Already Have an account!',
                                   style: txtStyle(
-                                      ColorManager.BlueBasiColor.withOpacity(0.8),
+                                      ColorManager.BlueBasiColor.withOpacity(
+                                          0.8),
                                       15.0,
                                       false),
                                 )),

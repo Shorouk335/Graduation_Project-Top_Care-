@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:top_care_gp/Firebase/store.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/AwesomDialog.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Awesom_Dialog.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
-import 'package:top_care_gp/Resource/Routes/Routes.dart';
 
 // for curver navigator Bar in the bottom of applicaton
 Widget CurvedBottomNav(context) {
@@ -16,7 +14,7 @@ Widget CurvedBottomNav(context) {
         // container with 2 continer in it to make icon scan in the best position
         Container(
             height: 100.00,
-            color: Colors.white,
+            color: ColorManager.WitheToDarkColor(context),
             child: Column(
               children: [
                 // continer empty
@@ -28,7 +26,7 @@ Widget CurvedBottomNav(context) {
                   height: 55,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30.0),
-                      color: ColorManager.DarkBasiColor),
+                      color: ColorManager.DarkBasiColor(context)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -40,7 +38,7 @@ Widget CurvedBottomNav(context) {
                           },
                           icon: Icon(
                             Icons.home,
-                            color: Colors.white,
+                            color:ColorManager.WitheToDarkColor(context),
                             size: 35.00,
                           )),
                       Spacer(),
@@ -52,7 +50,7 @@ Widget CurvedBottomNav(context) {
                           },
                           icon: Icon(
                             Icons.account_circle,
-                            color: Colors.white,
+                            color: ColorManager.WitheToDarkColor(context),
                             size: 35.00,
                           )),
                       SizedBox(
@@ -65,7 +63,7 @@ Widget CurvedBottomNav(context) {
             )),
         // Icon Scan
         CircleAvatar(
-            backgroundColor: Colors.white,
+            backgroundColor: ColorManager.WitheToDarkColor(context),
             radius: 40.0,
             child: InkWell(
                 onTap: () {
@@ -73,7 +71,7 @@ Widget CurvedBottomNav(context) {
                 },
                 child: Icon(
                   Icons.filter_center_focus,
-                  color: ColorManager.DarkBasiColor,
+                  color: ColorManager.DarkBasiColor(context),
                   size: 65.0,
                 ))),
       ],

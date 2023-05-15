@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/AwesomDialog.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Awesom_Dialog.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 

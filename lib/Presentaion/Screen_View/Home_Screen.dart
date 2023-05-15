@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Data/Models/CategoryModel.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
-import 'package:top_care_gp/Firebase/store.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/CurvedBottomNav.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/TextFormWidget.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Curved_Bottom_Nav.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Text_Form_Widget.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
-
+import 'package:top_care_gp/Resource/theme_Light.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // Home Page
 class Home extends StatefulWidget {
@@ -20,10 +19,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   //List of data of category from CategoryModel
   List<CategoryModel> Category = [
-    CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt1),
-    CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt2),
+    CategoryModel(img: AssetManager.Scan, title: StringManager.CategoryTxt1),
+    CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt2),
+    CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3),
     CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt4),
-    CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt3),
+    CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt5),
   ];
 
   @override
@@ -39,8 +39,8 @@ class _HomeState extends State<Home> {
         height: BodyHeight*0.1,
         child: Row(
           children: [
-            Text(" Welcom",
-                style: txtStyle(ColorManager.DarkBasiColor, 30.0, true)),
+            Text(" Welcome",
+                style: txtStyle(ColorManager.DarkBasiColor(context), 30.0, true)),
             Spacer(),
             IconButton(
                 onPressed: ()async {
@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
                 },
                 icon: Icon(
                   Icons.notifications_none,
-                  color: ColorManager.DarkBasiColor,
+                  color: ColorManager.DarkBasiColor(context),
                   size: 30,
                 )),
             IconButton(
@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                 },
                 icon: Icon(
                   Icons.tune,
-                  color: ColorManager.DarkBasiColor,
+                  color: ColorManager.DarkBasiColor(context),
                   size: 30,
                 ))
           ],
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
             children: [
               Text(
                 "  Are you felling sick ?",
-                style: txtStyle(ColorManager.DarkBasiColor, 20.0, true),
+                style: txtStyle(ColorManager.DarkColorOnly, 20.0, true),
               ),
               Text(
                 "for helping you in anemergency , please add\nthe number of the nearest hospital of you\n or the numbers of your relatives !",
@@ -88,10 +88,21 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.phone_in_talk,
-                    color: ColorManager.DarkBasiColor,
-                    size: 35,
+                  IconButton(
+                    onPressed: () async {
+                      var url = Uri.parse(
+                          "tel:01024567735");
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    },
+                    icon: Icon(
+                      Icons.phone_in_talk,
+                      color: ColorManager.DarkColorOnly,
+                      size: 35,
+                    ),
                   ),
                   SizedBox(
                     width: 60,
@@ -111,7 +122,7 @@ class _HomeState extends State<Home> {
                           child: Text(
                             "Emergency",
                             style: txtStyle(
-                                ColorManager.DarkBasiColor, 18.0, true),
+                                ColorManager.DarkColorOnly, 18.0, true),
                           )),
                     ),
                   ),
@@ -131,6 +142,7 @@ class _HomeState extends State<Home> {
           itemBuilder: (context, index) {
             return Stack(
               children: [
+                // onpreased by index category1
                 Container(
                   width: WIDTH / 2.1,
                   color: Colors.transparent,
@@ -150,10 +162,9 @@ class _HomeState extends State<Home> {
                               color: ColorManager.LBlueBasiColor,
                               boxShadow: [
                                 BoxShadow(
-                                  color: ColorManager.BlueBasiColor
-                                      .withOpacity(0.5),
-                                  blurRadius: 1.0, // soften the shadow
-                                  spreadRadius: 1.0, //extend the shadow
+                                  color: ColorManager.BlueBasiColor,
+                                  blurRadius: 2.0, // soften the shadow
+                                  spreadRadius: 1.5, //extend the shadow
                                   offset: Offset(
                                     1.0,
                                     1.0,
@@ -168,7 +179,7 @@ class _HomeState extends State<Home> {
                                   child: Text(
                                     "${Category[index].title}",
                                     style: txtStyle(
-                                        ColorManager.DarkBasiColor,
+                                        ColorManager.DarkColorOnly,
                                         20.0,
                                         true),
                                   ),
@@ -227,7 +238,7 @@ class _HomeState extends State<Home> {
                 // text category
                 Container(
                     height: BodyHeight*0.1,
-                    child: Text("Category", style: txtStyle(ColorManager.DarkBasiColor, 35.0, true),)), //0.1
+                    child: Text("Category", style: txtStyle(ColorManager.DarkBasiColor(context), 35.0, true),)), //0.1
                 // Find Dr & x ray & pharmacy & know about
                 CategoryWidget(),
               ],

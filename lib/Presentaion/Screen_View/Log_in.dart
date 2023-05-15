@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/SubmitButton.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
-import 'package:top_care_gp/presentaion/Shared_Components/TextFormWidget.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
+import 'package:top_care_gp/presentaion/Shared_Components/Text_Form_Widget.dart';
 import '../../Resource/color_manager/color_manager.dart';
 
 class Log_in extends StatefulWidget {
@@ -27,8 +26,9 @@ class _Log_inState extends State<Log_in> {
       children: [
         Image.asset(
           AssetManager.sign,
-          height: 150,
-          width: 150,
+          height: 200,
+          width: 200,
+          fit: BoxFit.cover,
         ),
         Text(
           'Log In',
@@ -101,7 +101,7 @@ class _Log_inState extends State<Log_in> {
               'Remember ',
               style: TextStyle(
                 fontSize: 13,
-                color: ColorManager.DarkBasiColor,
+                color: ColorManager.DarkBasiColor(context),
               ),
             ),
           ],

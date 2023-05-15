@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
-import 'package:top_care_gp/Firebase/store.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
+import 'package:top_care_gp/Resource/Theme/bloc/theme_bloc.dart';
 
 
 bool? IsLogin ;
@@ -41,14 +41,24 @@ class TopCare extends StatelessWidget {
         statusBarIconBrightness: Brightness.dark,
     )
     );
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute:
-      (IsLogin == true)
-          ? RouteGenerator.HomeRoute
-          : RouteGenerator.SplachRoute,
-      onGenerateRoute: RouteGenerator.getRoute,
-      theme: LightApp,
+    return BlocProvider<ThemeBloc>(
+      create: (context) => ThemeBloc(context)..add(GetCurrentThemeEvent()),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          if (state is LoadedThemeState) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: state.themeData,
+                initialRoute:
+                (IsLogin == true)
+                    ? RouteGenerator.HomeRoute
+                    : RouteGenerator.SplachRoute,
+                onGenerateRoute: RouteGenerator.getRoute,
+            );
+          }
+          return Container();
+        },
+      ),
     );
   }
 }

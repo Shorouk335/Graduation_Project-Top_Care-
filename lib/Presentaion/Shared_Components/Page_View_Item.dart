@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Data/Models/PageViewModel.dart';
+import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 
 // for Make pageView on the OnBording Screen
 Widget PageViewItem({
@@ -12,10 +14,10 @@ Widget PageViewItem({
         children: [
           SizedBox(height: 50,),
           Text("${model?.title}",
-              style: Theme.of(context).textTheme.bodyText1),
+              style:txtStyle(ColorManager.DarkBasiColor(context), 30.0, true)),
           SizedBox(height: 20,),
           Text("${model?.disc}",
-              style: Theme.of(context).textTheme.bodyText2, maxLines: 2),
+              style: txtStyle(ColorManager.DGrayBasiColor, 15.0, false), maxLines: 2),
           Center(
               child: Image(
                 width: MediaQuery.of(context).size.width,

@@ -5,7 +5,7 @@ import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 
 // Page start at the begin of application
 
@@ -26,7 +26,8 @@ class _SplachState extends State<Splach> {
 
   // Animation Img
   Widget LottieAnimation() {
-    return Lottie.asset(AssetManager.LottieAnim,
+    return Lottie.asset(
+        AssetManager.LottieAnim,
         width: MediaQuery.of(context).size.width / 1.5,
         height: MediaQuery.of(context).size.height / 3,
         fit: BoxFit.cover);

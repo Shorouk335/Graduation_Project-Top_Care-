@@ -51,6 +51,8 @@ dependencies:
   flutter_switch: ^0.3.2
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
+  image_picker: ^0.8.7
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:

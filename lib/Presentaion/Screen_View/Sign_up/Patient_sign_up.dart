@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Common_sign_up_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
 import 'package:top_care_gp/Data/Models/PatientQModel.dart';
-import 'package:top_care_gp/Firebase/Auth.dart';
-import 'package:top_care_gp/Firebase/store.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/SubmitButton.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 
 import '../../../Resource/Routes/Routes.dart';
 
@@ -47,12 +45,12 @@ class _Patient_sign_upState extends State<Patient_sign_up> {
       children: [
         Text(
           "Question",
-          style: txtStyle(ColorManager.DarkBasiColor, 30.0, true),
+          style: txtStyle(ColorManager.DarkBasiColor(context), 30.0, true),
           textAlign: TextAlign.start,
         ),
         Text(
           "Yes/No",
-          style: txtStyle(ColorManager.DarkBasiColor, 30.0, true),
+          style: txtStyle(ColorManager.DarkBasiColor(context), 30.0, true),
         ),
       ],
     );
@@ -61,7 +59,7 @@ class _Patient_sign_upState extends State<Patient_sign_up> {
   //Quation
   Widget textQuations(question) {
     return Text(question,
-        style: txtStyle(ColorManager.DarkBasiColor, 15.0, true));
+        style: txtStyle(ColorManager.DarkBasiColor(context), 15.0, true));
   }
 
 // select checkbox
@@ -125,7 +123,6 @@ class _Patient_sign_upState extends State<Patient_sign_up> {
   @override
   Widget build(BuildContext context) {
     double? HEIGHT = MediaQuery.of(context).size.height;
-    double? WIDTH = MediaQuery.of(context).size.width;
     double? BodyHeight = HEIGHT -
         AppBar().preferredSize.height -
         100.0 -
@@ -168,24 +165,24 @@ class _Patient_sign_upState extends State<Patient_sign_up> {
                               }),
                         ),
                         submitButton("submit", () async {
-                          await SignUpWithFire(context,
-                                  email:
-                                      Common_Sign_up_Cubit.CommonModel!.email,
-                                  password:
-                                      Common_Sign_up_Cubit.CommonModel!.email)
-                              .then((value) {
-                            AddPatienToFireStore(
-                              username:
-                                  Common_Sign_up_Cubit.CommonModel!.username,
-                              email: Common_Sign_up_Cubit.CommonModel!.email,
-                              password:
-                                  Common_Sign_up_Cubit.CommonModel!.password,
-                              phone: Common_Sign_up_Cubit.CommonModel!.phone,
-                              gender: Common_Sign_up_Cubit.CommonModel!.gender,
-                            );
-                            Navigator.pushReplacementNamed(
-                                context, RouteGenerator.HomeRoute);
-                          });
+                          // await SignUpWithFire(context,
+                          //         email:
+                          //             Common_Sign_up_Cubit.CommonModel!.email,
+                          //         password:
+                          //             Common_Sign_up_Cubit.CommonModel!.email)
+                          //     .then((value) {
+                          //   AddPatienToFireStore(
+                          //     username:
+                          //         Common_Sign_up_Cubit.CommonModel!.username,
+                          //     email: Common_Sign_up_Cubit.CommonModel!.email,
+                          //     password:
+                          //         Common_Sign_up_Cubit.CommonModel!.password,
+                          //     phone: Common_Sign_up_Cubit.CommonModel!.phone,
+                          //     gender: Common_Sign_up_Cubit.CommonModel!.gender,
+                          //   );
+                          //   Navigator.pushReplacementNamed(
+                          //       context, RouteGenerator.HomeRoute);
+                          // });
                         })
                       ],
                     ),

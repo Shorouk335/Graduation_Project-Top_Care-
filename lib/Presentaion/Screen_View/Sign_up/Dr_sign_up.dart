@@ -5,12 +5,11 @@ import 'package:top_care_gp/Business_Logic/Cubit/Common_sign_up_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
 import 'package:top_care_gp/Firebase/store.dart';
-import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Common_sign_up.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/SubmitButton.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/TextFormWidget.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Text_Form_Widget.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 
 class Dr_sign_up extends StatefulWidget {
   const Dr_sign_up({super.key});
@@ -135,7 +134,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
         children: [
           Text(
             "From ",
-            style: txtStyle(ColorManager.DarkBasiColor, 13.0, true),
+            style: txtStyle(ColorManager.DarkBasiColor(context), 13.0, true),
           ),
           InkWell(
             onTap: () {
@@ -150,12 +149,12 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                 color: ColorManager.BlueBasiColor,
               ),
               child: Text(selectedTime1.format(context).toString(),
-                  style: txtStyle(ColorManager.DarkBasiColor, 10.0, true),
+                  style: txtStyle(ColorManager.DarkBasiColor(context), 10.0, true),
                   textAlign: TextAlign.center),
             ),
           ),
           Text("To",
-              style: txtStyle(ColorManager.DarkBasiColor, 13.0, true),
+              style: txtStyle(ColorManager.DarkBasiColor(context), 13.0, true),
               textAlign: TextAlign.center),
           InkWell(
             onTap: () {
@@ -171,7 +170,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
               ),
               child: Text(
                 selectedTime2.format(context).toString(),
-                style: txtStyle(ColorManager.DarkBasiColor, 10.0, true),
+                style: txtStyle(ColorManager.DarkBasiColor(context), 10.0, true),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -200,24 +199,24 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
 
   List<DayInWeek> days = [
     DayInWeek(
-      "Mo",
+      "Mo", dayKey: '',
     ),
     DayInWeek(
-      "Tu",
+      "Tu", dayKey: '',
     ),
     DayInWeek(
-      "We",
+      "We", dayKey: '',
     ),
     DayInWeek(
-      "Th",
+      "Th", dayKey: '',
     ),
     DayInWeek(
-      "Fr",
+      "Fr", dayKey: '',
     ),
     DayInWeek(
-      "Sa",
+      "Sa", dayKey: '',
     ),
-    DayInWeek("Su", isSelected: true),
+    DayInWeek("Su", isSelected: true, dayKey: ''),
   ];
 
   Widget daypick() {
@@ -244,7 +243,6 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
   @override
   Widget build(BuildContext context) {
     double? HEIGHT = MediaQuery.of(context).size.height;
-    double? WIDTH = MediaQuery.of(context).size.width;
     double? BodyHeight = HEIGHT -
         AppBar().preferredSize.height -
         100.0 -
@@ -255,7 +253,6 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
           listener: (context, state) {},
           builder: (context, state) {
             return Scaffold(
-                backgroundColor: Colors.white,
                 body: SafeArea(
                     child: Center(
                   child: SingleChildScrollView(
@@ -278,7 +275,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                             child: Text(
                               "working days",
                               style: txtStyle(
-                                  ColorManager.DarkBasiColor, 16.0, true),
+                                  ColorManager.DarkBasiColor(context), 16.0, true),
                               textAlign: TextAlign.start,
                             ),
                           ),
@@ -294,7 +291,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                             child: Text(
                               "Time",
                               style: txtStyle(
-                                  ColorManager.DarkBasiColor, 17.0, true),
+                                  ColorManager.DarkBasiColor(context), 17.0, true),
                               textAlign: TextAlign.start,
                             ),
                           ),

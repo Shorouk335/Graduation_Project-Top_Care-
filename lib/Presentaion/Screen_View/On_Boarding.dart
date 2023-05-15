@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:top_care_gp/Data/Models/PageViewModel.dart';
-import 'package:top_care_gp/Presentaion/Shared_Components/PageViewItem.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Page_View_Item.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 // show some pages that explain what is the major of application
 
 class OnBoarding extends StatelessWidget {
@@ -79,7 +79,7 @@ class OnBoarding extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CircleAvatar(
-            radius: 40,
+            radius: 37,
             backgroundColor: Colors.grey.shade200,
           ),
           InkWell(
@@ -101,7 +101,7 @@ class OnBoarding extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CircleAvatar(
-            radius: 40,
+            radius: 37,
             backgroundColor: ColorManager.LBlueBasiColor,
           ),
           InkWell(

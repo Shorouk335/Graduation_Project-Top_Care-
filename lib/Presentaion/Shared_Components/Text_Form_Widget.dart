@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
-
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 
-// غلط عند ايكون الباسورد لا تتغير مره اخري
 // TextFormField item
 Widget TextFormWidget(
     {
@@ -16,7 +14,8 @@ Widget TextFormWidget(
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
-      controller: controller,
+      controller: controller, 
+      style: txtStyle(Colors.black, 15.0, false),
       // لاخفاء واظهار النص
       obscureText: password!,
       cursorColor: ColorManager.DGrayBasiColor,
@@ -71,5 +70,33 @@ Widget TextFormWidget(
   );
 }
 
+Widget TextFormWithoutIcon ({ TextEditingController? controller,}){
+  return TextFormField(
+    style: txtStyle(Colors.black, 15.0, false),
+    cursorColor: ColorManager.DGrayBasiColor,
+    controller: controller,
+    decoration: InputDecoration(
+      filled: true,
+      fillColor: ColorManager.LGrayBasiColor,
+      //حاله الفورم لو ضغط عليها
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.LGrayBasiColor,
+        ),
+        borderRadius: BorderRadius.circular(30),
+      ),
+// حاله الفورم لو مضغطش
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.LGrayBasiColor,
+        ),
+        borderRadius: BorderRadius.circular(30),
+      ),
 
+    ),
+  );
+
+
+
+}
 

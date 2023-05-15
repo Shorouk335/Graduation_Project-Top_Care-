@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:top_care_gp/Resource/Theme/Light_Theme.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
+import 'package:top_care_gp/Resource/theme_Light.dart';
 Widget TopCarve ({BuildContext? context, bool? Havetitle ,String? title ,Widget? content } ){
   return  Stack(
       children:<Widget>[
@@ -17,7 +17,7 @@ Widget TopCarve ({BuildContext? context, bool? Havetitle ,String? title ,Widget?
           ),
           child:(Havetitle!) ?Center(
               child : Text("${title}",
-                style: txtStyle(ColorManager.DarkBasiColor, 30.0, true),
+                style: txtStyle(ColorManager.WitheToDarkColor(context), 30.0, true),
               )
           ) : content
 
