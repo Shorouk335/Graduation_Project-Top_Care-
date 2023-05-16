@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 
 //TextStyle Function
-TextStyle txtStyle (color ,var doublesize , bool weight){
+TextStyle txtStyle (Color? color ,var doublesize , bool weight){
   return TextStyle(
-    color: color ,
+    color: color! ,
     fontSize: doublesize ,
     fontWeight: (weight)? FontWeight.bold : null ,
     decoration: TextDecoration.none,

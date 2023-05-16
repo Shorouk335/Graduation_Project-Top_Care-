@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Examin/ResultofXray/Result_From_Ml.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Examin/ResultofXray/Patient_Qestion.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Examin/Exmaine_page.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Examin/ScanToMl.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Home_Screen.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Log_in.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/On_Boarding.dart';
@@ -7,7 +11,6 @@ import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_profile.dart
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Dr_sign_up.dart';
-import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Patient_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Splach.dart';
 import '../../Presentaion/Screen_View/Sign_up/Common_sign_up.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Emergancy.dart';
@@ -20,13 +23,16 @@ class RouteGenerator {
   static const String LoginRoute = "Login";
   static const String Common_SignUpRoute = "CommonSignUp";
   static const String Dr_SignUpRoute = "DrSignUp";
-  static const String Patient_SignUpRoute = "PatientSignUp";
+  static const String Patient_QuestionScreen= "PatientQuestion";
   static const String Emergencyscreen = "Emergency";
   static const String Settingscreen = "Setting";
   static const String DoctorProfile = "DocProfile";
   static const String DocSetting = "DocSetting";
   static const String PetProfile = "PetProfile";
   static const String PetSetting = "PetSetting";
+  static const String ExmainPageScreen = "ExmainPage";
+  static const String ScanScreen = "Scan";
+  static const String ResultMlScreen = "ResultmL";
 
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -43,8 +49,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Common_sign_up());
         case RouteGenerator.Dr_SignUpRoute:
         return MaterialPageRoute(builder: (_) => Dr_sign_up());
-        case RouteGenerator.Patient_SignUpRoute:
-        return MaterialPageRoute(builder: (_) => Patient_sign_up());
+        case RouteGenerator.Patient_QuestionScreen:
+        return MaterialPageRoute(builder: (_) => Patient_Question());
        case RouteGenerator.Emergencyscreen:
         return MaterialPageRoute(builder: (_) =>  Emergency());
         case RouteGenerator.Settingscreen:
@@ -57,6 +63,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) =>  PatientProfile());
       case RouteGenerator.DocSetting:
         return MaterialPageRoute(builder: (_) => PatientSetting());
+      case RouteGenerator.ExmainPageScreen:
+        return MaterialPageRoute(builder: (_) => ExmainePage());
+      case RouteGenerator.ScanScreen:
+        return MaterialPageRoute(builder: (_) => ScanToMl());
+      case RouteGenerator.ResultMlScreen:
+        return MaterialPageRoute(builder: (_) => Result_From_Ml());
+
 
       default:
         return MaterialPageRoute(builder: (_) => Home());

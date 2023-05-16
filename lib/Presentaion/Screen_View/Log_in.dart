@@ -169,6 +169,7 @@ class _Log_inState extends State<Log_in> {
                           }
                           return null;
                         },
+                        250.0 ,40.0
                       ),
                       EndText()
                     ],

@@ -331,7 +331,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                                 });
                               }
                               return null;
-                            },
+                            },   250.0 ,40.0
                           )
                         ]),
                   )),

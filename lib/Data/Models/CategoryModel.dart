@@ -2,5 +2,7 @@
 class CategoryModel {
    String? img ;
    String? title ;
-   CategoryModel({required this.img ,required this.title });
+   void Function()? on ;
+
+   CategoryModel({required this.img ,required this.title, required this.on });
  }

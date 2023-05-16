@@ -18,13 +18,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //List of data of category from CategoryModel
-  List<CategoryModel> Category = [
-    CategoryModel(img: AssetManager.Scan, title: StringManager.CategoryTxt1),
-    CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt2),
-    CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3),
-    CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt4),
-    CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt5),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +26,16 @@ class _HomeState extends State<Home> {
     double? WIDTH = MediaQuery.of(context).size.width;
     double? BodyHeight =
      HEIGHT- AppBar().preferredSize.height -100.0 - MediaQuery.of(context).padding.top ;
+    List<CategoryModel> Category = [
+      CategoryModel(img: AssetManager.Scan, title: StringManager.CategoryTxt1 ,
+          on: (){
+            Navigator.pushReplacementNamed(context, RouteGenerator.ExmainPageScreen);
+          }),
+      CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt2,on: (){}),
+      CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3,on: (){}),
+      CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt4,on: (){}),
+      CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt5,on: (){}),
+    ];
     // Widgets of body
     Widget FirstWidget (){
       return Container(
@@ -143,51 +147,54 @@ class _HomeState extends State<Home> {
             return Stack(
               children: [
                 // onpreased by index category1
-                Container(
-                  width: WIDTH / 2.1,
-                  color: Colors.transparent,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 15.0,
-                        color: Colors.transparent,
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            width: WIDTH / 2.1,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: ColorManager.LBlueBasiColor,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ColorManager.BlueBasiColor,
-                                  blurRadius: 2.0, // soften the shadow
-                                  spreadRadius: 1.5, //extend the shadow
-                                  offset: Offset(
-                                    1.0,
-                                    1.0,
-                                  ),
-                                )
-                              ],
+                InkWell(
+                  onTap:Category[index].on ,
+                  child: Container(
+                    width: WIDTH / 2.1,
+                    color: Colors.transparent,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 15.0,
+                          color: Colors.transparent,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              width: WIDTH / 2.1,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: ColorManager.LBlueBasiColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: ColorManager.BlueBasiColor,
+                                    blurRadius: 2.0, // soften the shadow
+                                    spreadRadius: 1.5, //extend the shadow
+                                    offset: Offset(
+                                      1.0,
+                                      1.0,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      "${Category[index].title}",
+                                      style: txtStyle(
+                                          ColorManager.DarkColorOnly,
+                                          20.0,
+                                          true),
+                                    ),
+                                  )),
                             ),
-                            child: Align(
-                                alignment: Alignment.bottomLeft,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: Text(
-                                    "${Category[index].title}",
-                                    style: txtStyle(
-                                        ColorManager.DarkColorOnly,
-                                        20.0,
-                                        true),
-                                  ),
-                                )),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Positioned(

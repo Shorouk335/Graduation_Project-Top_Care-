@@ -1,40 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Common_sign_up_Cubit.dart';
+import 'package:top_care_gp/Business_Logic/Cubit/Scan_Xray_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
+import 'package:top_care_gp/Business_Logic/States/Scan_Xray_State.dart';
 import 'package:top_care_gp/Data/Models/PatientQModel.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
 
-import '../../../Resource/Routes/Routes.dart';
+import '../../../../Resource/Routes/Routes.dart';
 
-class Patient_sign_up extends StatefulWidget {
-  const Patient_sign_up({super.key});
+class Patient_Question extends StatefulWidget {
+  const Patient_Question({super.key});
 
   @override
-  State<Patient_sign_up> createState() => _Patient_sign_upState();
+  State<Patient_Question> createState() => _Patient_QuestionState();
 }
 
-class _Patient_sign_upState extends State<Patient_sign_up> {
+class _Patient_QuestionState extends State<Patient_Question> {
   //welcom text in page
   Widget firstText() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(' "Hello , Please answer for this Questions"',
-            style: txtStyle(ColorManager.BlueBasiColor, 16.0, true)),
-        IconButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                  context, RouteGenerator.Common_SignUpRoute);
-            },
-            icon: Icon(
-              Icons.arrow_forward_outlined,
-              color: ColorManager.BlueBasiColor,
-            ))
-      ],
-    );
+    return Text(' "Please answer this Questions" ',
+        style: txtStyle(ColorManager.BlueBasiColor, 20.0, true));
   }
 
   // Question yes or no line
@@ -129,10 +117,11 @@ class _Patient_sign_upState extends State<Patient_sign_up> {
         MediaQuery.of(context).padding.top;
 
     return BlocProvider(
-        create: (BuildContext context) => Common_Sign_up_Cubit(),
-        child: BlocConsumer<Common_Sign_up_Cubit, Common_Sign_up_states>(
+        create: (BuildContext context) => Scan_Xray_Cubit(),
+        child: BlocConsumer<Scan_Xray_Cubit, Scan_Xray_States>(
             listener: (context, state) {},
             builder: (context, state) {
+              Scan_Xray_Cubit cubit = Scan_Xray_Cubit.get(context);
               return Scaffold(
                 body: SafeArea(
                     child: Center(
@@ -164,26 +153,13 @@ class _Patient_sign_upState extends State<Patient_sign_up> {
                                 );
                               }),
                         ),
-                        submitButton("submit", () async {
-                          // await SignUpWithFire(context,
-                          //         email:
-                          //             Common_Sign_up_Cubit.CommonModel!.email,
-                          //         password:
-                          //             Common_Sign_up_Cubit.CommonModel!.email)
-                          //     .then((value) {
-                          //   AddPatienToFireStore(
-                          //     username:
-                          //         Common_Sign_up_Cubit.CommonModel!.username,
-                          //     email: Common_Sign_up_Cubit.CommonModel!.email,
-                          //     password:
-                          //         Common_Sign_up_Cubit.CommonModel!.password,
-                          //     phone: Common_Sign_up_Cubit.CommonModel!.phone,
-                          //     gender: Common_Sign_up_Cubit.CommonModel!.gender,
-                          //   );
-                          //   Navigator.pushReplacementNamed(
-                          //       context, RouteGenerator.HomeRoute);
-                          // });
-                        })
+                        submitButton("Send to Doctor", () async {
+                          Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
+                          cubit.Clear_Img();
+                          cubit.Clear_Data_From_Ml();
+                        },   350.0 ,40.0
+
+                        )
                       ],
                     ),
                   ),

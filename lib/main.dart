@@ -52,7 +52,7 @@ class TopCare extends StatelessWidget {
                 initialRoute:
                 (IsLogin == true)
                     ? RouteGenerator.HomeRoute
-                    : RouteGenerator.SplachRoute,
+                    : RouteGenerator.HomeRoute,
                 onGenerateRoute: RouteGenerator.getRoute,
             );
           }
