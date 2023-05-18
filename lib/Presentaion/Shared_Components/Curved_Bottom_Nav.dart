@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Awesom_Dialog.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
+import 'package:top_care_gp/Resource/Routes/Routes.dart';
 
 // for curver navigator Bar in the bottom of applicaton
 Widget CurvedBottomNav(context) {
@@ -35,6 +36,7 @@ Widget CurvedBottomNav(context) {
                       ),
                       IconButton(
                           onPressed: () async{
+                            Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
                           },
                           icon: Icon(
                             Icons.home,
@@ -44,9 +46,10 @@ Widget CurvedBottomNav(context) {
                       Spacer(),
                       IconButton(
                           onPressed: () {
-                            ShowDialogToLogInApp(
-                                context,
-                                img: AssetManager.AwesomError);
+                            Navigator.pushReplacementNamed(context, RouteGenerator.DoctorProfile);
+                            // ShowDialogToLogInApp(
+                            //     context,
+                            //     img: AssetManager.AwesomError);
                           },
                           icon: Icon(
                             Icons.account_circle,

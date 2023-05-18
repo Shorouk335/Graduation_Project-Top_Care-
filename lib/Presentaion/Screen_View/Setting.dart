@@ -1,6 +1,4 @@
 
-import 'package:flutter_switch/flutter_switch.dart';
-
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';

@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -36,10 +37,10 @@ class TopCare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //to make the style of statusBar like app
+    final brightness = Theme.of(context).brightness;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-    )
+        statusBarIconBrightness:(brightness == Brightness.light)? Brightness.dark: Brightness.light,)
     );
     return BlocProvider<ThemeBloc>(
       create: (context) => ThemeBloc(context)..add(GetCurrentThemeEvent()),

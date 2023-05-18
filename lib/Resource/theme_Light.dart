@@ -25,7 +25,6 @@ final appThemeData = {
     primaryColor: ColorManager.BlueBasiColor ,
   ),
   AppTheme.blueDark: (BuildContext context) => ThemeData(
-
     brightness: Brightness.dark,
     scaffoldBackgroundColor: ColorManager.DarkColorOnly,
     primaryColor: ColorManager.BlueBasiColor,

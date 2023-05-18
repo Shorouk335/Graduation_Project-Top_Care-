@@ -61,7 +61,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => DoctorSetting());
       case RouteGenerator.PetProfile:
         return MaterialPageRoute(builder: (_) =>  PatientProfile());
-      case RouteGenerator.DocSetting:
+      case RouteGenerator.PetSetting:
         return MaterialPageRoute(builder: (_) => PatientSetting());
       case RouteGenerator.ExmainPageScreen:
         return MaterialPageRoute(builder: (_) => ExmainePage());

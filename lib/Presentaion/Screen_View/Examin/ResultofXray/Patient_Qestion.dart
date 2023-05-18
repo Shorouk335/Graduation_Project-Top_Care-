@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:top_care_gp/Business_Logic/Cubit/Common_sign_up_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Scan_Xray_Cubit.dart';
-import 'package:top_care_gp/Business_Logic/States/Common_sign_up_State.dart';
 import 'package:top_care_gp/Business_Logic/States/Scan_Xray_State.dart';
 import 'package:top_care_gp/Data/Models/PatientQModel.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
