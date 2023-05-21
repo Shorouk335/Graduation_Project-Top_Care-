@@ -6,6 +6,7 @@ import 'package:top_care_gp/Data/Models/PatientQModel.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../Resource/Routes/Routes.dart';
 
@@ -17,6 +18,7 @@ class Patient_Question extends StatefulWidget {
 }
 
 class _Patient_QuestionState extends State<Patient_Question> {
+
   //welcom text in page
   Widget firstText() {
     return Text(' "Please answer this Questions" ',
@@ -152,6 +154,14 @@ class _Patient_QuestionState extends State<Patient_Question> {
                               }),
                         ),
                         submitButton("Send to Doctor", () async {
+                          //from patient to doctor
+                          Scan_Xray_Cubit().Add_Notification_To_List(
+                            // img of patient
+                            img: "assets/images/man.png",
+                            name: "Khalid Omar",
+                            Time:  "${DateTime.now().day}/${DateTime.now().month}  ${DateFormat.jm().format(DateTime.now())}",
+                            IconTxt: "View Scan   ",
+                          );
                           Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
                           cubit.Clear_Img();
                           cubit.Clear_Data_From_Ml();

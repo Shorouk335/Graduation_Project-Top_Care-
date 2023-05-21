@@ -3,9 +3,12 @@ import 'package:top_care_gp/Presentaion/Screen_View/Examin/ResultofXray/Result_F
 import 'package:top_care_gp/Presentaion/Screen_View/Examin/ResultofXray/Patient_Qestion.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Examin/Exmaine_page.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Examin/ScanToMl.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Find_Your_Doctor/FindDoctorHome.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Home_Screen.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Log_in.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Notification/Notification_Page.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/On_Boarding.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Profile/PublicDrProfile.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/doctor_setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_profile.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_setting.dart';
@@ -33,6 +36,9 @@ class RouteGenerator {
   static const String ExmainPageScreen = "ExmainPage";
   static const String ScanScreen = "Scan";
   static const String ResultMlScreen = "ResultmL";
+  static const String FindDoctorHScreen = "FindDrHome";
+  static const String PublicProfileScreen = "PublicProfile";
+  static const String NotificationScreen = "Notification_Page";
 
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -69,7 +75,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ScanToMl());
       case RouteGenerator.ResultMlScreen:
         return MaterialPageRoute(builder: (_) => Result_From_Ml());
-
+      case RouteGenerator.FindDoctorHScreen:
+        return MaterialPageRoute(builder: (_) => FindDoctorHome());
+      case RouteGenerator.PublicProfileScreen:
+        return MaterialPageRoute(builder: (_) => PublicDrProfile());
+      case RouteGenerator.NotificationScreen:
+        return MaterialPageRoute(builder: (_) => Notification_Page());
 
       default:
         return MaterialPageRoute(builder: (_) => Home());

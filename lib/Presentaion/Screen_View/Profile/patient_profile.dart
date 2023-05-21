@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Firebase/Auth.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Circular_Img.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
@@ -25,20 +27,7 @@ class _PatientProfileState extends State<PatientProfile> {
                   child: Column(
                     children: [
                       Center(
-                        child: ClipOval(
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Ink.image(
-                              image: AssetImage('${user.imagePath}'),
-                              fit: BoxFit.cover,
-                              height: 130,
-                              width: 130,
-                              child: InkWell(
-                                  //  onTap: onClicked,
-                                  ),
-                            ),
-                          ),
-                        ),
+                       child: CircularImg(img: "${user.imagePath}",height: 130.0,width: 130.0),
                       ),
                       Text(
                         user.name,
@@ -130,6 +119,12 @@ AppBar buildAppBar(BuildContext context) {
           Navigator.pushReplacementNamed(context, RouteGenerator.PetSetting);
         },
         icon: Icon(Icons.settings),
+        color: ColorManager.DarkBasiColor(context),
+      ),
+      IconButton(
+        onPressed: () async{
+          await SignOut(context);        },
+        icon: Icon(Icons.logout),
         color: ColorManager.DarkBasiColor(context),
       )
     ],

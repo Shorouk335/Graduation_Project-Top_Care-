@@ -60,7 +60,7 @@ class _Common_sign_upState extends State<Common_sign_up> {
   Widget EnterForm() {
     return Column(
       children: [
-        TextFormWidget(
+        LargeTextFormWidget(
             txt: "user name",
             icon: Icons.person,
             password: false,
@@ -68,7 +68,7 @@ class _Common_sign_upState extends State<Common_sign_up> {
         SizedBox(
           height: 20,
         ),
-        TextFormWidget(
+        LargeTextFormWidget(
             txt: "email",
             icon: Icons.email,
             password: false,
@@ -76,7 +76,7 @@ class _Common_sign_upState extends State<Common_sign_up> {
         SizedBox(
           height: 20,
         ),
-        TextFormWidget(
+        LargeTextFormWidget(
             txt: "password",
             icon: PasswordIcon,
             password: hidePassword,
@@ -93,7 +93,7 @@ class _Common_sign_upState extends State<Common_sign_up> {
         SizedBox(
           height: 20,
         ),
-        TextFormWidget(
+        LargeTextFormWidget(
             txt: "phone",
             icon: Icons.phone,
             password: false,

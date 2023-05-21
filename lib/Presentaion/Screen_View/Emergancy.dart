@@ -202,7 +202,7 @@ class _EmergencyState extends State<Emergency> {
                               height: 40,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(35),
-                                color: Colors.green,
+                                color: Colors.greenAccent,
                               ),
                               child: Center(
                                 child: TextButton(
@@ -315,7 +315,7 @@ class _EmergencyState extends State<Emergency> {
                         height: 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(35),
-                          color: Colors.green,
+                          color: Colors.greenAccent,
                         ),
                         child: Center(
                           child: TextButton(

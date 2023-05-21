@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Firebase/Auth.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Circular_Img.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
@@ -21,80 +23,27 @@ class _DocProfileState extends State<DocProfile> {
           Container(
             child: Column(
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width*0.35,
-                    ),
-                    Center(
-                      child: ClipOval(
-                        child: Material(
-                          color: Colors.transparent,
-                          child: Ink.image(
-                            image: AssetImage('${user.imagePath}'),
-                            fit: BoxFit.cover,
-                            height: 130,
-                            width: 130,
-                            child: InkWell(
-                              //  onTap: onClicked,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                CircularImg(img: "${user.imagePath}",height: 130.0,width: 130.0),
+                SizedBox(height: 10,),
+                Text(
+                  "${user.name}",
+                  style: txtStyle(ColorManager.BlueBasiColor, 25.0, true),
                 ),
-                SizedBox(
-                  height: 20,
+                SizedBox(height: 10,),
+                Container(
+                  height: 50,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: ColorManager.BlueBasiColor,
+                  ),
+                  child: Center(
+                    child: Text('${user.price}',
+                      style: txtStyle(Colors.white, 15.0, true),
+                    ),
+                  ),
                 ),
-                //name & spec & price
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width*0.32,
-                    ),
-                    Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            user.name,
-                            style: txtStyle(ColorManager.BlueBasiColor, 25.0, true),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            user.specialization,
-                            style: txtStyle(ColorManager.DarkBasiColor(context), 20.0, false),
-                            //style: txtStyle(Colors.grey, 20, true),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Container(
-                      height: 40,
-                      width: 75,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: ColorManager.BlueBasiColor,
-                      ),
-                      child: Center(
-                        child: Text('${user.price}',
-                            style: txtStyle(Colors.white, 15.0, true),
-                      ),
-                    ),
-                    ),
-                    Spacer(),
-
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 10,),
                 Container(
                   width: MediaQuery.of(context).size.width*0.9,
                   height: 1,
@@ -207,7 +156,7 @@ class _DocProfileState extends State<DocProfile> {
                   height: 10,
                 ),
                 Text(
-                  'Time',
+                  ' Time',
                   style: TextStyle(
                       color: ColorManager.BlueBasiColor,
                       fontSize: 18,
@@ -264,7 +213,7 @@ class _DocProfileState extends State<DocProfile> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${tit}",
+              " ${tit}",
               style: txtStyle(ColorManager.BlueBasiColor, 18.0, true),
             ),
             SizedBox(
@@ -308,6 +257,12 @@ AppBar buildAppBar(BuildContext context) {
           Navigator.pushReplacementNamed(context, RouteGenerator.DocSetting);
         },
         icon: Icon(Icons.settings),
+        color: ColorManager.DarkBasiColor(context),
+      ),
+      IconButton(
+        onPressed: () async{
+          await SignOut(context);        },
+        icon: Icon(Icons.logout),
         color: ColorManager.DarkBasiColor(context),
       )
     ],

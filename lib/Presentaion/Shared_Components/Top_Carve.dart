@@ -4,11 +4,12 @@ import 'package:top_care_gp/Resource/theme_Light.dart';
 Widget TopCarve ({BuildContext? context, bool? Havetitle ,String? title ,Widget? content } ){
   return  Stack(
       children:<Widget>[
+        (title == "Emergency")?
         Container(
           height: 180,
-        ),
+        ):SizedBox(),
         Container(
-          height: 150,
+       height: 150,
           decoration: new BoxDecoration(
               color: ColorManager.BlueBasiColor,
               borderRadius: BorderRadius.vertical(

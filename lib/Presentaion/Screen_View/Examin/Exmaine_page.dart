@@ -184,7 +184,7 @@ class _ExmainePageState extends State<ExmainePage> {
     if (file != null) {
       return file.path;
     } else {
-      return '';
+      return null;
     }
   }
 
@@ -194,7 +194,7 @@ class _ExmainePageState extends State<ExmainePage> {
     if (file != null) {
       return file.path;
     } else {
-      return '';
+      return null;
     }
   }
 

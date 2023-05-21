@@ -56,7 +56,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
           Container(
             margin: const EdgeInsets.all(5),
             width: double.infinity,
-            child: TextFormWidget(
+            child: LargeTextFormWidget(
               controller: aboutController,
               icon: Icons.info_outline_rounded,
               txt: "About You..",
@@ -67,7 +67,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
           Container(
             margin: const EdgeInsets.all(5),
             width: double.infinity,
-            child: TextFormWidget(
+            child: LargeTextFormWidget(
               controller: SpecializationController,
               icon: Icons.speaker_group_outlined,
               txt: "Specialization",
@@ -78,7 +78,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
           Container(
             margin: const EdgeInsets.all(5),
             width: double.infinity,
-            child: TextFormWidget(
+            child: LargeTextFormWidget(
               controller: locationController,
               icon: Icons.location_searching_outlined,
               txt: "Your Location",
@@ -89,7 +89,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
           Container(
             margin: const EdgeInsets.all(5),
             width: double.infinity,
-            child: TextFormWidget(
+            child: LargeTextFormWidget(
               controller: priceController,
               icon: Icons.price_check_outlined,
               txt: "Price ",

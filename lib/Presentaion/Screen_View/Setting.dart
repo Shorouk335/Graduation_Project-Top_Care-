@@ -121,6 +121,7 @@ class _SettingPageState extends State<SettingPage> {
                   color: ColorManager.WitheToDarkColor(context),
                 )),
       ] ),
+            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(

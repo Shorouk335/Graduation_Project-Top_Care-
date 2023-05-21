@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_care_gp/Business_Logic/Cubit/Scan_Xray_Cubit.dart';
+import 'package:top_care_gp/Business_Logic/States/Scan_Xray_State.dart';
 import 'package:top_care_gp/Data/Models/CategoryModel.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Curved_Bottom_Nav.dart';
@@ -31,40 +34,62 @@ class _HomeState extends State<Home> {
           on: (){
             Navigator.pushReplacementNamed(context, RouteGenerator.ExmainPageScreen);
           }),
-      CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt2,on: (){}),
+      CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt2,on: (){
+        Navigator.pushReplacementNamed(context, RouteGenerator.FindDoctorHScreen);
+
+      }),
       CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3,on: (){}),
       CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt4,on: (){}),
       CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt5,on: (){}),
     ];
     // Widgets of body
     Widget FirstWidget (){
-      return Container(
-        width: WIDTH,
-        height: BodyHeight*0.1,
-        child: Row(
-          children: [
-            Text(" Welcome",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 30.0, true)),
-            Spacer(),
-            IconButton(
-                onPressed: ()async {
-                  await SignOut(context);
-                },
-                icon: Icon(
-                  Icons.notifications_none,
-                  color: ColorManager.DarkBasiColor(context),
-                  size: 30,
-                )),
-            IconButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.Settingscreen);
-                },
-                icon: Icon(
-                  Icons.tune,
-                  color: ColorManager.DarkBasiColor(context),
-                  size: 30,
-                ))
-          ],
+      return BlocProvider(
+        create: (BuildContext context)=> Scan_Xray_Cubit(),
+        child: BlocConsumer<Scan_Xray_Cubit,Scan_Xray_States>(
+          listener: (context,state){},
+          builder: (context,state){
+            return Container(
+              width: WIDTH,
+              height: BodyHeight*0.1,
+              child: Row(
+                children: [
+                  Text(" Welcome",
+                      style: txtStyle(ColorManager.DarkBasiColor(context), 33.0, true)),
+                  Spacer(),
+                  Stack(
+                    alignment: Alignment.centerRight,
+                    children: [
+                      IconButton(
+                          onPressed: ()async {
+                            Navigator.pushReplacementNamed(context, RouteGenerator.NotificationScreen);
+                          },
+                          icon: Icon(
+                            Icons.notifications_none,
+                            color: ColorManager.DarkBasiColor(context),
+                            size: 37,
+                          )),
+                      CircleAvatar(
+                        backgroundColor:Scan_Xray_Cubit.NotificationColor,
+                        radius: 8,
+                      )
+                    ],
+
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, RouteGenerator.Settingscreen);
+                      },
+                      icon: Icon(
+                        Icons.tune,
+                        color: ColorManager.DarkBasiColor(context),
+                        size: 37,
+                      ))
+                ],
+              ),
+            );
+          },
+
         ),
       );
     } //0.1
@@ -230,7 +255,7 @@ class _HomeState extends State<Home> {
                 // search
                 Container(
                   height: BodyHeight*0.1,
-                    child: TextFormWidget(
+                    child: LargeTextFormWidget(
                         controller: TextEditingController(),
                         icon: Icons.search_sharp,
                         txt: "Search",

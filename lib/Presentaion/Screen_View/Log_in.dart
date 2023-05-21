@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Text_Form_Widget.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
-import 'package:top_care_gp/presentaion/Shared_Components/Text_Form_Widget.dart';
 import '../../Resource/color_manager/color_manager.dart';
 
 class Log_in extends StatefulWidget {
@@ -53,7 +53,7 @@ class _Log_inState extends State<Log_in> {
   Widget EnterForm() {
     return Column(
       children: [
-        TextFormWidget(
+        LargeTextFormWidget(
             txt: "email",
             icon: Icons.email,
             password: false,
@@ -61,7 +61,7 @@ class _Log_inState extends State<Log_in> {
         SizedBox(
           height: 20,
         ),
-        TextFormWidget(
+        LargeTextFormWidget(
             txt: "password",
             icon: PasswordIcon,
             password: true,

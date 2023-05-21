@@ -104,6 +104,11 @@ class _DoctorSettingState extends State<DoctorSetting> {
               height: 6,
             ),
             TextFieldWidget(
+                label: 'Number of Patient', onchanged: (about) {}, text: user.num_patient),
+            SizedBox(
+              height: 6,
+            ),
+            TextFieldWidget(
                 label: 'First Time', onchanged: (about) {}, text: user.first_time),
             SizedBox(
               height: 6,
