@@ -4,13 +4,11 @@ import 'package:top_care_gp/Resource/theme_Light.dart';
 
 // TextFormField item
 Widget LargeTextFormWidget(
-    {
-    String? txt,
+    {String? txt,
     IconData? icon,
     bool? password,
     TextEditingController? controller,
-    void Function()? ontap
-    }) {
+    void Function()? ontap}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: TextFormField(
@@ -29,14 +27,14 @@ Widget LargeTextFormWidget(
       decoration: InputDecoration(
         filled: true,
         fillColor: ColorManager.LGrayBasiColor,
-       //استايل الكلام الخفي
+        //استايل الكلام الخفي
         hintText: "$txt",
         hintStyle: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
         // الايكون الي في الاخر
         prefixIcon: Padding(
           padding: const EdgeInsets.all(8.0),
           child: (password)
-          // ايكون العين عشان لو ضغط يظهر الكلام
+              // ايكون العين عشان لو ضغط يظهر الكلام
               ? InkWell(
                   onTap: ontap,
                   child: Icon(
@@ -47,7 +45,7 @@ Widget LargeTextFormWidget(
                 )
               : Icon(
                   icon,
-                  size:30,
+                  size: 30,
                   color: ColorManager.DGrayBasiColor,
                 ),
         ),
@@ -71,18 +69,18 @@ Widget LargeTextFormWidget(
 }
 
 // TextFormField item
-Widget SmallTextFormWidget(
-    {
-      BuildContext? context,
-      String? txt,
-      IconData? icon,
-      TextEditingController? controller,
-      void Function()? ontap
-    }) {
+Widget SmallTextFormWidget({
+  BuildContext? context,
+  String? txt,
+  TextEditingController? controller,
+  void Function()? ontap1,
+  void Function()? ontap2,
+}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      width: MediaQuery.of(context!).size.width*0.75,
+      width: MediaQuery.of(context!).size.width * 0.75,
+      height: 60,
       child: TextFormField(
         controller: controller,
         style: txtStyle(ColorManager.DarkBasiColor(context), 15.0, false),
@@ -94,14 +92,27 @@ Widget SmallTextFormWidget(
           hintText: "$txt",
           hintStyle: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
           // الايكون الي في الاخر
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              icon,
-              size:30,
+          prefixIcon: IconButton(
+            onPressed: ontap1,
+            icon: Icon(
+              Icons.search,
+              size: 30,
               color: ColorManager.DGrayBasiColor,
             ),
           ),
+          suffix: (controller!.text.isEmpty)
+              ? SizedBox()
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    onPressed: ontap2,
+                    icon: Icon(
+                      Icons.clear,
+                      size: 15.0,
+                      color: ColorManager.DGrayBasiColor,
+                    ),
+                  ),
+                ),
 //حاله الفورم لو ضغط عليها
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
@@ -122,8 +133,9 @@ Widget SmallTextFormWidget(
   );
 }
 
-
-Widget TextFormWithoutIcon ({ TextEditingController? controller,}){
+Widget TextFormWithoutIcon({
+  TextEditingController? controller,
+}) {
   return TextFormField(
     style: txtStyle(Colors.black, 15.0, false),
     cursorColor: ColorManager.DGrayBasiColor,
@@ -145,11 +157,6 @@ Widget TextFormWithoutIcon ({ TextEditingController? controller,}){
         ),
         borderRadius: BorderRadius.circular(30),
       ),
-
     ),
   );
-
-
-
 }
-

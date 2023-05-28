@@ -22,13 +22,6 @@ Future SignOut(BuildContext context) async {
   Navigator.pushReplacementNamed(context, RouteGenerator.SplachRoute);
  return await FirebaseAuth.instance.signOut();
 }
-/*
-*   IconButton(
-              onPressed: () async {
-                await SignOut().then((value) => print("sign out "));
-                Navigator.pushReplacementNamed(context, RouteGenerator.LoginRoute);
-              },
-              icon: Icon(Icons.exit_to_app))*/
 
 // تسجبل الدخول بحساب موجود
 Future LogInWithFire(BuildContext context,

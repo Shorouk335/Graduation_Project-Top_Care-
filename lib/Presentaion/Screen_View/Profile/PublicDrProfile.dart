@@ -28,10 +28,10 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
             Container(
               child: Column(
                 children: [
-                  CircularImg(img: "${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].img}",height: 130.0,width: 130.0),
+                  CircularImg(img: "${Find_Dr_Cubit.model!.img}",height: 130.0,width: 130.0),
                   SizedBox(height: 10,),
                   Text(
-                    "${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].name}",
+                    "${Find_Dr_Cubit.model!.name}",
                     style: txtStyle(ColorManager.BlueBasiColor, 25.0, true),
                   ),
                   SizedBox(height: 10,),
@@ -43,7 +43,7 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
                       color: ColorManager.BlueBasiColor,
                     ),
                     child: Center(
-                      child: Text('${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].price}',
+                      child: Text('${Find_Dr_Cubit.model!.price}',
                         style: txtStyle(Colors.white, 15.0, true),
                       ),
                     ),
@@ -115,7 +115,7 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
                             style: TextStyle(color: ColorManager.BlueBasiColor, fontSize: 17),
                           ),
                           Text(
-                            '${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].rate}',
+                            '${Find_Dr_Cubit.model!.rate}',
                             style: TextStyle(
                                 color: ColorManager.DarkBasiColor(context),
                                 fontSize: 15,
@@ -144,15 +144,15 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  buildBox(tit: "About",disc: "${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].disc}"),
+                  buildBox(tit: "Specialization",disc: "${Find_Dr_Cubit.model!.Specialization}"),
                   SizedBox(
                     height: 10,
                   ),
-                  buildBox(tit: "Phone",disc: "${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].Phone}"),
+                  buildBox(tit: "Phone",disc: "${Find_Dr_Cubit.model!.Phone}"),
                   SizedBox(
                     height: 10,
                   ),
-                  buildBox(tit: "Location",disc:"${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].Location}"),
+                  buildBox(tit: "Location",disc:"${Find_Dr_Cubit.model!.Location}"),
                   SizedBox(
                     height: 10,
                   ),
@@ -181,7 +181,7 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
                           color: ColorManager.BlueBasiColor,
                         ),
                         child: Center(
-                          child: Text('${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].FirstTime}',
+                          child: Text('${Find_Dr_Cubit.model!.FirstTime}',
                               style: TextStyle(
                                 color: Colors.white,
                               )),
@@ -196,7 +196,7 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
                           color: ColorManager.BlueBasiColor,
                         ),
                         child: Center(
-                          child: Text('${Find_Dr_Cubit.FindDrList[Find_Dr_Cubit.index_Of_Dr!].LastTime}',
+                          child: Text('${Find_Dr_Cubit.model!.LastTime}',
                               style: TextStyle(
                                 color: Colors.white,
                               )),

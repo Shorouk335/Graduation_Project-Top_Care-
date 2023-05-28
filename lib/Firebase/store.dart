@@ -12,12 +12,12 @@ void AddDoctorToFireStore({
   required String? password,
   required String? phone,
   required String? gender,
-  required String? about,
   required String? spec,
   required String? loc,
   required var price,
   required Map<String?, bool?> working_day,
-  required Map<String?, String?> time,
+  required String? FirstTime,
+  required String? LastTime,
 }) async {
   await Doctor.add({
     "username": username,
@@ -25,12 +25,12 @@ void AddDoctorToFireStore({
     "password": password,
     "phone": phone,
     "gender": gender,
-    "about": about,
     "specialization": spec,
-    "loction": loc,
+    "location": loc,
     "price": price,
     "working_day": working_day,
-    "time": time,
+    "FirstTime": FirstTime,
+    "LastTime": LastTime,
   }).then((value){
     Doctor.doc(value.id).set({
       //to get this id and save in shared preferance when user sign up

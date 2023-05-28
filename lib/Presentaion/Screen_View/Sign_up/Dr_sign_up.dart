@@ -19,7 +19,6 @@ class Dr_sign_up extends StatefulWidget {
 }
 
 class _Dr_sign_upState extends State<Dr_sign_up> {
-  var aboutController = TextEditingController();
   var SpecializationController = TextEditingController();
   var locationController = TextEditingController();
   var priceController = TextEditingController();
@@ -53,17 +52,6 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
     return Form(
         key: formKey,
         child: Column(children: [
-          Container(
-            margin: const EdgeInsets.all(5),
-            width: double.infinity,
-            child: LargeTextFormWidget(
-              controller: aboutController,
-              icon: Icons.info_outline_rounded,
-              txt: "About You..",
-              password: false,
-              ontap: () {},
-            ),
-          ),
           Container(
             margin: const EdgeInsets.all(5),
             width: double.infinity,
@@ -320,12 +308,14 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                                           .CommonModel!.phone,
                                       gender: Common_Sign_up_Cubit
                                           .CommonModel!.gender,
-                                      about: aboutController.text,
                                       spec: SpecializationController.text,
                                       loc: locationController.text,
                                       price: priceController.text,
                                       working_day: {"mo": true},
-                                      time: {"start": "5:00", "end": "7:00"});
+                                   FirstTime: "5:00 pm",
+                                    LastTime: "8:00 pm"
+
+                                  );
                                   Navigator.pushReplacementNamed(
                                       context, RouteGenerator.HomeRoute);
                                 });

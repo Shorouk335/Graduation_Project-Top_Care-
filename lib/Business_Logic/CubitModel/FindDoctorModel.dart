@@ -1,7 +1,7 @@
-class Find_Dr_Model {
+class Get_Doctor_Profile {
   String? img ;
   String? name;
-  String? disc;
+  String? Specialization;
   String? price;
   int? rate;
   String? Location;
@@ -11,11 +11,11 @@ class Find_Dr_Model {
   bool? FavDr ;
 
 
- Find_Dr_Model(
+ Get_Doctor_Profile(
      {
        required this.img,
        required this.name,
-       required this.disc,
+       required this.Specialization,
        required this.price,
        required this.Location,
        required this.Phone,
