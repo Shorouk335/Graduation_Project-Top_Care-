@@ -39,8 +39,11 @@ class _HomeState extends State<Home> {
 
       }),
       CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3,on: (){}),
-      CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt4,on: (){}),
-      CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt5,on: (){}),
+      CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt4,on: (){}),
+      CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt5,on: (){
+        Navigator.pushReplacementNamed(context, RouteGenerator.PharmacyScreen);
+
+      }),
     ];
     // Widgets of body
     Widget FirstWidget (){

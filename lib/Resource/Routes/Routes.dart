@@ -8,6 +8,7 @@ import 'package:top_care_gp/Presentaion/Screen_View/Home_Screen.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Log_in.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Notification/Notification_Page.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/On_Boarding.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Pharmcy.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/PublicDrProfile.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/doctor_setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_profile.dart';
@@ -39,6 +40,7 @@ class RouteGenerator {
   static const String FindDoctorHScreen = "FindDrHome";
   static const String PublicProfileScreen = "PublicProfile";
   static const String NotificationScreen = "Notification_Page";
+  static const String PharmacyScreen = "Pharmacy";
 
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -81,6 +83,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PublicDrProfile());
       case RouteGenerator.NotificationScreen:
         return MaterialPageRoute(builder: (_) => Notification_Page());
+      case RouteGenerator.PharmacyScreen:
+        return MaterialPageRoute(builder: (_) => Pharmacy());
 
       default:
         return MaterialPageRoute(builder: (_) => Home());
