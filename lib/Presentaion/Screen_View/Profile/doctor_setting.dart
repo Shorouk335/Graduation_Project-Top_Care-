@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Data/Shared_Preferences/Shared_Preferences.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
@@ -10,138 +12,138 @@ class DoctorSetting extends StatefulWidget {
 }
 
 class _DoctorSettingState extends State<DoctorSetting> {
+  DocumentReference DrDocument = FirebaseFirestore.instance.collection("Doctor").doc(DataCashHelper.GetData(key: "id"));
+
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.MyUser;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.DoctorProfile);
-                },
-                child: Text(
-                  "Delete Account",
-                  style: txtStyle(Colors.red, 18.0, true),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.DoctorProfile);
-                },
-                child: Text(
-                  "Cancel",
-                  style: txtStyle(ColorManager.BlueBasiColor, 18.0, true),
-                ),
-              ),
-            ],),
-            //جزء الصورة الويدجت بتاعتها تحت ف الكود
-             Center(
-        child: Stack(
-        alignment: Alignment.bottomRight,
-          children: [
-            buildImage(),
-            buildEditIcon(context),
-          ],
-          //
-        ),
-      ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFieldWidget(
-                label: 'Full Name', onchanged: (name) {}, text: user.name),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Email', onchanged: (email) {}, text: user.email),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Password',
-                onchanged: (password) {},
-                text: user.Password),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Phone', onchanged: (phone) {}, text: user.phone),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Location',
-                onchanged: (location) {},
-                text: user.location),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'About', onchanged: (about) {}, text: user.about),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'specialization', onchanged: (about) {}, text: user.specialization),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Price', onchanged: (about) {}, text: user.price),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Number of Experiance\'sYear', onchanged: (about) {}, text: user.num_experiance),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Number of Patient', onchanged: (about) {}, text: user.num_patient),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'First Time', onchanged: (about) {}, text: user.first_time),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Last Time', onchanged: (about) {}, text: user.last_time),
-            SizedBox(
-              height: 6,
-            ),
-            TextFieldWidget(
-                label: 'Working Day', onchanged: (about) {}, text: user.Working_day.toString()),
-            SizedBox(
-              height: 20,
-            ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                height: 60,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                  color: ColorManager.BlueBasiColor,
-                ),
-                child: Center(
+        child: StreamBuilder(
+          stream: DrDocument.snapshots(),
+       builder: (context, snapshot){
+          return ListView(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, RouteGenerator.DoctorProfile);
+                  },
                   child: Text(
-                    "Save Changed",
-                    style: txtStyle(Colors.white, 20.0, true),
+                    "Delete Account",
+                    style: txtStyle(Colors.red, 18.0, true),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(context, RouteGenerator.DoctorProfile);
+                  },
+                  child: Text(
+                    "Cancel",
+                    style: txtStyle(ColorManager.BlueBasiColor, 18.0, true),
+                  ),
+                ),
+              ],),
+              //جزء الصورة الويدجت بتاعتها تحت ف الكود
+               Center(
+          child: Stack(
+          alignment: Alignment.bottomRight,
+            children: [
+              buildImage(),
+              buildEditIcon(context),
+            ],
+            //
+          ),
+      ),
+              SizedBox(
+                height: 10,
+              ),
+              TextFieldWidget(
+                  label: 'Full Name', onchanged: (name) {}, text:snapshot.data?["username"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Email', onchanged: (email) {}, text: snapshot.data?["email"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Password',
+                  onchanged: (password) {},
+                  text: snapshot.data?["password"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Phone', onchanged: (phone) {}, text: snapshot.data?["phone"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Location',
+                  onchanged: (location) {},
+                  text:snapshot.data?["location"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Specialization', onchanged: (about) {}, text: snapshot.data?["specialization"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Price', onchanged: (about) {}, text: snapshot.data?["price"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Number of Experiance\'sYear', onchanged: (about) {}, text: "5Y"),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Number of Patient', onchanged: (about) {}, text:"2K"),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'First Time', onchanged: (about) {}, text: snapshot.data?["FirstTime"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Last Time', onchanged: (about) {}, text: snapshot.data?["LastTime"]),
+              SizedBox(
+                height: 6,
+              ),
+              TextFieldWidget(
+                  label: 'Working Day', onchanged: (about) {}, text: snapshot.data?["working_day"]),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 60,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    color: ColorManager.BlueBasiColor,
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Save Changed",
+                      style: txtStyle(Colors.white, 20.0, true),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-          ],
+            ],
+          ); }
         ),
       ),
     );
@@ -181,60 +183,6 @@ class _DoctorSettingState extends State<DoctorSetting> {
     );
   }
 
-
-//الداتا بتاعت اليوزر
-class User {
-  final String imagePath;
-  final String email;
-  final String Password;
-  final String name;
-  final String phone;
-  final String specialization;
-  final String about;
-  final String location;
-  final String num_patient;
-  final String num_experiance;
-  final String rate;
-  final String price;
-  final String first_time;
-  final String last_time;
-  final List Working_day;
-  const User(
-      {required this.imagePath,
-      required this.name,
-      required this.phone,
-      required this.specialization,
-      required this.about,
-      required this.location,
-      required this.num_experiance,
-      required this.num_patient,
-      required this.rate,
-      required this.price,
-      required this.first_time,
-      required this.last_time,
-      required this.Working_day,
-      required this.Password,
-      required this.email});
-}
-
-class UserPreferences {
-  static const MyUser = User(
-      imagePath: 'assets/images/drphoto.png',
-      name: 'Dr Ali Rashed',
-      phone: '01024141617',
-      specialization: 'Sr.Cardiolodist',
-      about: 'kjkj nxjx nxjjx kkjn ',
-      location: '12thabit st,helwan,cairo',
-      num_experiance: "5Y",
-      num_patient: "2K",
-      rate: "7.5",
-      first_time: "10:00 pm",
-      last_time: "02:00 pm",
-      price: "250LE",
-      Working_day: ["Sat", "Sun", "Mon", "Tue", "Wen"],
-      email: "ali55@gmail.com",
-      Password: "123456789");
-}
 
 class TextFieldWidget extends StatefulWidget {
   final String label;

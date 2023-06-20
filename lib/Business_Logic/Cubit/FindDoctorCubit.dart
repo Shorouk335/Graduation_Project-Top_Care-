@@ -10,7 +10,7 @@ class Find_Dr_Cubit extends Cubit<Find_Dr_State> {
   static Find_Dr_Cubit get(context) => BlocProvider.of(context);
 
 
-  //ليست من كل داتا الدكاتره في الفير ومن خلالها هدور علي الاسم واعرضه في البحث
+  //  ليست من كل داتا الدكاتره في الفير ومن خلالها هدور علي الاسم واعرضه في البحث
   static List List_Of_Dr_From_FireBase = [];
 
   void Add_Dr_Data_From_FB_To_List({
@@ -23,6 +23,7 @@ class Find_Dr_Cubit extends Cubit<Find_Dr_State> {
     String? phone,
     String? FirstTime,
     String? LastTime,
+    String? Working_Day,
     bool? FavDr,
   }) {
     List_Of_Dr_From_FireBase.add(
@@ -37,6 +38,7 @@ class Find_Dr_Cubit extends Cubit<Find_Dr_State> {
           "phone": phone,
           "specialization": specialization,
           "rate": rate,
+          "Working_Day" :Working_Day
         }
     );
     emit(Search_Doctor_state());
@@ -55,6 +57,7 @@ class Find_Dr_Cubit extends Cubit<Find_Dr_State> {
     String? Phone,
     String? FirstTime,
     String? LastTime,
+    String? Working_Day,
     bool? FavDr,
   }) {
     model = Get_Doctor_Profile(
@@ -68,6 +71,7 @@ class Find_Dr_Cubit extends Cubit<Find_Dr_State> {
       Phone: Phone,
       Specialization: Specialization,
       rate: rate,
+      Working_Day: Working_Day
     );
     emit(Get_Doctor_Data_state());
   }

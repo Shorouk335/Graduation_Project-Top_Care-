@@ -1,6 +1,5 @@
 
 class StringManager {
-
   static const String SplachTxt1="Welcom";
   static const String SplachTxt2= "to...";
   static const String SplachTxt3="Top Care";

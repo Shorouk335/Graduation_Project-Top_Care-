@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Examin/ResultofXray/Result_From_Ml.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Examin/ResultofXray/Patient_Qestion.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Examin/Exmaine_page.dart';
-import 'package:top_care_gp/Presentaion/Screen_View/Examin/ScanToMl.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Find_Your_Doctor/FindDoctorHome.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Find_Your_Doctor/Map.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Home_Screen.dart';
+import 'package:top_care_gp/Presentaion/Screen_View/Know_About_Pneumonia/Know_About_Pneumonia.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Log_in.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Notification/Notification_Page.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/On_Boarding.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Pharmcy.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/PublicDrProfile.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/doctor_setting.dart';
-import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_profile.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Profile/patient_setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Setting.dart';
 import 'package:top_care_gp/Presentaion/Screen_View/Sign_up/Dr_sign_up.dart';
@@ -32,15 +32,15 @@ class RouteGenerator {
   static const String Settingscreen = "Setting";
   static const String DoctorProfile = "DocProfile";
   static const String DocSetting = "DocSetting";
-  static const String PetProfile = "PetProfile";
   static const String PetSetting = "PetSetting";
   static const String ExmainPageScreen = "ExmainPage";
-  static const String ScanScreen = "Scan";
   static const String ResultMlScreen = "ResultmL";
   static const String FindDoctorHScreen = "FindDrHome";
   static const String PublicProfileScreen = "PublicProfile";
   static const String NotificationScreen = "Notification_Page";
   static const String PharmacyScreen = "Pharmacy";
+  static const String KnowAboutPheumoniaScreen = "KnowAboutPheumonia";
+  static const String MapScreen = "MapSample";
 
 
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -67,14 +67,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) =>  DocProfile());
         case RouteGenerator.DocSetting:
         return MaterialPageRoute(builder: (_) => DoctorSetting());
-      case RouteGenerator.PetProfile:
-        return MaterialPageRoute(builder: (_) =>  PatientProfile());
       case RouteGenerator.PetSetting:
         return MaterialPageRoute(builder: (_) => PatientSetting());
       case RouteGenerator.ExmainPageScreen:
         return MaterialPageRoute(builder: (_) => ExmainePage());
-      case RouteGenerator.ScanScreen:
-        return MaterialPageRoute(builder: (_) => ScanToMl());
       case RouteGenerator.ResultMlScreen:
         return MaterialPageRoute(builder: (_) => Result_From_Ml());
       case RouteGenerator.FindDoctorHScreen:
@@ -85,6 +81,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Notification_Page());
       case RouteGenerator.PharmacyScreen:
         return MaterialPageRoute(builder: (_) => Pharmacy());
+      case RouteGenerator.KnowAboutPheumoniaScreen:
+        return MaterialPageRoute(builder: (_) => KnowAboutPheumonia());
+        case RouteGenerator.MapScreen:
+        return MaterialPageRoute(builder: (_) => MapSample());
 
       default:
         return MaterialPageRoute(builder: (_) => Home());

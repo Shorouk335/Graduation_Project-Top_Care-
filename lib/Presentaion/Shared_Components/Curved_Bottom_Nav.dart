@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:top_care_gp/Data/Shared_Preferences/Shared_Preferences.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Awesom_Dialog.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
+import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
+import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
 
 // for curver navigator Bar in the bottom of applicaton
 Widget CurvedBottomNav(context) {
@@ -46,10 +49,16 @@ Widget CurvedBottomNav(context) {
                       Spacer(),
                       IconButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, RouteGenerator.DoctorProfile);
-                            // ShowDialogToLogInApp(
-                            //     context,
-                            //     img: AssetManager.AwesomError);
+                            if(DataCashHelper.GetData(key: "id") == null){
+                              ShowDialogToLogInApp(context, img: AssetManager.AwesomError);
+                            }
+                            else if (DataCashHelper.GetData(key: "Type")== "Doctor") {
+                              Navigator.pushReplacementNamed(
+                                  context, RouteGenerator.DoctorProfile);
+                            } else {
+                              Navigator.pushReplacementNamed(
+                                  context, RouteGenerator.PetSetting);
+                            }
                           },
                           icon: Icon(
                             Icons.account_circle,
@@ -70,7 +79,11 @@ Widget CurvedBottomNav(context) {
             radius: 40.0,
             child: InkWell(
                 onTap: () {
+                  if (DataCashHelper.GetData(key: "id") != null){
+                    Navigator.pushReplacementNamed(context, RouteGenerator.ExmainPageScreen);
+                  }else {
                   ShowDialogToLogInApp(context, img: AssetManager.AwesomError);
+                  }
                 },
                 child: Icon(
                   Icons.filter_center_focus,

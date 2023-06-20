@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Scan_Xray_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/States/Scan_Xray_State.dart';
 import 'package:top_care_gp/Data/Models/CategoryModel.dart';
-import 'package:top_care_gp/Firebase/Auth.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Curved_Bottom_Nav.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Text_Form_Widget.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
@@ -11,7 +10,8 @@ import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher ;
+
 
 // Home Page
 class Home extends StatefulWidget {
@@ -39,7 +39,9 @@ class _HomeState extends State<Home> {
 
       }),
       CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3,on: (){}),
-      CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt4,on: (){}),
+      CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt4,on: (){
+        Navigator.pushReplacementNamed(context, RouteGenerator.KnowAboutPheumoniaScreen);
+      }),
       CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt5,on: (){
         Navigator.pushReplacementNamed(context, RouteGenerator.PharmacyScreen);
 
@@ -122,13 +124,7 @@ class _HomeState extends State<Home> {
                 children: [
                   IconButton(
                     onPressed: () async {
-                      var url = Uri.parse(
-                          "tel:01024567735");
-                      if (await canLaunchUrl(url)) {
-                        await launchUrl(url);
-                      } else {
-                        throw 'Could not launch $url';
-                      }
+                      UrlLauncher.launch("tel://${AssetManager.FavoriteNum}");
                     },
                     icon: Icon(
                       Icons.phone_in_talk,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:top_care_gp/Data/Shared_Preferences/Shared_Preferences.dart';
 import 'package:top_care_gp/Firebase/Auth.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/Theme/bloc/theme_bloc.dart';
@@ -13,6 +14,8 @@ bool? IsLogin ;
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
+  //to initalization to cashHelper
+    await DataCashHelper.init() ;
   // to not active land scape mode in app
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

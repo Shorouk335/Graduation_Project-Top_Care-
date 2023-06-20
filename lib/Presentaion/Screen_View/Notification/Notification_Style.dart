@@ -150,7 +150,7 @@ Widget View_Scan_Doctor_Notification(
           InkWell(
             // open dr profile FB
             onTap: (){
-              Navigator.pushReplacementNamed(context, RouteGenerator.PetProfile);
+             // Navigator.pushReplacementNamed(context, RouteGenerator.PetProfile);
             },
             child: CircularImg(img:img,height: 50,width: 50 ),),
           SizedBox(width: 8,),

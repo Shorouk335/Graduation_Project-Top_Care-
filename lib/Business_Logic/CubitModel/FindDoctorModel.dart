@@ -8,6 +8,7 @@ class Get_Doctor_Profile {
   String? Phone;
   String? FirstTime;
   String? LastTime;
+  String? Working_Day;
   bool? FavDr ;
 
 
@@ -22,7 +23,8 @@ class Get_Doctor_Profile {
        required this.rate,
        required this.FirstTime,
        required this.LastTime,
-       required this.FavDr
+       required this.FavDr,
+       required this.Working_Day
 
 
  }

@@ -4,6 +4,8 @@
         android:label="top_care_gp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+                      android:value="AIzaSyDTua49hhyYIYRIIPIHBEWSnweS3v_R5qQ"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

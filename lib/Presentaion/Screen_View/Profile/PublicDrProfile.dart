@@ -156,7 +156,7 @@ class _PublicDrProfileState extends State<PublicDrProfile> {
                   SizedBox(
                     height: 10,
                   ),
-                  buildBox(tit: "Working Day",disc: "Sat , Sun , Mon ,Tue ,wen "),
+                  buildBox(tit: "Working Day",disc:"${Find_Dr_Cubit.model!.Working_Day}" ),
                   SizedBox(
                     height: 10,
                   ),

@@ -1,5 +1,5 @@
 class AssetManager {
-
+  static  String FavoriteNum = "" ;
   static const String LottieAnim ='assets/lottie_json/anim.json';
   static const String onBord1 ="assets/images/calldoctor.png";
   static const String onBord2 ="assets/images/xray.png";

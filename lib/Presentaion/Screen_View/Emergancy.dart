@@ -6,6 +6,7 @@ import 'package:top_care_gp/Data/Models/HospitalModel.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Text_Form_Widget.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Top_Carve.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Upload_Image.dart';
+import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -18,7 +19,6 @@ class Emergency extends StatefulWidget {
 }
 
 class _EmergencyState extends State<Emergency> {
-
 
   //controller
   var nameControllerHospital = TextEditingController();
@@ -68,277 +68,289 @@ class _EmergencyState extends State<Emergency> {
 
     //HospitaL page
     Widget HospitalPage() {
-      return ListView.builder(
-        itemCount: Hospitals.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (BuildContext context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Container(
-              height: Height * 0.2,
-              width: Width * 0.7,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: ColorManager.LGrayBasiColor.withOpacity(0.9),
-              ),
-              child: Slidable(
-                // Specify a key if the Slidable is dismissible.
-                key: const ValueKey(0),
-                // The start action pane is the one at the left or the top side.
-                startActionPane: ActionPane(
-                  // A motion is a widget used to control how the pane animates.
-                  motion: const ScrollMotion(),
-                  // A pane can dismiss the Slidable.
-                  dismissible: DismissiblePane(onDismissed: () {}),
-                  // All actions are defined in the children parameter.
-                  children: const [
-                    // A SlidableAction can have an icon and/or a label.
-                    SlidableAction(
-                      // An action can be bigger than the others.
-                      flex: 2,
-                      onPressed: doNothing,
-                      backgroundColor: Colors.amber,
-                      foregroundColor: Colors.white,
-                      icon: Icons.edit,
-                      label: 'Edit',
-                    ),
-                  ],
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: Hospitals.length,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (BuildContext context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: Container(
+                height: Height * 0.2,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: ColorManager.LGrayBasiColor.withOpacity(0.9),
                 ),
-                // The end action pane is the one at the right or the bottom side.
-                endActionPane: const ActionPane(
-                  motion: ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: doNothing,
-                      backgroundColor: Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
-                      label: 'Delete',
-                    ),
-                  ],
-                ),
+                child: Slidable(
+                  // Specify a key if the Slidable is dismissible.
+                  key: const ValueKey(0),
+                  // The start action pane is the one at the left or the top side.
+                  startActionPane: ActionPane(
+                    // A motion is a widget used to control how the pane animates.
+                    motion: const ScrollMotion(),
+                    // All actions are defined in the children parameter.
+                    children:  [
+                      // A SlidableAction can have an icon and/or a label.
+                      SlidableAction(
+                        // An action can be bigger than the others.
+                        flex: 2,
+                        onPressed: (BuildContext context){
+                          setState(() {
+                            AssetManager.FavoriteNum = '${Hospitals[index].phone}' ;
+                          });
+                        },
+                        backgroundColor: Colors.greenAccent,
+                        foregroundColor: Colors.white,
+                        icon: Icons.favorite,
+                        label: 'Favorite',
+                      ),
+                    ],
+                  ),
+                  // The end action pane is the one at the right or the bottom side.
+                  endActionPane:  ActionPane(
+                    motion: ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        onPressed: (BuildContext context){
 
-                // The child of the Slidable is what the user sees when the
-                // component is not dragged.
-                child: Container(
-                  height: Height * 0.2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: Width * 0.4,
-                          height: Height * 0.18,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                        },
+                        backgroundColor: Color(0xFFFE4A49),
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                    ],
+                  ),
+
+                  // The child of the Slidable is what the user sees when the
+                  // component is not dragged.
+                  child: Container(
+                    height: Height * 0.2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: Width * 0.4,
+                            height: Height * 0.18,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: (Hospitals[index].img != null)
+                                ? Image.file(
+                                    Hospitals[index].img!,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Center(
+                                    child: Icon(
+                                      Icons.local_hospital_outlined,
+                                      size: 80,
+                                      color:ColorManager.WitheToDarkColor(context),
+                                    ),
+                                  ),
                           ),
-                          child: (Hospitals[index].img != null)
-                              ? Image.file(
-                                  Hospitals[index].img!,
-                                  fit: BoxFit.cover,
-                                )
-                              : Center(
-                                  child: Icon(
-                                    Icons.local_hospital_outlined,
-                                    size: 80,
-                                    color:ColorManager.WitheToDarkColor(context),
-                                  ),
-                                ),
-                        ),
-                        Spacer(),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              '${Hospitals[index].name}',
-                              style: txtStyle(
-                                  ColorManager.DarkColorOnly, 20.0, true),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.phone_in_talk_rounded,
-                                  color: ColorManager.DarkColorOnly,
-                                  size: 18,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  '${Hospitals[index].phone}',
-                                  style: txtStyle(Colors.black38, 15.0, false),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on_rounded,
-                                  color: ColorManager.DarkColorOnly,
-                                  size: 18,
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  '${Hospitals[index].Loc}',
-                                  style: txtStyle(Colors.black38, 15.0, false),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 18,
-                            ),
-                            Container(
-                              width: 90,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(35),
-                                color: Colors.greenAccent,
+                          Spacer(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 10,
                               ),
-                              child: Center(
-                                child: TextButton(
-                                  onPressed: () {
-                                    UrlLauncher.launch("tel://${Hospitals[index].phone}");
-                                  },
-                                  child: Text(
-                                    "Call now",
-                                    style: txtStyle(Colors.white, 17.0, false),
+                              Text(
+                                '${Hospitals[index].name}',
+                                style: txtStyle(
+                                    ColorManager.DarkColorOnly, 20.0, true),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.phone_in_talk_rounded,
+                                    color: ColorManager.DarkColorOnly,
+                                    size: 18,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    '${Hospitals[index].phone}',
+                                    style: txtStyle(Colors.black38, 15.0, false),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on_rounded,
+                                    color: ColorManager.DarkColorOnly,
+                                    size: 18,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    '${Hospitals[index].Loc}',
+                                    style: txtStyle(Colors.black38, 15.0, false),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              Container(
+                                width: 90,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(35),
+                                  color: Colors.greenAccent,
+                                ),
+                                child: Center(
+                                  child: TextButton(
+                                    onPressed: () {
+                                      UrlLauncher.launch("tel://${Hospitals[index].phone}");
+                                    },
+                                    child: Text(
+                                      "Call now",
+                                      style: txtStyle(Colors.white, 17.0, false),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                      ],
+                            ],
+                          ),
+                          Spacer(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       );
     }
 
     //Contacts page
     Widget ContactsPage() {
-      return ListView.builder(
-        itemCount: Contacts.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (BuildContext context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Container(
-              height: 80,
-              width: Width * 0.7,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: ColorManager.LGrayBasiColor.withOpacity(0.9),
-              ),
-              child: Slidable(
-                // Specify a key if the Slidable is dismissible.
-                key: const ValueKey(0),
-                // The start action pane is the one at the left or the top side.
-                startActionPane: ActionPane(
-                  // A motion is a widget used to control how the pane animates.
-                  motion: const ScrollMotion(),
-                  // A pane can dismiss the Slidable.
-                  dismissible: DismissiblePane(onDismissed: () {}),
-                  // All actions are defined in the children parameter.
-                  children: const [
-                    // A SlidableAction can have an icon and/or a label.
-                    SlidableAction(
-                      // An action can be bigger than the others.
-                      flex: 2,
-                      onPressed: doNothing,
-                      backgroundColor: Colors.amber,
-                      foregroundColor: Colors.white,
-                      icon: Icons.edit,
-                      label: 'Edit',
-                    ),
-                  ],
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: Contacts.length,
+          scrollDirection: Axis.vertical,
+          itemBuilder: (BuildContext context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Container(
+                height: 80,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: ColorManager.LGrayBasiColor.withOpacity(0.9),
                 ),
-                // The end action pane is the one at the right or the bottom side.
-                endActionPane: const ActionPane(
-                  motion: ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: doNothing,
-                      backgroundColor: Color(0xFFFE4A49),
-                      foregroundColor: Colors.white,
-                      icon: Icons.delete,
-                      label: 'Delete',
-                    ),
-                  ],
-                ),
-
-                // The child of the Slidable is what the user sees when the
-                // component is not dragged.
-                child: Container(
-                  height: 80,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        '${Contacts[index].name}',
-                        style: txtStyle(ColorManager.DarkColorOnly, 18.0, true),
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Icon(
-                        Icons.phone_in_talk_rounded,
-                        color: ColorManager.DarkColorOnly,
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Text(
-                        '${Contacts[index].phone}',
-                        style: txtStyle(Colors.black38, 15.0, false),
-                      ),
-                      Spacer(),
-                      Container(
-                        width: 90,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(35),
-                          color: Colors.greenAccent,
-                        ),
-                        child: Center(
-                          child: TextButton(
-                      onPressed: () {
-                        UrlLauncher.launch("tel://${Contacts[index].phone}");
-                      },
-                            child: Text(
-                              "Call now",
-                              style: txtStyle(Colors.white, 17.0, false),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 18,
+                child: Slidable(
+                  // Specify a key if the Slidable is dismissible.
+                  key: const ValueKey(0),
+                  // The start action pane is the one at the left or the top side.
+                  startActionPane: ActionPane(
+                    // A motion is a widget used to control how the pane animates.
+                    motion: const ScrollMotion(),
+                    // All actions are defined in the children parameter.
+                    children:  [
+                      // A SlidableAction can have an icon and/or a label.
+                      SlidableAction(
+                        // An action can be bigger than the others.
+                        flex: 2,
+                        onPressed : (BuildContext context){
+                          setState(() {
+                            AssetManager.FavoriteNum = '${Contacts[index].phone}' ;
+                          });
+                        },
+                        backgroundColor: Colors.greenAccent,
+                        foregroundColor: Colors.white,
+                        icon: Icons.favorite,
+                        label: 'Favorite',
                       ),
                     ],
                   ),
+                  // The end action pane is the one at the right or the bottom side.
+                  endActionPane:  ActionPane(
+                    motion: ScrollMotion(),
+                    children: [
+                      SlidableAction(
+                        onPressed: (BuildContext context){},
+                        backgroundColor: Color(0xFFFE4A49),
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                    ],
+                  ),
+
+                  // The child of the Slidable is what the user sees when the
+                  // component is not dragged.
+                  child: Container(
+                    height: 80,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          '${Contacts[index].name}',
+                          style: txtStyle(ColorManager.DarkColorOnly, 18.0, true),
+                        ),
+                        SizedBox(
+                          width: 18,
+                        ),
+                        Icon(
+                          Icons.phone_in_talk_rounded,
+                          color: ColorManager.DarkColorOnly,
+                        ),
+                        SizedBox(
+                          width: 18,
+                        ),
+                        Text(
+                          '${Contacts[index].phone}',
+                          style: txtStyle(Colors.black38, 15.0, false),
+                        ),
+                        Spacer(),
+                        Container(
+                          width: 90,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(35),
+                            color: Colors.greenAccent,
+                          ),
+                          child: Center(
+                            child: TextButton(
+                        onPressed: () {
+                          UrlLauncher.launch("tel://${Contacts[index].phone}");
+                        },
+                              child: Text(
+                                "Call now",
+                                style: txtStyle(Colors.white, 17.0, false),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 18,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       );
     }
 
@@ -428,6 +440,7 @@ class _EmergencyState extends State<Emergency> {
         ),
       ),
     );
+
   }
 
   //Diallllllllllllllog
@@ -633,7 +646,8 @@ class _EmergencyState extends State<Emergency> {
       ),
     ).show();
   }
+
 }
 
-// fun of edit and delete
-void doNothing(BuildContext context) {}
+
+void  doNothing(BuildContext context) {}

@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,11 +65,12 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                                      "LastTime": map["FirstTime"],
                                                     "FirstTime":map["LastTime"],
                                                     "location": map["location"],
-                                                    "FavDr": true,
+                                                    "FavDr": false,
                                                     "price": map["price"],
                                                     "phone":map["phone"] ,
                                                     "specialization": map["specialization"],
-                                                    "rate": 7,
+                                                    "rate": 8.5,
+                                                    "Working_Day" : map["Working_Day"]
                                                   };
                                                   //عشان يظهر جزء الدكتور الي هيدور عليه بس
                                                  search = true ;
@@ -91,11 +91,16 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                       SizedBox(
                                         width: 10,
                                       ),
-                                      Icon(
-                                        Icons.location_on_rounded,
-                                        color:
-                                            ColorManager.WitheToDarkColor(context),
-                                        size: 30.0,
+                                      IconButton(
+                                        onPressed: (){
+                                          Navigator.pushReplacementNamed(context, RouteGenerator.MapScreen);
+                                        },
+                                        icon: Icon(
+                                          Icons.location_on_rounded,
+                                          color:
+                                              ColorManager.WitheToDarkColor(context),
+                                          size: 30.0,
+                                        ),
                                       )
                                     ],
                                   )),
@@ -136,7 +141,8 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                           LastTime: dr_info_search["LastTime"],
                           Phone: dr_info_search["phone"],
                           rate: 7,
-                          FavDr: true,
+                          FavDr: false,
+                          Working_Day:  dr_info_search["Working_Day"]
                         );
                         Navigator.pushReplacementNamed(
                         context,
@@ -154,7 +160,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                         LastTime: dr_info_search["LastTime"],
                         Phone: dr_info_search["phone"],
                         rate: 7,
-                        FavDr: true,
+                        FavDr: false,
                         ),
                         ))
                               :
@@ -183,7 +189,9 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                             phone: snapshot.data!.docs[index]
                                             ["phone"],
                                             rate: 7,
-                                            FavDr: true,
+                                            FavDr: false,
+                                            Working_Day: snapshot.data!.docs[index]
+                                            ["working_day"],
                                           );
                                           return Padding(
                                               padding: const EdgeInsets.all(8.0),
@@ -206,8 +214,10 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                                         .docs[index]["LastTime"],
                                                     Phone: snapshot.data!.docs[index]
                                                         ["phone"],
-                                                    rate: 7,
-                                                    FavDr: true,
+                                                    rate: 8,
+                                                    FavDr: false,
+                                                    Working_Day: snapshot.data!.docs[index]
+                                                    ["working_day"],
                                                   );
                                                   Navigator.pushReplacementNamed(
                                                       context,
@@ -230,8 +240,8 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                                       ["LastTime"],
                                                   Phone: snapshot.data!.docs[index]
                                                       ["phone"],
-                                                  rate: 7,
-                                                  FavDr: true,
+                                                  rate: 8,
+                                                  FavDr: false,
                                                 ),
                                               ));
                                         }),

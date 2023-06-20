@@ -28,12 +28,12 @@ class Scan_Xray_Cubit extends Cubit<Scan_Xray_States> {
 
   //Function To clear img in model
   void Clear_Img() {
-    scan_xray_Img_model!.Img_Xray= null;
+    scan_xray_Img_model?.Img_Xray= null;
     emit(Clear_Img_From_User_state());
   }
 
  //Function to upload data from ml and save in model
-  void Upload_Data_From_Ml (String Result_Text , String Result_num){
+  void Upload_Data_From_Ml (dynamic Result_Text , dynamic Result_num){
   scan_result_from_ml_model  = Scan_Result_From_ML_Model(
     Result_Text: Result_Text,
     Result_num: Result_num);
@@ -43,9 +43,10 @@ class Scan_Xray_Cubit extends Cubit<Scan_Xray_States> {
   //Function to clear data model
   void Clear_Data_From_Ml (){
     scan_result_from_ml_model!.Result_Text = null;
-    scan_result_from_ml_model!.Result_num= null;
+    scan_result_from_ml_model!.Result_num = 0.0;
     emit(Clear_Data_From_Ml_state());
   }
+
  //Notification
   static List <Notification_Model>Notification_List= [
     Notification_Model(name: "Mohammed Ali", Time: "San 5:00 pm",

@@ -295,7 +295,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                                         email: Common_Sign_up_Cubit
                                             .CommonModel!.email,
                                         password: Common_Sign_up_Cubit
-                                            .CommonModel!.email)
+                                            .CommonModel!.password)
                                     .then((value) {
                                   AddDoctorToFireStore(
                                       username: Common_Sign_up_Cubit
@@ -311,7 +311,7 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                                       spec: SpecializationController.text,
                                       loc: locationController.text,
                                       price: priceController.text,
-                                      working_day: {"mo": true},
+                                      working_day: "Sunday,Monday,Tuesday,Wednesday",
                                    FirstTime: "5:00 pm",
                                     LastTime: "8:00 pm"
 

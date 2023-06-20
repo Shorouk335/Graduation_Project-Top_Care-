@@ -7,7 +7,17 @@ import 'package:top_care_gp/Presentaion/Shared_Components/Submit_Button.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 
-class Result_From_Ml extends StatelessWidget {
+class Result_From_Ml extends StatefulWidget {
+
+  @override
+  State<Result_From_Ml> createState() => _Result_From_MlState();
+}
+
+class _Result_From_MlState extends State<Result_From_Ml> {
+
+  dynamic img ;
+  dynamic result  ;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -16,7 +26,18 @@ class Result_From_Ml extends StatelessWidget {
         listener: (context,states){},
         builder:(context,states){
           Scan_Xray_Cubit cubit = Scan_Xray_Cubit.get(context);
-          Scan_Xray_Cubit().Upload_Data_From_Ml("YOU HAVE PNEUMONIA :(", "89 %");
+          if ( Scan_Xray_Cubit.scan_result_from_ml_model?.Result_Text == "Pneumonia")
+            {
+
+                img = "assets/images/have.png";
+                result = "Sorry ,You may have Pneumonia ";
+
+            }else {
+
+              img = "assets/images/don't have.png" ;
+              result ="Congratulations, you are normal";
+
+          }
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,
@@ -37,8 +58,8 @@ class Result_From_Ml extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    PhotoCard("assets/images/have.png","${Scan_Xray_Cubit.scan_result_from_ml_model?.Result_Text}",context),
-                    textnumOfDetect("${Scan_Xray_Cubit.scan_result_from_ml_model?.Result_num}"),
+                    PhotoCard(img!,result!,context),
+                    textnumOfDetect("${Scan_Xray_Cubit.scan_result_from_ml_model?.Result_num.toInt()}%"),
                     textofRecommenditon(
                         "We recommend some doctors for you to communicate with them and check on yourself ",context),
                     submitButton("Share To Doctor ", () {

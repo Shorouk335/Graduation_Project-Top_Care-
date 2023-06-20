@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Data/Models/Pharmacy_Model.dart';
+import 'package:top_care_gp/Data/Shared_Preferences/Shared_Preferences.dart';
+import 'package:top_care_gp/Firebase/store.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Top_Carve.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
@@ -26,6 +28,8 @@ class Pharmacy extends StatelessWidget {
               left: 10,
               child: IconButton(
                 onPressed: () {
+                  print(DataCashHelper.GetData(key: "id"));
+                  print(DataCashHelper.GetData(key: "Type"));
                   Navigator.pushReplacementNamed(
                       context, RouteGenerator.HomeRoute);
                 },
