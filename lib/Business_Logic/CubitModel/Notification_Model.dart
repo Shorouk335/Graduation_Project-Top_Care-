@@ -9,8 +9,4 @@ class Notification_Model {
  Notification_Model({required this.name,required this.img,required this.Time , required this.IconTxt});
 
 
-
-
-
-
 }

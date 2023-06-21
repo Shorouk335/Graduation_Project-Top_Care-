@@ -8,65 +8,61 @@ import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 
 class Result_From_Ml extends StatefulWidget {
-
   @override
   State<Result_From_Ml> createState() => _Result_From_MlState();
 }
 
 class _Result_From_MlState extends State<Result_From_Ml> {
-
-  dynamic img ;
-  dynamic result  ;
+  dynamic img;
+  dynamic result;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => Scan_Xray_Cubit(),
-      child: BlocConsumer<Scan_Xray_Cubit,Scan_Xray_States>(
-        listener: (context,states){},
-        builder:(context,states){
+      child: BlocConsumer<Scan_Xray_Cubit, Scan_Xray_States>(
+        listener: (context, states) {},
+        builder: (context, states) {
           Scan_Xray_Cubit cubit = Scan_Xray_Cubit.get(context);
-          if ( Scan_Xray_Cubit.scan_result_from_ml_model?.Result_Text == "Pneumonia")
-            {
-
-                img = "assets/images/have.png";
-                result = "Sorry ,You may have Pneumonia ";
-
-            }else {
-
-              img = "assets/images/don't have.png" ;
-              result ="Congratulations, you are normal";
-
+          if (Scan_Xray_Cubit.scan_result_from_ml_model?.Result_Text ==
+              "Pneumonia") {
+            img = "assets/images/have.png";
+            result = "Sorry ,You may have Pneumonia ";
+          } else {
+            img = "assets/images/don't have.png";
+            result = "Congratulations, you are normal";
           }
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
               leading: IconButton(
-                icon:  Icon(
-                  Icons.arrow_back_ios_new,
-                  color: ColorManager.DarkBasiColor(context),
-                ),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
-                  cubit.Clear_Img();
-                  cubit.Clear_Data_From_Ml();
-                }
-              ),
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: ColorManager.DarkBasiColor(context),
+                  ),
+                  onPressed: () {
+                    Navigator.pushReplacementNamed(
+                        context, RouteGenerator.HomeRoute);
+                    cubit.Clear_Img();
+                    cubit.Clear_Data_From_Ml();
+                  }),
             ),
             body: Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    PhotoCard(img!,result!,context),
-                    textnumOfDetect("${Scan_Xray_Cubit.scan_result_from_ml_model?.Result_num.toInt()}%"),
-                    textofRecommenditon(
-                        "We recommend some doctors for you to communicate with them and check on yourself ",context),
-                    submitButton("Share To Doctor ", () {
-                      showShareDialog(context);
-                    },250,40)
-                  ],
-                )),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                PhotoCard(img!, result!, context),
+                textnumOfDetect(
+                    "${Scan_Xray_Cubit.scan_result_from_ml_model?.Result_num.toInt()}%"),
+                textofRecommenditon(
+                    "We recommend some doctors for you to communicate with them and check on yourself ",
+                    context),
+                submitButton("Share To Doctor ", () {
+                  showShareDialog(context);
+                }, 250, 40)
+              ],
+            )),
           );
         },
       ),

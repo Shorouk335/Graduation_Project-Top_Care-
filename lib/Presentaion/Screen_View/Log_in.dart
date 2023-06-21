@@ -32,8 +32,7 @@ class _Log_inState extends State<Log_in> {
         ),
         Text(
           'Log In',
-          style:
-              txtStyle(ColorManager.BlueBasiColor, 30.0, true),
+          style: txtStyle(ColorManager.BlueBasiColor, 30.0, true),
         ),
         SizedBox(
           height: 10,
@@ -125,8 +124,7 @@ class _Log_inState extends State<Log_in> {
           },
           child: Text(
             'Create an account?',
-            style: txtStyle(
-                ColorManager.BlueBasiColor, 15.0, false),
+            style: txtStyle(ColorManager.BlueBasiColor, 15.0, false),
           ),
         ),
         Spacer(),
@@ -159,18 +157,14 @@ class _Log_inState extends State<Log_in> {
                       EnterForm(),
                       Remember(),
                       //Botton to log in by fire base auth
-                      submitButton(
-                        'Log In',
-                        () async {
-                          if (formkey.currentState!.validate()) {
-                            await LogInWithFire(context,
-                                email: emailController.text,
-                                password: passController.text);
-                          }
-                          return null;
-                        },
-                        250.0 ,40.0
-                      ),
+                      submitButton('Log In', () async {
+                        if (formkey.currentState!.validate()) {
+                          await LogInWithFire(context,
+                              email: emailController.text,
+                              password: passController.text);
+                        }
+                        return null;
+                      }, 250.0, 40.0),
                       EndText()
                     ],
                   ),

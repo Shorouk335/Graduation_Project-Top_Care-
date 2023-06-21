@@ -11,7 +11,7 @@ import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher ;
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 class Emergency extends StatefulWidget {
   @override
@@ -19,7 +19,6 @@ class Emergency extends StatefulWidget {
 }
 
 class _EmergencyState extends State<Emergency> {
-
   //controller
   var nameControllerHospital = TextEditingController();
   var phoneControllerHospital = TextEditingController();
@@ -44,7 +43,8 @@ class _EmergencyState extends State<Emergency> {
   }
 
   List<ContactModel> Contacts = [
-    ContactModel(name: "Baba", phone: "01024567735")
+    ContactModel(name: "Baba", phone: "01087554455"),
+    ContactModel(name: "Mama", phone: "01087588475")
   ];
 
   //list of hospital and fun to add
@@ -54,7 +54,18 @@ class _EmergencyState extends State<Emergency> {
     });
   }
 
-  List<HospitalModel> Hospitals = [];
+  List<HospitalModel> Hospitals = [
+    HospitalModel(
+        name: "New Cairo",
+        Loc: "Cairo",
+        phone: "15896",
+        img1: "assets/images/hos.jpg"),
+    HospitalModel(
+        name: "Naser Hospital",
+        Loc: "Giza",
+        phone: "19888",
+        img1: "assets/images/hos.jpg"),
+  ];
   @override
   Widget build(BuildContext context) {
     //Colors of BOTTOM
@@ -91,14 +102,15 @@ class _EmergencyState extends State<Emergency> {
                     // A motion is a widget used to control how the pane animates.
                     motion: const ScrollMotion(),
                     // All actions are defined in the children parameter.
-                    children:  [
+                    children: [
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
                         // An action can be bigger than the others.
                         flex: 2,
-                        onPressed: (BuildContext context){
+                        onPressed: (BuildContext context) {
                           setState(() {
-                            AssetManager.FavoriteNum = '${Hospitals[index].phone}' ;
+                            AssetManager.FavoriteNum =
+                                '${Hospitals[index].phone}';
                           });
                         },
                         backgroundColor: Colors.greenAccent,
@@ -109,12 +121,14 @@ class _EmergencyState extends State<Emergency> {
                     ],
                   ),
                   // The end action pane is the one at the right or the bottom side.
-                  endActionPane:  ActionPane(
+                  endActionPane: ActionPane(
                     motion: ScrollMotion(),
                     children: [
                       SlidableAction(
-                        onPressed: (BuildContext context){
-
+                        onPressed: (BuildContext context) {
+                          setState(() {
+                            Hospitals.removeAt(index);
+                          });
                         },
                         backgroundColor: Color(0xFFFE4A49),
                         foregroundColor: Colors.white,
@@ -139,18 +153,24 @@ class _EmergencyState extends State<Emergency> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: (Hospitals[index].img != null)
-                                ? Image.file(
-                                    Hospitals[index].img!,
+                            child: (Hospitals[index].img1 != null)
+                                ? Image(
+                                    image: AssetImage(Hospitals[index].img1!),
                                     fit: BoxFit.cover,
                                   )
-                                : Center(
-                                    child: Icon(
-                                      Icons.local_hospital_outlined,
-                                      size: 80,
-                                      color:ColorManager.WitheToDarkColor(context),
-                                    ),
-                                  ),
+                                : (Hospitals[index].img != null)
+                                    ? (Image.file(
+                                        Hospitals[index].img!,
+                                        fit: BoxFit.cover,
+                                      ))
+                                    : Center(
+                                        child: Icon(
+                                          Icons.local_hospital_outlined,
+                                          size: 80,
+                                          color: ColorManager.WitheToDarkColor(
+                                              context),
+                                        ),
+                                      ),
                           ),
                           Spacer(),
                           Column(
@@ -180,7 +200,8 @@ class _EmergencyState extends State<Emergency> {
                                   ),
                                   Text(
                                     '${Hospitals[index].phone}',
-                                    style: txtStyle(Colors.black38, 15.0, false),
+                                    style:
+                                        txtStyle(Colors.black38, 15.0, false),
                                   ),
                                 ],
                               ),
@@ -196,7 +217,8 @@ class _EmergencyState extends State<Emergency> {
                                   ),
                                   Text(
                                     '${Hospitals[index].Loc}',
-                                    style: txtStyle(Colors.black38, 15.0, false),
+                                    style:
+                                        txtStyle(Colors.black38, 15.0, false),
                                   ),
                                 ],
                               ),
@@ -213,11 +235,13 @@ class _EmergencyState extends State<Emergency> {
                                 child: Center(
                                   child: TextButton(
                                     onPressed: () {
-                                      UrlLauncher.launch("tel://${Hospitals[index].phone}");
+                                      UrlLauncher.launch(
+                                          "tel://${Hospitals[index].phone}");
                                     },
                                     child: Text(
                                       "Call now",
-                                      style: txtStyle(Colors.white, 17.0, false),
+                                      style:
+                                          txtStyle(Colors.white, 17.0, false),
                                     ),
                                   ),
                                 ),
@@ -262,14 +286,15 @@ class _EmergencyState extends State<Emergency> {
                     // A motion is a widget used to control how the pane animates.
                     motion: const ScrollMotion(),
                     // All actions are defined in the children parameter.
-                    children:  [
+                    children: [
                       // A SlidableAction can have an icon and/or a label.
                       SlidableAction(
                         // An action can be bigger than the others.
                         flex: 2,
-                        onPressed : (BuildContext context){
+                        onPressed: (BuildContext context) {
                           setState(() {
-                            AssetManager.FavoriteNum = '${Contacts[index].phone}' ;
+                            AssetManager.FavoriteNum =
+                                '${Contacts[index].phone}';
                           });
                         },
                         backgroundColor: Colors.greenAccent,
@@ -280,11 +305,15 @@ class _EmergencyState extends State<Emergency> {
                     ],
                   ),
                   // The end action pane is the one at the right or the bottom side.
-                  endActionPane:  ActionPane(
+                  endActionPane: ActionPane(
                     motion: ScrollMotion(),
                     children: [
                       SlidableAction(
-                        onPressed: (BuildContext context){},
+                        onPressed: (BuildContext context) {
+                          setState(() {
+                            Contacts.removeAt(index);
+                          });
+                        },
                         backgroundColor: Color(0xFFFE4A49),
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
@@ -304,7 +333,8 @@ class _EmergencyState extends State<Emergency> {
                         ),
                         Text(
                           '${Contacts[index].name}',
-                          style: txtStyle(ColorManager.DarkColorOnly, 18.0, true),
+                          style:
+                              txtStyle(ColorManager.DarkColorOnly, 18.0, true),
                         ),
                         SizedBox(
                           width: 18,
@@ -330,9 +360,10 @@ class _EmergencyState extends State<Emergency> {
                           ),
                           child: Center(
                             child: TextButton(
-                        onPressed: () {
-                          UrlLauncher.launch("tel://${Contacts[index].phone}");
-                        },
+                              onPressed: () {
+                                UrlLauncher.launch(
+                                    "tel://${Contacts[index].phone}");
+                              },
                               child: Text(
                                 "Call now",
                                 style: txtStyle(Colors.white, 17.0, false),
@@ -440,7 +471,6 @@ class _EmergencyState extends State<Emergency> {
         ),
       ),
     );
-
   }
 
   //Diallllllllllllllog
@@ -485,7 +515,8 @@ class _EmergencyState extends State<Emergency> {
               ),
               Text(
                 "Name",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
+                style:
+                    txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
               ),
               SizedBox(
                 height: 5,
@@ -503,7 +534,8 @@ class _EmergencyState extends State<Emergency> {
               ),
               Text(
                 "Phone",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
+                style:
+                    txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
               ),
               SizedBox(
                 height: 5,
@@ -522,7 +554,8 @@ class _EmergencyState extends State<Emergency> {
               ),
               Text(
                 "Location",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
+                style:
+                    txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
               ),
               SizedBox(
                 height: 5,
@@ -585,7 +618,8 @@ class _EmergencyState extends State<Emergency> {
             children: [
               Text(
                 "Name",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
+                style:
+                    txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
               ),
               SizedBox(
                 height: 5,
@@ -603,7 +637,8 @@ class _EmergencyState extends State<Emergency> {
               ),
               Text(
                 "Phone",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
+                style:
+                    txtStyle(ColorManager.DarkBasiColor(context), 25.0, true),
               ),
               SizedBox(
                 height: 5,
@@ -646,8 +681,6 @@ class _EmergencyState extends State<Emergency> {
       ),
     ).show();
   }
-
 }
 
-
-void  doNothing(BuildContext context) {}
+void doNothing(BuildContext context) {}

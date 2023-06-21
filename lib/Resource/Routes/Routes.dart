@@ -27,7 +27,7 @@ class RouteGenerator {
   static const String LoginRoute = "Login";
   static const String Common_SignUpRoute = "CommonSignUp";
   static const String Dr_SignUpRoute = "DrSignUp";
-  static const String Patient_QuestionScreen= "PatientQuestion";
+  static const String Patient_QuestionScreen = "PatientQuestion";
   static const String Emergencyscreen = "Emergency";
   static const String Settingscreen = "Setting";
   static const String DoctorProfile = "DocProfile";
@@ -42,7 +42,6 @@ class RouteGenerator {
   static const String KnowAboutPheumoniaScreen = "KnowAboutPheumonia";
   static const String MapScreen = "MapSample";
 
-
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteGenerator.SplachRoute:
@@ -51,21 +50,21 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => OnBoarding());
       case RouteGenerator.HomeRoute:
         return MaterialPageRoute(builder: (_) => Home());
-        case RouteGenerator.LoginRoute:
-          return MaterialPageRoute(builder: (_) => Log_in());
+      case RouteGenerator.LoginRoute:
+        return MaterialPageRoute(builder: (_) => Log_in());
       case RouteGenerator.Common_SignUpRoute:
         return MaterialPageRoute(builder: (_) => Common_sign_up());
-        case RouteGenerator.Dr_SignUpRoute:
+      case RouteGenerator.Dr_SignUpRoute:
         return MaterialPageRoute(builder: (_) => Dr_sign_up());
-        case RouteGenerator.Patient_QuestionScreen:
+      case RouteGenerator.Patient_QuestionScreen:
         return MaterialPageRoute(builder: (_) => Patient_Question());
-       case RouteGenerator.Emergencyscreen:
-        return MaterialPageRoute(builder: (_) =>  Emergency());
-        case RouteGenerator.Settingscreen:
-        return MaterialPageRoute(builder: (_) =>  SettingPage());
-       case RouteGenerator.DoctorProfile:
-        return MaterialPageRoute(builder: (_) =>  DocProfile());
-        case RouteGenerator.DocSetting:
+      case RouteGenerator.Emergencyscreen:
+        return MaterialPageRoute(builder: (_) => Emergency());
+      case RouteGenerator.Settingscreen:
+        return MaterialPageRoute(builder: (_) => SettingPage());
+      case RouteGenerator.DoctorProfile:
+        return MaterialPageRoute(builder: (_) => DocProfile());
+      case RouteGenerator.DocSetting:
         return MaterialPageRoute(builder: (_) => DoctorSetting());
       case RouteGenerator.PetSetting:
         return MaterialPageRoute(builder: (_) => PatientSetting());
@@ -83,7 +82,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Pharmacy());
       case RouteGenerator.KnowAboutPheumoniaScreen:
         return MaterialPageRoute(builder: (_) => KnowAboutPheumonia());
-        case RouteGenerator.MapScreen:
+      case RouteGenerator.MapScreen:
         return MaterialPageRoute(builder: (_) => MapSample());
 
       default:

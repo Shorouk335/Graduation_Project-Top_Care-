@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -73,7 +72,7 @@ class _ExmainePageState extends State<ExmainePage> {
                                   cubit.Upload_Img(
                                       await selectImageFromGallery());
                                   if (Scan_Xray_Cubit
-                                      .scan_xray_Img_model?.Img_Xray !=
+                                          .scan_xray_Img_model?.Img_Xray !=
                                       null) {
                                     Navigator.pop(context);
                                   } else {
@@ -87,7 +86,7 @@ class _ExmainePageState extends State<ExmainePage> {
                                               15.0,
                                               false)),
                                       backgroundColor:
-                                      ColorManager.DarkBasiColor(context),
+                                          ColorManager.DarkBasiColor(context),
                                     ));
                                   }
                                 },
@@ -108,7 +107,7 @@ class _ExmainePageState extends State<ExmainePage> {
                                   cubit.Upload_Img(
                                       await selectImageFromCamera());
                                   if (Scan_Xray_Cubit
-                                      .scan_xray_Img_model?.Img_Xray !=
+                                          .scan_xray_Img_model?.Img_Xray !=
                                       null) {
                                     Navigator.pop(context);
                                   } else {
@@ -139,11 +138,13 @@ class _ExmainePageState extends State<ExmainePage> {
               },
             );
           }
+
           // حفظت داتا ال ML  هنا في الكيوبت
           Future ScanButton() async {
             if (Scan_Xray_Cubit.scan_xray_Img_model?.Img_Xray != null) {
               print("start");
-              final request = http.MultipartRequest("POST", Uri.parse("https://822d-41-237-228-139.ngrok-free.app"));
+              final request = http.MultipartRequest("POST",
+                  Uri.parse("https://822d-41-237-228-139.ngrok-free.app"));
               print(request);
               print("finish");
               final header = {
@@ -165,10 +166,10 @@ class _ExmainePageState extends State<ExmainePage> {
               messag = resJson['score'];
               print(message);
               print(messag);
-              if (resJson['class']!=null && resJson['score']!= null){
+              if (resJson['class'] != null && resJson['score'] != null) {
                 Navigator.pushReplacementNamed(
                     context, RouteGenerator.ResultMlScreen);
-              }else {
+              } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("Error in Scan X_Ray!",
                       style: txtStyle(
@@ -184,8 +185,8 @@ class _ExmainePageState extends State<ExmainePage> {
                 backgroundColor: ColorManager.DarkBasiColor(context),
               ));
             }
-
           }
+
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.transparent,
@@ -218,12 +219,12 @@ class _ExmainePageState extends State<ExmainePage> {
                 Scan_Xray_Cubit.scan_xray_Img_model?.Img_Xray == null
                     ? Image.asset('assets/images/examin.png')
                     : Image.file(
-                    File(
-                    Scan_Xray_Cubit.scan_xray_Img_model!.Img_Xray,
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  width: MediaQuery.of(context).size.width * 0.6,
-                ),
+                        File(
+                          Scan_Xray_Cubit.scan_xray_Img_model!.Img_Xray,
+                        ),
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        width: MediaQuery.of(context).size.width * 0.6,
+                      ),
                 SizedBox(
                   height: 100,
                 ),

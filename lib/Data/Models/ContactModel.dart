@@ -1,6 +1,6 @@
 class ContactModel {
-  String? name ;
-  String? phone ;
+  String? name;
+  String? phone;
 
-  ContactModel({required this.name , required this.phone});
+  ContactModel({required this.name, required this.phone});
 }

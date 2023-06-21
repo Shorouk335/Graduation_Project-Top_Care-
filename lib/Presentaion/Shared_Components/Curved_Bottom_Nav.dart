@@ -9,9 +9,8 @@ import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
 
 // for curver navigator Bar in the bottom of applicaton
 Widget CurvedBottomNav(context) {
-
   return Padding(
-    padding: const EdgeInsets.only(right: 15.0,left: 15.0,bottom: 15.0),
+    padding: const EdgeInsets.only(right: 15.0, left: 15.0, bottom: 15.0),
     child: Stack(
       alignment: Alignment.topCenter,
       children: [
@@ -38,21 +37,23 @@ Widget CurvedBottomNav(context) {
                         width: 30,
                       ),
                       IconButton(
-                          onPressed: () async{
-                            Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
+                          onPressed: () async {
+                            Navigator.pushReplacementNamed(
+                                context, RouteGenerator.HomeRoute);
                           },
                           icon: Icon(
                             Icons.home,
-                            color:ColorManager.WitheToDarkColor(context),
+                            color: ColorManager.WitheToDarkColor(context),
                             size: 35.00,
                           )),
                       Spacer(),
                       IconButton(
                           onPressed: () {
-                            if(DataCashHelper.GetData(key: "id") == null){
-                              ShowDialogToLogInApp(context, img: AssetManager.AwesomError);
-                            }
-                            else if (DataCashHelper.GetData(key: "Type")== "Doctor") {
+                            if (DataCashHelper.GetData(key: "id") == null) {
+                              ShowDialogToLogInApp(context,
+                                  img: AssetManager.AwesomError);
+                            } else if (DataCashHelper.GetData(key: "Type") ==
+                                "Doctor") {
                               Navigator.pushReplacementNamed(
                                   context, RouteGenerator.DoctorProfile);
                             } else {
@@ -79,10 +80,12 @@ Widget CurvedBottomNav(context) {
             radius: 40.0,
             child: InkWell(
                 onTap: () {
-                  if (DataCashHelper.GetData(key: "id") != null){
-                    Navigator.pushReplacementNamed(context, RouteGenerator.ExmainPageScreen);
-                  }else {
-                  ShowDialogToLogInApp(context, img: AssetManager.AwesomError);
+                  if (DataCashHelper.GetData(key: "id") != null) {
+                    Navigator.pushReplacementNamed(
+                        context, RouteGenerator.ExmainPageScreen);
+                  } else {
+                    ShowDialogToLogInApp(context,
+                        img: AssetManager.AwesomError);
                   }
                 },
                 child: Icon(

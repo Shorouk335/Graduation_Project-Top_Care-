@@ -14,7 +14,7 @@ class SconedpageInfo extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon:  Icon(
+          icon: Icon(
             Icons.arrow_back,
             color: ColorManager.DarkBasiColor(context),
           ),
@@ -28,7 +28,7 @@ class SconedpageInfo extends StatelessWidget {
             Image.asset(
               model.img,
               width: double.infinity,
-              height: MediaQuery.of(context).size.height*0.3,
+              height: MediaQuery.of(context).size.height * 0.3,
               fit: BoxFit.cover,
             ),
             Padding(
@@ -36,7 +36,7 @@ class SconedpageInfo extends StatelessWidget {
               child: Center(
                 child: Text(
                   model.title,
-                  style:  TextStyle(
+                  style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                       color: ColorManager.DarkBasiColor(context)),
@@ -47,14 +47,16 @@ class SconedpageInfo extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Text(
                 model.subtitle,
-                style:  TextStyle(fontSize: 20.0, color: ColorManager.DarkBasiColor(context) ),
+                style: TextStyle(
+                    fontSize: 20.0, color: ColorManager.DarkBasiColor(context)),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
                 'Additional More  details :\n\n${model.detailes}',
-                style:  TextStyle(fontSize: 20.0, color:ColorManager.DarkBasiColor(context)),
+                style: TextStyle(
+                    fontSize: 20.0, color: ColorManager.DarkBasiColor(context)),
               ),
             ),
           ],

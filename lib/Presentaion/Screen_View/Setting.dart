@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
@@ -17,7 +16,6 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
-
   var itemAppTheme = AppTheme.values[0];
 
   Widget iconpage(VoidCallback onTap, IconData icon) {
@@ -76,10 +74,8 @@ class _SettingPageState extends State<SettingPage> {
                     .add(ThemeChangedEvent(theme: itemAppTheme));
               },
               style: ButtonStyle(
-                backgroundColor:
-                MaterialStateProperty.all(
-                  ColorManager.DarkBasiColor(context)
-                 ),
+                backgroundColor: MaterialStateProperty.all(
+                    ColorManager.DarkBasiColor(context)),
                 shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -88,8 +84,8 @@ class _SettingPageState extends State<SettingPage> {
               ),
               child: Text(
                 itemAppTheme.name,
-                style:
-                txtStyle(ColorManager.WitheToDarkColor(context), 20.0, true),
+                style: txtStyle(
+                    ColorManager.WitheToDarkColor(context), 20.0, true),
               ),
             ),
           ),
@@ -105,29 +101,26 @@ class _SettingPageState extends State<SettingPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack( 
-          children :[
-
-             TopCarve(context: context, Havetitle: true, title: "Settings"),
-            Positioned(
-                top: 50,
-                left: 20,
-                child: IconButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(
-                        context, RouteGenerator.HomeRoute);
-                  },
-                  icon: Icon(Icons.arrow_back_ios_sharp),
-                  color: ColorManager.WitheToDarkColor(context),
-                )),
-      ] ),
+            Stack(children: [
+              TopCarve(context: context, Havetitle: true, title: "Settings"),
+              Positioned(
+                  top: 50,
+                  left: 20,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                          context, RouteGenerator.HomeRoute);
+                    },
+                    icon: Icon(Icons.arrow_back_ios_sharp),
+                    color: ColorManager.WitheToDarkColor(context),
+                  )),
+            ]),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Theme",
-                style: txtStyle(ColorManager.DarkBasiColor(context), 20.0, true)
-              ),
+              child: Text("Theme",
+                  style: txtStyle(
+                      ColorManager.DarkBasiColor(context), 20.0, true)),
             ),
             Expanded(flex: 1, child: ButtonThame()),
             Expanded(

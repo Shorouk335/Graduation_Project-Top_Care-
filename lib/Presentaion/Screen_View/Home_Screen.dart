@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Scan_Xray_Cubit.dart';
@@ -10,8 +11,7 @@ import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/String_Manager/String_Manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher ;
-
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 // Home Page
 class Home extends StatefulWidget {
@@ -21,53 +21,69 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   //List of data of category from CategoryModel
-
-
   @override
   Widget build(BuildContext context) {
     double? HEIGHT = MediaQuery.of(context).size.height;
     double? WIDTH = MediaQuery.of(context).size.width;
-    double? BodyHeight =
-     HEIGHT- AppBar().preferredSize.height -100.0 - MediaQuery.of(context).padding.top ;
+    double? BodyHeight = HEIGHT -
+        AppBar().preferredSize.height -
+        100.0 -
+        MediaQuery.of(context).padding.top;
     List<CategoryModel> Category = [
-      CategoryModel(img: AssetManager.Scan, title: StringManager.CategoryTxt1 ,
-          on: (){
-            Navigator.pushReplacementNamed(context, RouteGenerator.ExmainPageScreen);
+      CategoryModel(
+          img: AssetManager.Scan,
+          title: StringManager.CategoryTxt1,
+          on: () {
+            Navigator.pushReplacementNamed(
+                context, RouteGenerator.ExmainPageScreen);
           }),
-      CategoryModel(img: AssetManager.findDr, title: StringManager.CategoryTxt2,on: (){
-        Navigator.pushReplacementNamed(context, RouteGenerator.FindDoctorHScreen);
-
-      }),
-      CategoryModel(img: AssetManager.xray, title: StringManager.CategoryTxt3,on: (){}),
-      CategoryModel(img: AssetManager.information, title: StringManager.CategoryTxt4,on: (){
-        Navigator.pushReplacementNamed(context, RouteGenerator.KnowAboutPheumoniaScreen);
-      }),
-      CategoryModel(img: AssetManager.pharmacy, title: StringManager.CategoryTxt5,on: (){
-        Navigator.pushReplacementNamed(context, RouteGenerator.PharmacyScreen);
-
-      }),
+      CategoryModel(
+          img: AssetManager.findDr,
+          title: StringManager.CategoryTxt2,
+          on: () {
+            Navigator.pushReplacementNamed(
+                context, RouteGenerator.FindDoctorHScreen);
+          }),
+      CategoryModel(
+          img: AssetManager.xray, title: StringManager.CategoryTxt3, on: () {}),
+      CategoryModel(
+          img: AssetManager.information,
+          title: StringManager.CategoryTxt4,
+          on: () {
+            Navigator.pushReplacementNamed(
+                context, RouteGenerator.KnowAboutPheumoniaScreen);
+          }),
+      CategoryModel(
+          img: AssetManager.pharmacy,
+          title: StringManager.CategoryTxt5,
+          on: () {
+            Navigator.pushReplacementNamed(
+                context, RouteGenerator.PharmacyScreen);
+          }),
     ];
     // Widgets of body
-    Widget FirstWidget (){
+    Widget FirstWidget() {
       return BlocProvider(
-        create: (BuildContext context)=> Scan_Xray_Cubit(),
-        child: BlocConsumer<Scan_Xray_Cubit,Scan_Xray_States>(
-          listener: (context,state){},
-          builder: (context,state){
+        create: (BuildContext context) => Scan_Xray_Cubit(),
+        child: BlocConsumer<Scan_Xray_Cubit, Scan_Xray_States>(
+          listener: (context, state) {},
+          builder: (context, state) {
             return Container(
               width: WIDTH,
-              height: BodyHeight*0.1,
+              height: BodyHeight * 0.1,
               child: Row(
                 children: [
                   Text(" Welcome",
-                      style: txtStyle(ColorManager.DarkBasiColor(context), 33.0, true)),
+                      style: txtStyle(
+                          ColorManager.DarkBasiColor(context), 33.0, true)),
                   Spacer(),
                   Stack(
                     alignment: Alignment.centerRight,
                     children: [
                       IconButton(
-                          onPressed: ()async {
-                            Navigator.pushReplacementNamed(context, RouteGenerator.NotificationScreen);
+                          onPressed: () async {
+                            Navigator.pushReplacementNamed(
+                                context, RouteGenerator.NotificationScreen);
                           },
                           icon: Icon(
                             Icons.notifications_none,
@@ -75,15 +91,15 @@ class _HomeState extends State<Home> {
                             size: 37,
                           )),
                       CircleAvatar(
-                        backgroundColor:Scan_Xray_Cubit.NotificationColor,
+                        backgroundColor: Scan_Xray_Cubit.NotificationColor,
                         radius: 8,
                       )
                     ],
-
                   ),
                   IconButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, RouteGenerator.Settingscreen);
+                        Navigator.pushReplacementNamed(
+                            context, RouteGenerator.Settingscreen);
                       },
                       icon: Icon(
                         Icons.tune,
@@ -94,13 +110,13 @@ class _HomeState extends State<Home> {
               ),
             );
           },
-
         ),
       );
     } //0.1
-    Widget EmergancyWidget (){
+
+    Widget EmergancyWidget() {
       return Container(
-        height: BodyHeight*0.25,
+        height: BodyHeight * 0.25,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: ColorManager.BlueBasiColor.withOpacity(0.8),
@@ -116,8 +132,7 @@ class _HomeState extends State<Home> {
               ),
               Text(
                 "for helping you in anemergency , please add\nthe number of the nearest hospital of you\n or the numbers of your relatives !",
-                style:
-                txtStyle(ColorManager.LBlueBasiColor, 15.0, false),
+                style: txtStyle(ColorManager.LBlueBasiColor, 15.0, false),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -136,8 +151,9 @@ class _HomeState extends State<Home> {
                     width: 60,
                   ),
                   InkWell(
-                    onTap: (){
-                      Navigator.pushReplacementNamed(context, RouteGenerator.Emergencyscreen);
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, RouteGenerator.Emergencyscreen);
                     },
                     child: Container(
                       height: 50,
@@ -148,10 +164,9 @@ class _HomeState extends State<Home> {
                       ),
                       child: Center(
                           child: Text(
-                            "Emergency",
-                            style: txtStyle(
-                                ColorManager.DarkColorOnly, 18.0, true),
-                          )),
+                        "Emergency",
+                        style: txtStyle(ColorManager.DarkColorOnly, 18.0, true),
+                      )),
                     ),
                   ),
                 ],
@@ -160,10 +175,11 @@ class _HomeState extends State<Home> {
           ),
         ),
       );
-    }//0.25
-    Widget CategoryWidget (){
+    } //0.25
+
+    Widget CategoryWidget() {
       return Container(
-        height: BodyHeight*0.4,
+        height: BodyHeight * 0.4,
         child: ListView.builder(
           itemCount: Category.length,
           scrollDirection: Axis.horizontal,
@@ -172,7 +188,7 @@ class _HomeState extends State<Home> {
               children: [
                 // onpreased by index category1
                 InkWell(
-                  onTap:Category[index].on ,
+                  onTap: Category[index].on,
                   child: Container(
                     width: WIDTH / 2.1,
                     color: Colors.transparent,
@@ -238,7 +254,7 @@ class _HomeState extends State<Home> {
           },
         ),
       );
-    }//0.4
+    } //0.4
 
     return Scaffold(
       body: SafeArea(
@@ -246,30 +262,38 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-                child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Welcom & icon notification & icon setting
                 FirstWidget(),
                 // search
                 Container(
-                  height: BodyHeight*0.1,
-                    child: LargeTextFormWidget(
-                        controller: TextEditingController(),
-                        icon: Icons.search_sharp,
-                        txt: "Search",
-                        password: false,
-                        ontap: () {}),
-                 
-                ),//0.1
-                SizedBox(height: BodyHeight*0.025,), //0.025
+                  height: BodyHeight * 0.1,
+                  child: LargeTextFormWidget(
+                      controller: TextEditingController(),
+                      icon: Icons.search_sharp,
+                      txt: "Search",
+                      password: false,
+                      ontap: () {}),
+                ), //0.1
+                SizedBox(
+                  height: BodyHeight * 0.025,
+                ), //0.025
                 //emergancy + call
                 EmergancyWidget(),
-                SizedBox(height: BodyHeight*0.025,), //0.025
+                SizedBox(
+                  height: BodyHeight * 0.025,
+                ), //0.025
                 // text category
                 Container(
-                    height: BodyHeight*0.1,
-                    child: Text("Category", style: txtStyle(ColorManager.DarkBasiColor(context), 35.0, true),)), //0.1
+                    height: BodyHeight * 0.1,
+                    child: Text(
+                      "Category",
+                      style: txtStyle(
+                          ColorManager.DarkBasiColor(context), 35.0, true),
+                    )), //0.1
                 // Find Dr & x ray & pharmacy & know about
                 CategoryWidget(),
               ],
@@ -277,14 +301,9 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
+
       // CurvedBottomNav in the bottom
       bottomNavigationBar: CurvedBottomNav(context),
     );
-
   }
-
-
-
-
-
 }

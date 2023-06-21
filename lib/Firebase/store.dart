@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:top_care_gp/Data/Shared_Preferences/Shared_Preferences.dart';
+
 //Collection of Doctor
 CollectionReference Doctor = FirebaseFirestore.instance.collection("Doctor");
 
@@ -29,19 +30,17 @@ void AddDoctorToFireStore({
     "specialization": spec,
     "location": loc,
     "price": price,
-    "Type":"Doctor",
-    "FavNumber":0,
+    "Type": "Doctor",
+    "FavNumber": 0,
     "working_day": working_day,
     "FirstTime": FirstTime,
     "LastTime": LastTime,
-  }).then((value)async{
-    await DataCashHelper.PutData(key: "id", value: value.id );
-    await DataCashHelper.PutData(key: "Type", value: "Doctor" );
+  }).then((value) async {
+    await DataCashHelper.PutData(key: "id", value: value.id);
+    await DataCashHelper.PutData(key: "Type", value: "Doctor");
     Doctor.doc(value.id).set({
-      "id" : value.id ,
-    } , SetOptions(merge: true)
-    );
-
+      "id": value.id,
+    }, SetOptions(merge: true));
   }).catchError((e) {
     print("errror on add dr ${e.toString()}");
   });
@@ -60,18 +59,17 @@ void AddPatienToFireStore({
     "email": email,
     "password": password,
     "phone": phone,
-    "Type":"Patient",
-    "FavNumber":0,
-    "gender": gender,}).then((value) async{
-    await DataCashHelper.PutData(key: "id", value: value.id );
-    await DataCashHelper.PutData(key: "Type", value: "Patient" );
+    "Type": "Patient",
+    "FavNumber": 0,
+    "gender": gender,
+  }).then((value) async {
+    await DataCashHelper.PutData(key: "id", value: value.id);
+    await DataCashHelper.PutData(key: "Type", value: "Patient");
 
     Patient.doc(value.id).set({
-        "id" : value.id ,
-      } , SetOptions(merge: true)
-     );
+      "id": value.id,
+    }, SetOptions(merge: true));
   }).catchError((e) {
     print("errror on add patient ${e.toString()}");
   });
 }
-

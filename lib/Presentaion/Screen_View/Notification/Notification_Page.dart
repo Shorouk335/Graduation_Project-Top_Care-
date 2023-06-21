@@ -49,59 +49,79 @@ class _Notification_PageState extends State<Notification_Page> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height - 180,
-                  child: (Scan_Xray_Cubit.Notification_List.isEmpty)?
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.notifications_on,size: 100.0,color: ColorManager.BlueBasiColor,),
-                          Text("No Notification Yet !!",style: txtStyle(ColorManager.BlueBasiColor, 20.0, false),),
-                          SizedBox(height: 150,),
-                        ],
-                      ):
-                      ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: Scan_Xray_Cubit.Notification_List.length,
-                    itemBuilder: (context, index) {
-                      if (Scan_Xray_Cubit.Notification_List[index].IconTxt!
-                          .contains("View Result")) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: View_Result_Patient_Notification(
-                              img: Scan_Xray_Cubit.Notification_List[index].img,
-                              name: Scan_Xray_Cubit.Notification_List[index].name,
-                              IconTxt: Scan_Xray_Cubit
-                                  .Notification_List[index].IconTxt,
-                              Time: Scan_Xray_Cubit.Notification_List[index].Time,
-                              context: context),
-                        );
-                      } else if (Scan_Xray_Cubit
-                          .Notification_List[index].IconTxt!
-                          .contains("View Scan  ")) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: View_Scan_Doctor_Notification(
-                              img: Scan_Xray_Cubit.Notification_List[index].img,
-                              name: Scan_Xray_Cubit.Notification_List[index].name,
-                              IconTxt: Scan_Xray_Cubit
-                                  .Notification_List[index].IconTxt,
-                              Time: Scan_Xray_Cubit.Notification_List[index].Time,
-                              context: context),
-                        );
-                      } else {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Public_Patient_Notification(
-                            context: context,
-                            img: Scan_Xray_Cubit.Notification_List[index].img,
-                            name: Scan_Xray_Cubit.Notification_List[index].name,
-                            IconTxt: Scan_Xray_Cubit
-                                .Notification_List[index].IconTxt,
-                            Time: Scan_Xray_Cubit.Notification_List[index].Time,
-                          ),
-                        );
-                      }
-                    },
-                  ),
+                  child: (Scan_Xray_Cubit.Notification_List.isEmpty)
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.notifications_on,
+                              size: 100.0,
+                              color: ColorManager.BlueBasiColor,
+                            ),
+                            Text(
+                              "No Notification Yet !!",
+                              style: txtStyle(
+                                  ColorManager.BlueBasiColor, 20.0, false),
+                            ),
+                            SizedBox(
+                              height: 150,
+                            ),
+                          ],
+                        )
+                      : ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: Scan_Xray_Cubit.Notification_List.length,
+                          itemBuilder: (context, index) {
+                            if (Scan_Xray_Cubit
+                                .Notification_List[index].IconTxt!
+                                .contains("View Result")) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: View_Result_Patient_Notification(
+                                    img: Scan_Xray_Cubit
+                                        .Notification_List[index].img,
+                                    name: Scan_Xray_Cubit
+                                        .Notification_List[index].name,
+                                    IconTxt: Scan_Xray_Cubit
+                                        .Notification_List[index].IconTxt,
+                                    Time: Scan_Xray_Cubit
+                                        .Notification_List[index].Time,
+                                    context: context),
+                              );
+                            } else if (Scan_Xray_Cubit
+                                .Notification_List[index].IconTxt!
+                                .contains("View Scan  ")) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: View_Scan_Doctor_Notification(
+                                    img: Scan_Xray_Cubit
+                                        .Notification_List[index].img,
+                                    name: Scan_Xray_Cubit
+                                        .Notification_List[index].name,
+                                    IconTxt: Scan_Xray_Cubit
+                                        .Notification_List[index].IconTxt,
+                                    Time: Scan_Xray_Cubit
+                                        .Notification_List[index].Time,
+                                    context: context),
+                              );
+                            } else {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Public_Patient_Notification(
+                                  context: context,
+                                  img: Scan_Xray_Cubit
+                                      .Notification_List[index].img,
+                                  name: Scan_Xray_Cubit
+                                      .Notification_List[index].name,
+                                  IconTxt: Scan_Xray_Cubit
+                                      .Notification_List[index].IconTxt,
+                                  Time: Scan_Xray_Cubit
+                                      .Notification_List[index].Time,
+                                ),
+                              );
+                            }
+                          },
+                        ),
                 )
               ],
             ),

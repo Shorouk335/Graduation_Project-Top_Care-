@@ -26,8 +26,7 @@ class _SplachState extends State<Splach> {
 
   // Animation Img
   Widget LottieAnimation() {
-    return Lottie.asset(
-        AssetManager.LottieAnim,
+    return Lottie.asset(AssetManager.LottieAnim,
         width: MediaQuery.of(context).size.width / 1.5,
         height: MediaQuery.of(context).size.height / 3,
         fit: BoxFit.cover);

@@ -4,11 +4,12 @@ import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 import 'package:top_care_gp/Resource/Routes/Routes.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
 
- // to show dialog on the center of screen
+// to show dialog on the center of screen
 
 //with img & txt using in the log in and sign up
-Future<dynamic> ShowDialogSign(context, {String? img, String? txt, String? type}) {
-  return AwesomeDialog( 
+Future<dynamic> ShowDialogSign(context,
+    {String? img, String? txt, String? type}) {
+  return AwesomeDialog(
     dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
     context: context,
     // to defint the type of top icon in dialog
@@ -35,8 +36,6 @@ Future<dynamic> ShowDialogSign(context, {String? img, String? txt, String? type}
   ).show();
 }
 
-
-
 // with img & create account botton & login bottton using if user does't login in home
 Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
   return AwesomeDialog(
@@ -52,7 +51,7 @@ Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
         Image.asset(img!, width: 250),
         //Create account
         InkWell(
-          onTap: (){
+          onTap: () {
             Navigator.pushReplacementNamed(
                 context, RouteGenerator.Common_SignUpRoute);
           },
@@ -74,9 +73,8 @@ Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
         ),
         //log in
         InkWell(
-          onTap: (){
-            Navigator.pushReplacementNamed(
-                context, RouteGenerator.LoginRoute);
+          onTap: () {
+            Navigator.pushReplacementNamed(context, RouteGenerator.LoginRoute);
           },
           child: Container(
             width: 250,
@@ -99,7 +97,6 @@ Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
   ).show();
 }
 
-
 // show in Setting
 AwesomeDialog ShowDialogInfoSetting(context) {
   return AwesomeDialog(
@@ -112,13 +109,15 @@ AwesomeDialog ShowDialogInfoSetting(context) {
       color: ColorManager.BlueBasiColor,
     ),
     body: ShowDialogSetting(
-      "Medical app For major Pneumonia Detection  using Chest X-Ray " ,context,
+      "Medical app For major Pneumonia Detection  using Chest X-Ray ",
+      context,
     ),
     btnOkText: "Okay",
-    btnOkColor:ColorManager.BlueBasiColor,
+    btnOkColor: ColorManager.BlueBasiColor,
     btnOkOnPress: () {},
   )..show();
 }
+
 AwesomeDialog ShowDialogConectSetting(context) {
   return AwesomeDialog(
     dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
@@ -129,23 +128,25 @@ AwesomeDialog ShowDialogConectSetting(context) {
       color: ColorManager.BlueBasiColor,
       size: 50,
     ),
-    body: ShowDialogSetting("phone :\n0104500267\nGmail :\nTopcare@gmail.com ", context),
+    body: ShowDialogSetting(
+        "phone :\n0104500267\nGmail :\nTopcare@gmail.com ", context),
     btnOkText: "Okay",
     btnOkColor: ColorManager.BlueBasiColor,
     btnOkOnPress: () {},
   )..show();
 }
-Widget ShowDialogSetting(String? text , BuildContext context) {
+
+Widget ShowDialogSetting(String? text, BuildContext context) {
   return Container(
       height: 100,
       width: 200,
       decoration: const BoxDecoration(
           border: Border(
-            bottom: BorderSide(
-              color: ColorManager.DGrayBasiColor,
-              width: 1.0,
-            ),
-          )),
+        bottom: BorderSide(
+          color: ColorManager.DGrayBasiColor,
+          width: 1.0,
+        ),
+      )),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,4 +159,3 @@ Widget ShowDialogSetting(String? text , BuildContext context) {
         ),
       ));
 }
-

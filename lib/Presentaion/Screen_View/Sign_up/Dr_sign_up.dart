@@ -137,7 +137,8 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
                 color: ColorManager.BlueBasiColor,
               ),
               child: Text(selectedTime1.format(context).toString(),
-                  style: txtStyle(ColorManager.DarkBasiColor(context), 10.0, true),
+                  style:
+                      txtStyle(ColorManager.DarkBasiColor(context), 10.0, true),
                   textAlign: TextAlign.center),
             ),
           ),
@@ -158,7 +159,8 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
               ),
               child: Text(
                 selectedTime2.format(context).toString(),
-                style: txtStyle(ColorManager.DarkBasiColor(context), 10.0, true),
+                style:
+                    txtStyle(ColorManager.DarkBasiColor(context), 10.0, true),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -187,22 +189,28 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
 
   List<DayInWeek> days = [
     DayInWeek(
-      "Mo", dayKey: '',
+      "Mo",
+      dayKey: '',
     ),
     DayInWeek(
-      "Tu", dayKey: '',
+      "Tu",
+      dayKey: '',
     ),
     DayInWeek(
-      "We", dayKey: '',
+      "We",
+      dayKey: '',
     ),
     DayInWeek(
-      "Th", dayKey: '',
+      "Th",
+      dayKey: '',
     ),
     DayInWeek(
-      "Fr", dayKey: '',
+      "Fr",
+      dayKey: '',
     ),
     DayInWeek(
-      "Sa", dayKey: '',
+      "Sa",
+      dayKey: '',
     ),
     DayInWeek("Su", isSelected: true, dayKey: ''),
   ];
@@ -243,89 +251,82 @@ class _Dr_sign_upState extends State<Dr_sign_up> {
             return Scaffold(
                 body: SafeArea(
                     child: Center(
-                  child: SingleChildScrollView(
-                      child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          firstText(),
-                          SizedBox(
-                            height: BodyHeight * 0.05,
-                          ),
-                          form(),
-                          SizedBox(
-                            height: BodyHeight * 0.04,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                            child: Text(
-                              "working days",
-                              style: txtStyle(
-                                  ColorManager.DarkBasiColor(context), 16.0, true),
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                          SizedBox(
-                            height: BodyHeight * 0.002,
-                          ),
-                          daypick(),
-                          SizedBox(
-                            height: BodyHeight * 0.002,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 8),
-                            child: Text(
-                              "Time",
-                              style: txtStyle(
-                                  ColorManager.DarkBasiColor(context), 17.0, true),
-                              textAlign: TextAlign.start,
-                            ),
-                          ),
-                          ttime(context),
-                          SizedBox(
-                            height: BodyHeight * 0.08,
-                          ),
-                          submitButton(
-                            "Submit",
-                            () async {
-                              if (formKey.currentState!.validate()) {
-                                await SignUpWithFire(context,
-                                        email: Common_Sign_up_Cubit
-                                            .CommonModel!.email,
-                                        password: Common_Sign_up_Cubit
-                                            .CommonModel!.password)
-                                    .then((value) {
-                                  AddDoctorToFireStore(
-                                      username: Common_Sign_up_Cubit
-                                          .CommonModel!.username,
-                                      email: Common_Sign_up_Cubit
-                                          .CommonModel!.email,
-                                      password: Common_Sign_up_Cubit
-                                          .CommonModel!.password,
-                                      phone: Common_Sign_up_Cubit
-                                          .CommonModel!.phone,
-                                      gender: Common_Sign_up_Cubit
-                                          .CommonModel!.gender,
-                                      spec: SpecializationController.text,
-                                      loc: locationController.text,
-                                      price: priceController.text,
-                                      working_day: "Sunday,Monday,Tuesday,Wednesday",
-                                   FirstTime: "5:00 pm",
-                                    LastTime: "8:00 pm"
-
-                                  );
-                                  Navigator.pushReplacementNamed(
-                                      context, RouteGenerator.HomeRoute);
-                                });
-                              }
-                              return null;
-                            },   250.0 ,40.0
-                          )
-                        ]),
-                  )),
-                )));
+              child: SingleChildScrollView(
+                  child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      firstText(),
+                      SizedBox(
+                        height: BodyHeight * 0.05,
+                      ),
+                      form(),
+                      SizedBox(
+                        height: BodyHeight * 0.04,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        child: Text(
+                          "working days",
+                          style: txtStyle(
+                              ColorManager.DarkBasiColor(context), 16.0, true),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      SizedBox(
+                        height: BodyHeight * 0.002,
+                      ),
+                      daypick(),
+                      SizedBox(
+                        height: BodyHeight * 0.002,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 0, 15, 8),
+                        child: Text(
+                          "Time",
+                          style: txtStyle(
+                              ColorManager.DarkBasiColor(context), 17.0, true),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      ttime(context),
+                      SizedBox(
+                        height: BodyHeight * 0.08,
+                      ),
+                      submitButton("Submit", () async {
+                        if (formKey.currentState!.validate()) {
+                          await SignUpWithFire(context,
+                                  email:
+                                      Common_Sign_up_Cubit.CommonModel!.email,
+                                  password: Common_Sign_up_Cubit
+                                      .CommonModel!.password)
+                              .then((value) {
+                            AddDoctorToFireStore(
+                                username:
+                                    Common_Sign_up_Cubit.CommonModel!.username,
+                                email: Common_Sign_up_Cubit.CommonModel!.email,
+                                password:
+                                    Common_Sign_up_Cubit.CommonModel!.password,
+                                phone: Common_Sign_up_Cubit.CommonModel!.phone,
+                                gender:
+                                    Common_Sign_up_Cubit.CommonModel!.gender,
+                                spec: SpecializationController.text,
+                                loc: locationController.text,
+                                price: priceController.text,
+                                working_day: "Sunday,Monday,Tuesday,Wednesday",
+                                FirstTime: "5:00 pm",
+                                LastTime: "8:00 pm");
+                            Navigator.pushReplacementNamed(
+                                context, RouteGenerator.HomeRoute);
+                          });
+                        }
+                        return null;
+                      }, 250.0, 40.0)
+                    ]),
+              )),
+            )));
           }),
     );
   }

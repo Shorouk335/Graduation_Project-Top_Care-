@@ -18,7 +18,6 @@ class Patient_Question extends StatefulWidget {
 }
 
 class _Patient_QuestionState extends State<Patient_Question> {
-
   //welcom text in page
   Widget firstText() {
     return Text(' "Please answer this Questions" ',
@@ -159,15 +158,15 @@ class _Patient_QuestionState extends State<Patient_Question> {
                             // img of patient
                             img: "assets/images/man.png",
                             name: "Khalid Omar",
-                            Time:  "${DateTime.now().day}/${DateTime.now().month}  ${DateFormat.jm().format(DateTime.now())}",
+                            Time:
+                                "${DateTime.now().day}/${DateTime.now().month}  ${DateFormat.jm().format(DateTime.now())}",
                             IconTxt: "View Scan   ",
                           );
-                          Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
+                          Navigator.pushReplacementNamed(
+                              context, RouteGenerator.HomeRoute);
                           cubit.Clear_Img();
                           cubit.Clear_Data_From_Ml();
-                        },   350.0 ,40.0
-
-                        )
+                        }, 350.0, 40.0)
                       ],
                     ),
                   ),

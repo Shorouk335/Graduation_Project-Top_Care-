@@ -25,27 +25,26 @@ Future SignOut(BuildContext context) async {
 Future LogInWithFire(BuildContext context,
     {String? email, String? password}) async {
   try {
-   final userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email!, password: password!);
-      await Doctor.where("email", isEqualTo: email).get().then((value) {
-        value.docs.forEach((element) async {
-          print(element["id"]);
-            await DataCashHelper.PutData(key: "id", value: element["id"]);
-            await DataCashHelper.PutData(key: "Type", value: element["Type"]);
-        });
+    final userCredential = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email!, password: password!);
+    await Doctor.where("email", isEqualTo: email).get().then((value) {
+      value.docs.forEach((element) async {
+        print(element["id"]);
+        await DataCashHelper.PutData(key: "id", value: element["id"]);
+        await DataCashHelper.PutData(key: "Type", value: element["Type"]);
       });
-      await Patient.where("email", isEqualTo: email).get().then((value) {
-     value.docs.forEach((element) async {
-       print(element["id"]);
-       print(element["Type"]);
-       await DataCashHelper.PutData(key: "id", value: element["id"]);
-       await DataCashHelper.PutData(key: "Type", value: element["Type"]);
-     });
-   });
-
+    });
+    await Patient.where("email", isEqualTo: email).get().then((value) {
+      value.docs.forEach((element) async {
+        print(element["id"]);
+        print(element["Type"]);
+        await DataCashHelper.PutData(key: "id", value: element["id"]);
+        await DataCashHelper.PutData(key: "Type", value: element["Type"]);
+      });
+    });
 
     Navigator.pushReplacementNamed(context, RouteGenerator.HomeRoute);
-  }
-  on FirebaseAuthException catch (e) {
+  } on FirebaseAuthException catch (e) {
     if (e.code == "user-not-found") {
       ShowDialogSign(context,
           txt: "User not found", img: AssetManager.AwesomError, type: "error");
@@ -53,8 +52,7 @@ Future LogInWithFire(BuildContext context,
       ShowDialogSign(context,
           txt: "Wrong Password", img: AssetManager.AwesomError, type: "error");
     }
-  }
-  catch (e) {}
+  } catch (e) {}
 }
 
 // انشاء حساب باميل وباسورد
@@ -79,35 +77,3 @@ Future SignUpWithFire(BuildContext context,
     print(e);
   }
 }
-
-// التسجيل باكونت جوجل
-
-// Future SignInWithGoogle(BuildContext context) async {
-//   //عشان اجيب حساب جوجل
-//   final GoogleSignInAccount? googleuser = await GoogleSignIn().signIn();
-//
-//   //بعمل auth عشان اوصل لتفاصيل ال user
-//   final GoogleSignInAuthentication? googleAuth =
-//       await googleuser?.authentication;
-//
-//   //create credential
-//   final OAuthCredential googleCred = await GoogleAuthProvider.credential(
-//       accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
-//
-//   userCredential = await FirebaseAuth.instance
-//       .signInWithCredential(googleCred);
-//        Navigator.pushReplacementNamed(context, HomeScreen);
-// }
-
-//التسجيل بالفيس
-// Future<UserCredential> signInWithFacebook() async {
-//   // Trigger the sign-in flow
-//   final LoginResult loginResult = await FacebookAuth.instance.login();
-//
-//   // Create a credential from the access token
-//   final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(
-//       loginResult.accessToken!.token);
-//
-//   // Once signed in, return the UserCredential
-//   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-// }

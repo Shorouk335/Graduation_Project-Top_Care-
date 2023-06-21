@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 
-Widget submitButton(String text, VoidCallback onTap, double? Width , double? Height) {
+Widget submitButton(
+    String text, VoidCallback onTap, double? Width, double? Height) {
   return Padding(
     padding: const EdgeInsets.all(15.0),
     child: Center(
@@ -11,7 +12,8 @@ Widget submitButton(String text, VoidCallback onTap, double? Width , double? Hei
         child: ElevatedButton(
           onPressed: onTap,
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(ColorManager.BlueBasiColor),
+            backgroundColor:
+                MaterialStateProperty.all(ColorManager.BlueBasiColor),
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18),
@@ -21,9 +23,7 @@ Widget submitButton(String text, VoidCallback onTap, double? Width , double? Hei
           child: Text(
             text,
             style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
       ),

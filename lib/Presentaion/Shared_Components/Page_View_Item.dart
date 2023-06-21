@@ -9,24 +9,27 @@ Widget PageViewItem({
   required PageViewModel? model,
   required BuildContext context,
 }) {
-   // Text + disc + Img
+  // Text + disc + Img
   return Column(
-        children: [
-          SizedBox(height: 50,),
-          Text("${model?.title}",
-              style:txtStyle(ColorManager.DarkBasiColor(context), 30.0, true)),
-          SizedBox(height: 20,),
-          Text("${model?.disc}",
-              style: txtStyle(ColorManager.DGrayBasiColor, 15.0, false), maxLines: 2),
-          Center(
-              child: Image(
-                width: MediaQuery.of(context).size.width,
-                image: AssetImage(
-                    "${model?.img}"),
-                height: MediaQuery.of(context).size.height/model?.Hsize,
-                //   fit: BoxFit.contain,
-              )),
-
-        ],
-      ) ;
+    children: [
+      SizedBox(
+        height: 50,
+      ),
+      Text("${model?.title}",
+          style: txtStyle(ColorManager.DarkBasiColor(context), 30.0, true)),
+      SizedBox(
+        height: 20,
+      ),
+      Text("${model?.disc}",
+          style: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
+          maxLines: 2),
+      Center(
+          child: Image(
+        width: MediaQuery.of(context).size.width,
+        image: AssetImage("${model?.img}"),
+        height: MediaQuery.of(context).size.height / model?.Hsize,
+        //   fit: BoxFit.contain,
+      )),
+    ],
+  );
 }

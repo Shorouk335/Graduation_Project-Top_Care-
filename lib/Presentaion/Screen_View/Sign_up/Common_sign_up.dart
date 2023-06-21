@@ -239,9 +239,9 @@ class _Common_sign_upState extends State<Common_sign_up> {
                                 ),
                                 child: Center(
                                   child: TextButton(
-                                    onPressed: ()async {
+                                    onPressed: () async {
                                       if (formkey.currentState!.validate()) {
-                                      await SignUpWithFire(context,
+                                        await SignUpWithFire(context,
                                                 email: emailController.text,
                                                 password: passController.text)
                                             .then(

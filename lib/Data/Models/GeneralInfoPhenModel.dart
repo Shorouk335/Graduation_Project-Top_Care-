@@ -1,4 +1,3 @@
-
 class GeneralInfoPhenModel {
   String img = "";
   String title;
@@ -7,7 +6,7 @@ class GeneralInfoPhenModel {
 
   GeneralInfoPhenModel(
       {required this.img,
-        required this.title,
-        required this.subtitle,
-        required this.detailes});
+      required this.title,
+      required this.subtitle,
+      required this.detailes});
 }

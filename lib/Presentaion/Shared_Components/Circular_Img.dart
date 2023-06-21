@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget CircularImg ({String? img , double? height , double? width}){
+Widget CircularImg({String? img, double? height, double? width}) {
   return ClipOval(
     child: Material(
       color: Colors.transparent,
@@ -11,8 +11,8 @@ Widget CircularImg ({String? img , double? height , double? width}){
         height: height,
         width: width,
         child: InkWell(
-          //  onTap: onClicked,
-        ),
+            //  onTap: onClicked,
+            ),
       ),
     ),
   );

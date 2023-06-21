@@ -20,6 +20,4 @@ class DataCashHelper {
     print("removeeeeeeeeeeeeeeee");
     return sp!.remove(key);
   }
-
-
 }
