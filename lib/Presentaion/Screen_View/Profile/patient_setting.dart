@@ -73,35 +73,35 @@ class _PatientSettingState extends State<PatientSetting> {
                   TextFieldWidget(
                       label: 'Full Name',
                       onchanged: (name) {},
-                      text: snapshot.data?["username"]),
+                      text: snapshot.data!["username"]),
                   SizedBox(
                     height: 6,
                   ),
                   TextFieldWidget(
                       label: 'Email',
                       onchanged: (email) {},
-                      text: snapshot.data?["email"]),
+                      text: snapshot.data!["email"]),
                   SizedBox(
                     height: 6,
                   ),
                   TextFieldWidget(
                       label: 'Password',
                       onchanged: (password) {},
-                      text: snapshot.data?["password"]),
+                      text: snapshot.data!["password"]),
                   SizedBox(
                     height: 6,
                   ),
                   TextFieldWidget(
                       label: 'Phone',
                       onchanged: (phone) {},
-                      text: snapshot.data?["phone"]),
+                      text: snapshot.data!["phone"]),
                   SizedBox(
                     height: 6,
                   ),
                   TextFieldWidget(
                       label: 'gender',
                       onchanged: (gender) {},
-                      text: snapshot.data?["gender"]),
+                      text: snapshot.data!["gender"]),
                   SizedBox(
                     height: 25,
                   ),

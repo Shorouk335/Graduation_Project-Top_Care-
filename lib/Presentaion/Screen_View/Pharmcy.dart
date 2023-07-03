@@ -69,7 +69,7 @@ class Pharmacy extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 8,bottom: 8, left: 8),
               child: Container(
                 height: 180,
                 width: 180,
@@ -86,7 +86,7 @@ class Pharmacy extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(top: 8,bottom: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +171,7 @@ class Pharmacy extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              width: 8,
+              width: 2,
             )
           ],
         ),

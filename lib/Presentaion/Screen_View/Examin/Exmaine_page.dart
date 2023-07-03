@@ -144,11 +144,11 @@ class _ExmainePageState extends State<ExmainePage> {
             if (Scan_Xray_Cubit.scan_xray_Img_model?.Img_Xray != null) {
               print("start");
               final request = http.MultipartRequest("POST",
-                  Uri.parse("https://822d-41-237-228-139.ngrok-free.app"));
+                  Uri.parse("https://e335-41-237-228-139.ngrok-free.app"));
               print(request);
               print("finish");
               final header = {
-                "Content-type": "multipart/form-data",
+               "Content-type": "multipart/form-data",
                 "Accept": "application/json"
               };
               await Image.file(File(widget.file!.path));

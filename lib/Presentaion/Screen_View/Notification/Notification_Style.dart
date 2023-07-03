@@ -54,12 +54,12 @@ Widget Public_Patient_Notification({
                   ? Icon(
                       Icons.cancel,
                       color: Colors.red,
-                      size: 50,
+                      size: 40,
                     )
                   : Icon(
                       Icons.check_circle_outline,
                       color: ColorManager.DarkColorOnly,
-                      size: 50,
+                      size: 40,
                     ),
               Text(
                 IconTxt,
@@ -128,7 +128,7 @@ Widget View_Result_Patient_Notification({
                 Icon(
                   Icons.check_circle,
                   color: ColorManager.BlueBasiColor,
-                  size: 50,
+                  size: 40,
                 ),
                 Text(
                   IconTxt!,
@@ -197,7 +197,7 @@ Widget View_Scan_Doctor_Notification({
                 Icon(
                   Icons.check_circle,
                   color: ColorManager.BlueBasiColor,
-                  size: 50,
+                  size: 40,
                 ),
                 Text(
                   IconTxt!,

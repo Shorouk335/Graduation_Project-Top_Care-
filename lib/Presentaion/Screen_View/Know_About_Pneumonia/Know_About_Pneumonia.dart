@@ -128,7 +128,7 @@ class _KnowAboutPheumoniaState extends State<KnowAboutPheumonia> {
                               fit: BoxFit.cover,
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 2,
                             ),
                             Text(
                               items[index].title,
