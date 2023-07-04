@@ -51,8 +51,8 @@ class _HomeState extends State<Home> {
             Navigator.pushReplacementNamed(
                 context, RouteGenerator.FindDoctorHScreen);
           }),
-      CategoryModel(
-          img: AssetManager.xray, title: StringManager.CategoryTxt3, on: () {}),
+      // CategoryModel(
+      //     img: AssetManager.xray, title: StringManager.CategoryTxt3, on: () {}),
       CategoryModel(
           img: AssetManager.information,
           title: StringManager.CategoryTxt4,

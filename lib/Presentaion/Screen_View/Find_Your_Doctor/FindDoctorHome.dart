@@ -20,7 +20,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
   TextEditingController searchDr = TextEditingController();
   Color FavDrColor = ColorManager.DGrayBasiColor;
   CollectionReference DrCollection =
-      FirebaseFirestore.instance.collection("Doctor");
+  FirebaseFirestore.instance.collection("Doctor");
   bool? search = false;
   //داتا الدكتور الي هيبحث عنه
   Map dr_info_search = {};
@@ -48,7 +48,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       SizedBox(
-                                        width: 5,
+                                        width: 10,
                                       ),
                                       SmallTextFormWidget(
                                           context: context,
@@ -111,11 +111,12 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                           Icons.location_on_rounded,
                                           color: ColorManager.WitheToDarkColor(
                                               context),
-                                          size: 30.0,
+                                          size: 35.0,
                                         ),
                                       )
                                     ],
-                                  )),
+                                  )
+                              ),
                               Positioned(
                                   top: 50,
                                   left: -10,
@@ -132,155 +133,155 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                           ),
                           (!snapshot.hasData)
                               ? Expanded(
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color:
-                                          ColorManager.DarkBasiColor(context),
-                                    ),
-                                  ),
-                                )
+                            child: Center(
+                              child: CircularProgressIndicator(
+                                color:
+                                ColorManager.DarkBasiColor(context),
+                              ),
+                            ),
+                          )
                               : (search!)
-                                  ? Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                              ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  //هخزن الداتا في المودل الي هيظهر في البابلك من خلال الماب الي معايا
+                                  Find_Dr_Cubit().Get_Find_Dr_Profile_(
+                                      img: "assets/images/drphoto.png",
+                                      name: dr_info_search["username"],
+                                      Specialization: dr_info_search[
+                                      "specialization"],
+                                      price: dr_info_search["price"],
+                                      Location:
+                                      dr_info_search["location"],
+                                      FirstTime:
+                                      dr_info_search["FirstTime"],
+                                      LastTime:
+                                      dr_info_search["LastTime"],
+                                      Phone: dr_info_search["phone"],
+                                      FavDr: false,
+                                      Working_Day: dr_info_search[
+                                      "Working_Day"]);
+                                  Navigator.pushReplacementNamed(
+                                      context,
+                                      RouteGenerator
+                                          .PublicProfileScreen);
+                                },
+                                //هعرض الداتا من الماب الي فيها بينات الدكتور الي عايز تسرش عليه
+                                child: DoctorBox(
+                                  img: "assets/images/drphoto.png",
+                                  name: dr_info_search["username"],
+                                  disc:
+                                  dr_info_search["specialization"],
+                                  price: dr_info_search["price"],
+                                  Location: dr_info_search["location"],
+                                  FirstTime:
+                                  dr_info_search["FirstTime"],
+                                  LastTime: dr_info_search["LastTime"],
+                                  Phone: dr_info_search["phone"],
+                                  rate: 7,
+                                  FavDr: false,
+                                ),
+                              ))
+                              : Container(
+                            height:
+                            MediaQuery.of(context).size.height -
+                                150,
+                            child: ListView.builder(
+                                itemCount: snapshot.data!.docs.length,
+                                scrollDirection: Axis.vertical,
+                                itemBuilder: (context, index) {
+                                  //هودي بيانات الدكتور للمودل من الفير حسب الindex
+                                  Find_Dr_Cubit()
+                                      .Add_Dr_Data_From_FB_To_List(
+                                    img: "assets/images/drphoto.png",
+                                    username: snapshot.data!
+                                        .docs[index]["username"],
+                                    specialization:
+                                    snapshot.data!.docs[index]
+                                    ["specialization"],
+                                    price: snapshot.data!.docs[index]
+                                    ["price"],
+                                    location: snapshot.data!
+                                        .docs[index]["location"],
+                                    FirstTime: snapshot.data!
+                                        .docs[index]["FirstTime"],
+                                    LastTime: snapshot.data!
+                                        .docs[index]["LastTime"],
+                                    phone: snapshot.data!.docs[index]
+                                    ["phone"],
+                                    rate: 7,
+                                    FavDr: false,
+                                    Working_Day: snapshot.data!
+                                        .docs[index]["working_day"],
+                                  );
+                                  return Padding(
+                                      padding:
+                                      const EdgeInsets.all(8.0),
                                       child: InkWell(
                                         onTap: () {
-                                          //هخزن الداتا في المودل الي هيظهر في البابلك من خلال الماب الي معايا
-                                          Find_Dr_Cubit().Get_Find_Dr_Profile_(
-                                              img: "assets/images/drphoto.png",
-                                              name: dr_info_search["username"],
-                                              Specialization: dr_info_search[
-                                                  "specialization"],
-                                              price: dr_info_search["price"],
-                                              Location:
-                                                  dr_info_search["location"],
-                                              FirstTime:
-                                                  dr_info_search["FirstTime"],
-                                              LastTime:
-                                                  dr_info_search["LastTime"],
-                                              Phone: dr_info_search["phone"],
-                                              FavDr: false,
-                                              Working_Day: dr_info_search[
-                                                  "Working_Day"]);
+                                          //اعرض بيانات الدكاتره الي في المودل
+                                          Find_Dr_Cubit()
+                                              .Get_Find_Dr_Profile_(
+                                            img:
+                                            "assets/images/drphoto.png",
+                                            name: snapshot
+                                                .data!.docs[index]
+                                            ["username"],
+                                            Specialization: snapshot
+                                                .data!.docs[index]
+                                            ["specialization"],
+                                            price: snapshot.data!
+                                                .docs[index]["price"],
+                                            Location: snapshot
+                                                .data!.docs[index]
+                                            ["location"],
+                                            FirstTime: snapshot
+                                                .data!.docs[index]
+                                            ["FirstTime"],
+                                            LastTime: snapshot
+                                                .data!.docs[index]
+                                            ["LastTime"],
+                                            Phone: snapshot.data!
+                                                .docs[index]["phone"],
+                                            FavDr: false,
+                                            Working_Day: snapshot
+                                                .data!.docs[index]
+                                            ["working_day"],
+                                          );
                                           Navigator.pushReplacementNamed(
                                               context,
                                               RouteGenerator
                                                   .PublicProfileScreen);
                                         },
-                                        //هعرض الداتا من الماب الي فيها بينات الدكتور الي عايز تسرش عليه
                                         child: DoctorBox(
-                                          img: "assets/images/drphoto.png",
-                                          name: dr_info_search["username"],
-                                          disc:
-                                              dr_info_search["specialization"],
-                                          price: dr_info_search["price"],
-                                          Location: dr_info_search["location"],
-                                          FirstTime:
-                                              dr_info_search["FirstTime"],
-                                          LastTime: dr_info_search["LastTime"],
-                                          Phone: dr_info_search["phone"],
-                                          rate: 7,
+                                          img:
+                                          "assets/images/drphoto.png",
+                                          name: snapshot
+                                              .data!.docs[index]
+                                          ["username"],
+                                          disc: snapshot
+                                              .data!.docs[index]
+                                          ["specialization"],
+                                          price: snapshot.data!
+                                              .docs[index]["price"],
+                                          Location: snapshot
+                                              .data!.docs[index]
+                                          ["location"],
+                                          FirstTime: snapshot
+                                              .data!.docs[index]
+                                          ["FirstTime"],
+                                          LastTime: snapshot
+                                              .data!.docs[index]
+                                          ["LastTime"],
+                                          Phone: snapshot.data!
+                                              .docs[index]["phone"],
+                                          rate: 8,
                                           FavDr: false,
                                         ),
-                                      ))
-                                  : Container(
-                                      height:
-                                          MediaQuery.of(context).size.height -
-                                              150,
-                                      child: ListView.builder(
-                                          itemCount: snapshot.data!.docs.length,
-                                          scrollDirection: Axis.vertical,
-                                          itemBuilder: (context, index) {
-                                            //هودي بيانات الدكتور للمودل من الفير حسب الindex
-                                            Find_Dr_Cubit()
-                                                .Add_Dr_Data_From_FB_To_List(
-                                              img: "assets/images/drphoto.png",
-                                              username: snapshot.data!
-                                                  .docs[index]["username"],
-                                              specialization:
-                                                  snapshot.data!.docs[index]
-                                                      ["specialization"],
-                                              price: snapshot.data!.docs[index]
-                                                  ["price"],
-                                              location: snapshot.data!
-                                                  .docs[index]["location"],
-                                              FirstTime: snapshot.data!
-                                                  .docs[index]["FirstTime"],
-                                              LastTime: snapshot.data!
-                                                  .docs[index]["LastTime"],
-                                              phone: snapshot.data!.docs[index]
-                                                  ["phone"],
-                                              rate: 7,
-                                              FavDr: false,
-                                              Working_Day: snapshot.data!
-                                                  .docs[index]["working_day"],
-                                            );
-                                            return Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    //اعرض بيانات الدكاتره الي في المودل
-                                                    Find_Dr_Cubit()
-                                                        .Get_Find_Dr_Profile_(
-                                                      img:
-                                                          "assets/images/drphoto.png",
-                                                      name: snapshot
-                                                              .data!.docs[index]
-                                                          ["username"],
-                                                      Specialization: snapshot
-                                                              .data!.docs[index]
-                                                          ["specialization"],
-                                                      price: snapshot.data!
-                                                          .docs[index]["price"],
-                                                      Location: snapshot
-                                                              .data!.docs[index]
-                                                          ["location"],
-                                                      FirstTime: snapshot
-                                                              .data!.docs[index]
-                                                          ["FirstTime"],
-                                                      LastTime: snapshot
-                                                              .data!.docs[index]
-                                                          ["LastTime"],
-                                                      Phone: snapshot.data!
-                                                          .docs[index]["phone"],
-                                                      FavDr: false,
-                                                      Working_Day: snapshot
-                                                              .data!.docs[index]
-                                                          ["working_day"],
-                                                    );
-                                                    Navigator.pushReplacementNamed(
-                                                        context,
-                                                        RouteGenerator
-                                                            .PublicProfileScreen);
-                                                  },
-                                                  child: DoctorBox(
-                                                    img:
-                                                        "assets/images/drphoto.png",
-                                                    name: snapshot
-                                                            .data!.docs[index]
-                                                        ["username"],
-                                                    disc: snapshot
-                                                            .data!.docs[index]
-                                                        ["specialization"],
-                                                    price: snapshot.data!
-                                                        .docs[index]["price"],
-                                                    Location: snapshot
-                                                            .data!.docs[index]
-                                                        ["location"],
-                                                    FirstTime: snapshot
-                                                            .data!.docs[index]
-                                                        ["FirstTime"],
-                                                    LastTime: snapshot
-                                                            .data!.docs[index]
-                                                        ["LastTime"],
-                                                    Phone: snapshot.data!
-                                                        .docs[index]["phone"],
-                                                    rate: 8,
-                                                    FavDr: false,
-                                                  ),
-                                                ));
-                                          }),
-                                    ),
+                                      ));
+                                }),
+                          ),
                         ]),
                       ),
                     );
@@ -323,7 +324,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                   children: [
                     Text("${name}",
                         style:
-                            txtStyle(ColorManager.DarkColorOnly, 18.0, true)),
+                        txtStyle(ColorManager.DarkColorOnly, 18.0, true)),
                     SizedBox(
                       height: 3,
                     ),
@@ -357,7 +358,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                       Icons.favorite,
                       size: 40.0,
                       color:
-                          (FavDr!) ? Colors.red : ColorManager.DGrayBasiColor,
+                      (FavDr!) ? Colors.red : ColorManager.DGrayBasiColor,
                     )),
               ],
             ),
@@ -390,7 +391,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                         Text(
                           "${Location}",
                           style:
-                              txtStyle(ColorManager.DarkColorOnly, 13.0, false),
+                          txtStyle(ColorManager.DarkColorOnly, 13.0, false),
                         )
                       ],
                     ),
@@ -410,7 +411,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                         Text(
                           "${Phone}",
                           style:
-                              txtStyle(ColorManager.DarkColorOnly, 13.0, false),
+                          txtStyle(ColorManager.DarkColorOnly, 13.0, false),
                         )
                       ],
                     ),
@@ -430,7 +431,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                         Text(
                           "$FirstTime : $LastTime",
                           style:
-                              txtStyle(ColorManager.DarkColorOnly, 13.0, false),
+                          txtStyle(ColorManager.DarkColorOnly, 13.0, false),
                         )
                       ],
                     ),
@@ -461,15 +462,15 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                           color: Colors.greenAccent),
                       child: Center(
                           child: IconButton(
-                        icon: Icon(
-                          Icons.phone,
-                          color: Colors.white,
-                          size: 25.0,
-                        ),
-                        onPressed: () {
-                          UrlLauncher.launch("tel://${Phone}");
-                        },
-                      )),
+                            icon: Icon(
+                              Icons.phone,
+                              color: Colors.white,
+                              size: 25.0,
+                            ),
+                            onPressed: () {
+                              UrlLauncher.launch("tel://${Phone}");
+                            },
+                          )),
                     )
                   ],
                 )

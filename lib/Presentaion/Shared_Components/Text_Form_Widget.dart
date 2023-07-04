@@ -79,7 +79,7 @@ Widget SmallTextFormWidget({
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      width: MediaQuery.of(context!).size.width *0.4,
+      width: MediaQuery.of(context!).size.width *0.7,
       height: 60,
       child: TextFormField(
         controller: controller,
@@ -103,29 +103,29 @@ Widget SmallTextFormWidget({
           suffix: (controller!.text.isEmpty)
               ? SizedBox()
               : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                    onPressed: ontap2,
-                    icon: Icon(
-                      Icons.clear,
-                      size: 15.0,
-                      color: ColorManager.DGrayBasiColor,
-                    ),
-                  ),
-                ),
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: ontap2,
+              icon: Icon(
+                Icons.clear,
+                size: 15.0,
+                color: ColorManager.DGrayBasiColor,
+              ),
+            ),
+          ),
 //حاله الفورم لو ضغط عليها
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color:  ColorManager.DarkBasiColor(context),
-              width: 1
+                color: ColorManager.LGrayBasiColor.withOpacity(0.9),
+                width: 0
             ),
             borderRadius: BorderRadius.circular(30),
           ),
 // حاله الفورم لو مضغطش
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              width: 1,
-              color:  ColorManager.DarkBasiColor(context)
+                width: 0,
+                color: ColorManager.LGrayBasiColor.withOpacity(0.9)
             ),
             borderRadius: BorderRadius.circular(30),
           ),
