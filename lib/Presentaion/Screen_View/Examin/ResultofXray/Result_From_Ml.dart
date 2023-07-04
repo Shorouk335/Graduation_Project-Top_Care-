@@ -26,11 +26,13 @@ class _Result_From_MlState extends State<Result_From_Ml> {
           Scan_Xray_Cubit cubit = Scan_Xray_Cubit.get(context);
           if (Scan_Xray_Cubit.scan_result_from_ml_model?.Result_Text ==
               "Pneumonia") {
-            img = "assets/images/have.png";
-            result = "Sorry ,You may have Pneumonia ";
+            img = "assets/images/Have.png";
+
+            result = "Sorry ,You may have Pneumonia with a probability of ";
           } else {
-            img = "assets/images/don't have.png";
-            result = "Congratulations, you are normal";
+            img = "assets/images/Normal.png";
+
+            result = "Congratulations, you are Normal with a probability of ";
           }
           return Scaffold(
             appBar: AppBar(
@@ -50,22 +52,26 @@ class _Result_From_MlState extends State<Result_From_Ml> {
             ),
             body: Center(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                PhotoCard(img!, result!, context),
-                textnumOfDetect(
-                    "${Scan_Xray_Cubit.scan_result_from_ml_model?.Result_num.toInt()}%"),
-                textofRecommenditon(
-                    "We recommend some doctors for you to communicate with them and check on yourself ",
-                    context),
-                submitButton("Share To Doctor ", () {
-                  showShareDialog(context);
-                }, 250, 40)
-              ],
-            )),
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    PhotoCard(
+                        img!,
+                        result!,
+                        Scan_Xray_Cubit.scan_result_from_ml_model?.Result_num
+                            .toInt()
+                            .toString(),
+                        context),
+                    textofRecommenditon(
+                        "We recommend some doctors for you  ", context),
+                    submitButton("Share With Doctor ", () {
+                      showShareDialog(context);
+                    }, double.infinity, 60)
+                  ],
+                )),
           );
         },
       ),
     );
   }
+
 }

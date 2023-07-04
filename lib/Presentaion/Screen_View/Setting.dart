@@ -130,7 +130,7 @@ class _SettingPageState extends State<SettingPage> {
                   continerpage(
                       "About TopCare",
                       iconpage(() {
-                        ShowDialogInfoSetting(context);
+                        ShowDialogInfoSetting(context ,txt: "Medical app For major Pneumonia Detection  using Chest X-Ray",n: 18.0);
                       }, Icons.info_outline_rounded)),
                   continerpage(
                       "Contact Us",

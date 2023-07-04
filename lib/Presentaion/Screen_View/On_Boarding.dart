@@ -19,12 +19,6 @@ class OnBoarding extends StatelessWidget {
   //List of Data of 3 pages from class pageViewModel
   List<PageViewModel> PageViewData = [
     PageViewModel(
-      img: AssetManager.onBord1,
-      title: StringManager.onBordTitle1,
-      disc: StringManager.onBordDis1,
-      Hsize: 2.5,
-    ),
-    PageViewModel(
       img: AssetManager.onBord2,
       title: StringManager.onBordTitle2,
       disc: StringManager.onBordDis2,
@@ -34,6 +28,12 @@ class OnBoarding extends StatelessWidget {
       img: AssetManager.onBord3,
       title: StringManager.onBordTitle3,
       disc: StringManager.onBordDis3,
+      Hsize: 2.5,
+    ),
+    PageViewModel(
+      img: AssetManager.onBord1,
+      title: StringManager.onBordTitle1,
+      disc: StringManager.onBordDis1,
       Hsize: 2.5,
     ),
   ];

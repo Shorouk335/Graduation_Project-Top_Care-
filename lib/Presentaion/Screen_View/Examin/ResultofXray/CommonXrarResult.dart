@@ -4,41 +4,56 @@ import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
 
 // photo of result
-Widget PhotoCard(String asset, String textt, BuildContext context) {
-  return Card(
-    shadowColor: ColorManager.DarkBasiColor(context),
-    color: ColorManager.WitheToDarkColor(context),
-    elevation: 50,
-    child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Image.asset(asset),
-          SizedBox(
-            height: 10,
+Widget PhotoCard(String asset, String text,String? num , BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(15.0),
+    child: Card(
+      shadowColor: ColorManager.DarkBasiColor(context),
+      color: ColorManager.WitheToDarkColor(context),
+      elevation: 50,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Image.asset(asset ,width: 250, height:250),
+            SizedBox(
+              height: 10,
+            ),
+        RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                  text: text,
+                  style: txtStyle(ColorManager.DarkBasiColor(context), 20.0, true)),
+              TextSpan(
+                  text: '$num%',
+                  style: txtStyle(Colors.red,20.0,true)),
+            ],
           ),
-          Text(textt,
-              style: txtStyle(ColorManager.DarkBasiColor(context), 20.0, true)),
-        ],
+          overflow: TextOverflow.ellipsis,
+          maxLines: 3,
+        ),
+          ],
+        ),
       ),
     ),
   );
 }
 
-// %
-Widget textnumOfDetect(String num) {
-  return Text(num, style: txtStyle(Colors.red, 35.0, true));
-}
+// // %
+// Widget textnumOfDetect(String num) {
+//   return Text(num, style: txtStyle(Colors.red, 35.0, true));
+// }
 
 //recommenditon
-Widget textofRecommenditon(String num, BuildContext context) {
+Widget textofRecommenditon(String txt, BuildContext context) {
   return Text(
-    num,
+    txt,
     textAlign: TextAlign.center,
     style: TextStyle(
       color: ColorManager.DarkBasiColor(context),
-      fontSize: 15,
-      fontWeight: FontWeight.w500,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
     ),
   );
 }

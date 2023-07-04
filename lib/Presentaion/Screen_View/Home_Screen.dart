@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:top_care_gp/Business_Logic/Cubit/Scan_Xray_Cubit.dart';
 import 'package:top_care_gp/Business_Logic/States/Scan_Xray_State.dart';
 import 'package:top_care_gp/Data/Models/CategoryModel.dart';
+import 'package:top_care_gp/Data/Shared_Preferences/Shared_Preferences.dart';
+import 'package:top_care_gp/Presentaion/Shared_Components/Awesom_Dialog.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Curved_Bottom_Nav.dart';
 import 'package:top_care_gp/Presentaion/Shared_Components/Text_Form_Widget.dart';
 import 'package:top_care_gp/Resource/Asset_Manager/Asset_Manager.dart';
@@ -34,8 +36,13 @@ class _HomeState extends State<Home> {
           img: AssetManager.Scan,
           title: StringManager.CategoryTxt1,
           on: () {
-            Navigator.pushReplacementNamed(
-                context, RouteGenerator.ExmainPageScreen);
+            if (DataCashHelper.GetData(key: "id") != null) {
+              Navigator.pushReplacementNamed(
+                  context, RouteGenerator.ExmainPageScreen);
+            } else {
+              ShowDialogToLogInApp(context,
+                  img: AssetManager.AwesomError);
+            }
           }),
       CategoryModel(
           img: AssetManager.findDr,
@@ -90,10 +97,10 @@ class _HomeState extends State<Home> {
                             color: ColorManager.DarkBasiColor(context),
                             size: 37,
                           )),
-                      CircleAvatar(
-                        backgroundColor: Scan_Xray_Cubit.NotificationColor,
-                        radius: 8,
-                      )
+                      // CircleAvatar(
+                      //   backgroundColor: Scan_Xray_Cubit.NotificationColor,
+                      //   radius: 8,
+                      // )
                     ],
                   ),
                   IconButton(

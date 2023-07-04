@@ -79,24 +79,24 @@ Widget SmallTextFormWidget({
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      width: MediaQuery.of(context!).size.width * 0.75,
+      width: MediaQuery.of(context!).size.width *0.4,
       height: 60,
       child: TextFormField(
         controller: controller,
-        style: txtStyle(ColorManager.DarkBasiColor(context), 15.0, false),
+        style: txtStyle(ColorManager.DarkBasiColor(context), 12.0, false),
         cursorColor: ColorManager.DGrayBasiColor,
         decoration: InputDecoration(
           filled: true,
-          fillColor: ColorManager.WitheToDarkColor(context),
+          fillColor:  ColorManager.LGrayBasiColor.withOpacity(0.9),
           //استايل الكلام الخفي
           hintText: "$txt",
-          hintStyle: txtStyle(ColorManager.DGrayBasiColor, 15.0, false),
+          hintStyle: txtStyle(ColorManager.DGrayBasiColor, 12.0, false),
           // الايكون الي في الاخر
           prefixIcon: IconButton(
             onPressed: ontap1,
             icon: Icon(
               Icons.search,
-              size: 30,
+              size: 20,
               color: ColorManager.DGrayBasiColor,
             ),
           ),
@@ -116,14 +116,16 @@ Widget SmallTextFormWidget({
 //حاله الفورم لو ضغط عليها
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ColorManager.WitheToDarkColor(context),
+              color:  ColorManager.DarkBasiColor(context),
+              width: 1
             ),
             borderRadius: BorderRadius.circular(30),
           ),
 // حاله الفورم لو مضغطش
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ColorManager.WitheToDarkColor(context),
+              width: 1,
+              color:  ColorManager.DarkBasiColor(context)
             ),
             borderRadius: BorderRadius.circular(30),
           ),

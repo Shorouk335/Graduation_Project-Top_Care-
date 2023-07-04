@@ -12,6 +12,8 @@ import 'package:top_care_gp/Resource/color_manager/color_manager.dart';
 import 'package:top_care_gp/Resource/theme_Light.dart';
 import 'package:http/http.dart' as http;
 
+import '../../Shared_Components/Awesom_Dialog.dart';
+
 //First page of x ray scan
 
 var message;
@@ -29,6 +31,7 @@ class _ExmainePageState extends State<ExmainePage> {
   // String? selectedImagePath = '';
   // img picker
   final picker = ImagePicker();
+  bool? camera = false;
 
   @override
   Widget build(BuildContext context) {
@@ -144,11 +147,11 @@ class _ExmainePageState extends State<ExmainePage> {
             if (Scan_Xray_Cubit.scan_xray_Img_model?.Img_Xray != null) {
               print("start");
               final request = http.MultipartRequest("POST",
-                  Uri.parse("https://e335-41-237-228-139.ngrok-free.app"));
+                  Uri.parse("https://e2f5-41-232-238-211.ngrok-free.app"));
               print(request);
               print("finish");
               final header = {
-               "Content-type": "multipart/form-data",
+                "Content-type": "multipart/form-data",
                 "Accept": "application/json"
               };
               await Image.file(File(widget.file!.path));
@@ -166,24 +169,20 @@ class _ExmainePageState extends State<ExmainePage> {
               messag = resJson['score'];
               print(message);
               print(messag);
-              if (resJson['class'] != null && resJson['score'] != null) {
+              if (camera != true &&
+                  resJson['class'] != null &&
+                  resJson['score'] != null) {
                 Navigator.pushReplacementNamed(
                     context, RouteGenerator.ResultMlScreen);
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text("Error in Scan X_Ray!",
-                      style: txtStyle(
-                          ColorManager.WitheToDarkColor(context), 15.0, false)),
-                  backgroundColor: ColorManager.DarkBasiColor(context),
-                ));
+                ShowDialogInfoSetting(context,
+                    txt: "Scan Can't be done \n\nTry another image", n: 22.0);
+
               }
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("No Image Selected !",
-                    style: txtStyle(
-                        ColorManager.WitheToDarkColor(context), 15.0, false)),
-                backgroundColor: ColorManager.DarkBasiColor(context),
-              ));
+              ShowDialogInfoSetting(context,
+                  txt: "No Image Selected !", n: 22.0);
+
             }
           }
 
@@ -248,6 +247,9 @@ class _ExmainePageState extends State<ExmainePage> {
     widget.file = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 10);
     if (widget.file != null) {
+      setState(() {
+        camera = false;
+      });
       return widget.file!.path;
     } else {
       return null;
@@ -258,6 +260,9 @@ class _ExmainePageState extends State<ExmainePage> {
     widget.file = await ImagePicker()
         .pickImage(source: ImageSource.camera, imageQuality: 10);
     if (widget.file != null) {
+      setState(() {
+        camera = true;
+      });
       return widget.file!.path;
     } else {
       return null;

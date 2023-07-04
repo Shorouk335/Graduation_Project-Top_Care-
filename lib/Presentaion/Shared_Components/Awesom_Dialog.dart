@@ -98,7 +98,7 @@ Future<dynamic> ShowDialogToLogInApp(context, {String? img}) {
 }
 
 // show in Setting
-AwesomeDialog ShowDialogInfoSetting(context) {
+AwesomeDialog ShowDialogInfoSetting(context ,{String? txt ,double? n}) {
   return AwesomeDialog(
     dialogBackgroundColor: ColorManager.WitheToDarkColor(context),
     context: context,
@@ -108,9 +108,11 @@ AwesomeDialog ShowDialogInfoSetting(context) {
       size: 50,
       color: ColorManager.BlueBasiColor,
     ),
-    body: ShowDialogSetting(
-      "Medical app For major Pneumonia Detection  using Chest X-Ray ",
-      context,
+    body: Center(
+      child: ShowDialogSetting(
+        txt,
+        context, n
+      ),
     ),
     btnOkText: "Okay",
     btnOkColor: ColorManager.BlueBasiColor,
@@ -129,14 +131,14 @@ AwesomeDialog ShowDialogConectSetting(context) {
       size: 50,
     ),
     body: ShowDialogSetting(
-        "phone :\n0104500267\nGmail :\nTopcare@gmail.com ", context),
+        "phone :\n0104500267\nGmail :\nTopcare@gmail.com ", context,18.0),
     btnOkText: "Okay",
     btnOkColor: ColorManager.BlueBasiColor,
     btnOkOnPress: () {},
   )..show();
 }
 
-Widget ShowDialogSetting(String? text, BuildContext context) {
+Widget ShowDialogSetting(String? text, BuildContext context,double? n) {
   return Container(
       height: 100,
       width: 200,
@@ -153,7 +155,7 @@ Widget ShowDialogSetting(String? text, BuildContext context) {
           children: [
             Text(
               "$text",
-              style: txtStyle(ColorManager.DarkBasiColor(context), 15.0, true),
+              style: txtStyle(ColorManager.DarkBasiColor(context), n, true),
             ),
           ],
         ),

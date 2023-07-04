@@ -4,7 +4,7 @@ import 'package:top_care_gp/Resource/Color_Manager/Color_Manager.dart';
 Widget submitButton(
     String text, VoidCallback onTap, double? Width, double? Height) {
   return Padding(
-    padding: const EdgeInsets.all(15.0),
+    padding: const EdgeInsets.all(20.0),
     child: Center(
       child: SizedBox(
         width: Width,

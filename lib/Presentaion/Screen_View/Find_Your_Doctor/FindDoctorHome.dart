@@ -57,7 +57,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                           ontap1: () {
                                             // هيدور في الكيوبت داخل الليست علي اسم الدكتور وبعدين هيحفظ البيانات في الماب الي هنا
                                             Find_Dr_Cubit
-                                                    .List_Of_Dr_From_FireBase
+                                                .List_Of_Dr_From_FireBase
                                                 .forEach((map) {
                                               if (map.containsKey("username")) {
                                                 if (map["username"] ==
@@ -65,23 +65,23 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                                   setState(() {
                                                     dr_info_search = {
                                                       "username":
-                                                          map["username"],
+                                                      map["username"],
                                                       "img":
-                                                          "assets/images/drphoto.png",
+                                                      "assets/images/drphoto.png",
                                                       "LastTime":
-                                                          map["FirstTime"],
+                                                      map["FirstTime"],
                                                       "FirstTime":
-                                                          map["LastTime"],
+                                                      map["LastTime"],
                                                       "location":
-                                                          map["location"],
+                                                      map["location"],
                                                       "FavDr": false,
                                                       "price": map["price"],
                                                       "phone": map["phone"],
                                                       "specialization":
-                                                          map["specialization"],
+                                                      map["specialization"],
                                                       "rate": 8.5,
                                                       "Working_Day":
-                                                          map["Working_Day"]
+                                                      map["Working_Day"]
                                                     };
                                                     //عشان يظهر جزء الدكتور الي هيدور عليه بس
                                                     search = true;
@@ -126,7 +126,7 @@ class _FindDoctorHomeState extends State<FindDoctorHome> {
                                     },
                                     icon: Icon(Icons.arrow_back_ios_sharp),
                                     color:
-                                        ColorManager.WitheToDarkColor(context),
+                                    ColorManager.WitheToDarkColor(context),
                                   )),
                             ],
                           ),
